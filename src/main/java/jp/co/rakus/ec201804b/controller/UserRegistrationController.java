@@ -38,7 +38,7 @@ public class UserRegistrationController {
 		BeanUtils.copyProperties(form, user);
 		user.setTelephone(form.getTelephone());
 		userRepository.insert(user);
-		return "redirect:/kari";//要編集
+		return "redirect:/index";//要編集
 		
 	}
 }
