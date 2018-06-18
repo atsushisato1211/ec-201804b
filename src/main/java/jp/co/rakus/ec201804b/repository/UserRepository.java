@@ -6,10 +6,8 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
 import jp.co.rakus.ec201804b.domain.User;
-import jp.co.rakus.ec201804b.form.UserLoginForm;
 
 
 
@@ -31,7 +29,7 @@ public class UserRepository {
 	private NamedParameterJdbcTemplate template;
 
 	public User findByAddress(String email) {
-		String sql="select id,name,email,password where email=:email";
+		String sql="select id,name,email,password,zip_code,address,telephone where email=:email";
 		User user =new User();
 		SqlParameterSource param=new MapSqlParameterSource().addValue("email",email);
 		user=template.queryForObject(sql,param,userRowMapper);

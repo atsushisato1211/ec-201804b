@@ -29,7 +29,6 @@ public class UserLoginController {
 		return "user/login";
 
 	}
-
 	@RequestMapping(value = "/login")
 	public String login(UserLoginForm form, BindingResult result) {
 		User user = repository.findByAddress(form.getEmail());
