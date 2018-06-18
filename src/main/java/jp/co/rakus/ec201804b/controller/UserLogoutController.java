@@ -4,7 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value="/")
+@RequestMapping(value="/logout")
 public class UserLogoutController {
+	
+	@RequestMapping(value="/")
+	public String logout() {
+		return "/";
+	}
 
 }

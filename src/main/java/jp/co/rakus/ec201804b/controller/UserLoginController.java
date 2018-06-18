@@ -26,7 +26,6 @@ public class UserLoginController {
 
 	@RequestMapping(value = "/index")
 	public String index() {
-		System.out.println("index*******");
 		return "login";
 	}
 
