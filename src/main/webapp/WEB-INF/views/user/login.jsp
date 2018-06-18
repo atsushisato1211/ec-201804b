@@ -10,16 +10,16 @@
 <body>
 
 
-<span class="site"><h1>ECサイトラクス</h1></span>
+<h1>ECサイトラクス</h1>
 
 <form:form modelAttribute="userLoginForm" action="${pageContext.request.contextPath}/login">
-<span class="table">
-<table>
+
+<table class = "t1">
 <tr><td><h3>ログイン</h3></td></tr>
 <tr><td>メールアドレス:<form:input path="email"/></td></tr>
 <tr><td>パスワード:<form:input path="password"/></td></tr>
 <tr><td><input type="submit" value="ログイン"></td></tr>
-</table></span>
+</table>
 </form:form>
 
 </body>
