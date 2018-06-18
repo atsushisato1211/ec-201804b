@@ -27,6 +27,7 @@ public class UserLoginController {
 	@RequestMapping(value = "/index")
 	public String index() {
 		return "user/login";
+
 	}
 
 	@RequestMapping(value = "/login")
