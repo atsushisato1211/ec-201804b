@@ -13,7 +13,7 @@
 <h1>ECサイトラクス</h1>
 
 <form:form modelAttribute="userLoginForm" action="${pageContext.request.contextPath}/login">
-<table class="t1">
+<table class = "t1">
 <tr><td><h3>ログイン</h3></td></tr>
 <tr><td>メールアドレス:<form:input path="email"/></td></tr>
 <tr><td>パスワード:<form:input path="password"/></td></tr>

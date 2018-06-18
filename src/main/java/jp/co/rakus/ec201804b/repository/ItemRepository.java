@@ -67,8 +67,8 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト
 	 */
 	public List<Item>findByName(String name){
-		String sql = "select * from " + TABLE_NAME + " where deleted=true and name=:name order by id";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("name", name);
+		String sql = "select * from " + TABLE_NAME + " where deleted=true and name like :name order by id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%"+name+"%");
 		List<Item>itemList=template.query(sql, param,ITEM_ROWMAPPEP);
 		return itemList;
 	}
