@@ -44,6 +44,21 @@
 			<td><c:out value="${item.description}" /></td>
 		</tr>
 	</table>
+		<br>
+	<div id="selectQuantity" align="center">
+	<form action="" method="post">
+					個数：<select name="quantity">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+			</select></div>
+			<div ="sendCart" align="center"><p><input type="submit" value="カートに入れる"></p></div>
 		<div ="sendCart" align="center"><p><a href="<%=request.getContextPath()%>/item/">商品一覧画面へ戻る</a></p></div>
 </body>
 </html>

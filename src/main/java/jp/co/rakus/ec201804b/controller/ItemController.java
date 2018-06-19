@@ -31,7 +31,7 @@ public class ItemController {
 	 */
 	@RequestMapping(value = "/")
 	public String index(Model model) {
-		List<Item>list = repository.findAll();
+		List<Item>list = repository.findAllByNotDeleted();
 		model.addAttribute("itemList", list);
 		
 		return "user/itemList";
@@ -49,7 +49,7 @@ public class ItemController {
 		if(useritem.isEmpty()) {
 			return "redirect:/item/";
 		}
-		List<Item>list = repository.findByName(useritem);
+		List<Item>list = repository.findByNameAndNotDeleted(useritem);
 		model.addAttribute("itemList", list);
 		
 		return "user/itemList";
