@@ -11,7 +11,6 @@
 <body>
 	<header>
 		<div id="userHeader" align="right">
-			<p>こんにちは管理者さん</p>
 
 		</div>
 		<div id="linkHeader" align="left">

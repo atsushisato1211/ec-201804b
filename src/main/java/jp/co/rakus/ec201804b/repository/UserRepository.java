@@ -18,7 +18,7 @@ public class UserRepository {
 		user.setName(rs.getString("name"));
 		user.setEmail(rs.getString("email"));
 		user.setPassword(rs.getString("password"));
-		user.setZipCode(rs.getString("zipCode"));
+	//	user.setZipCode(rs.getString("zipCode"));
 		user.setAddress(rs.getString("address"));
 		user.setTelephone(rs.getString("telephone"));
 		return user;
@@ -29,7 +29,7 @@ public class UserRepository {
 	private NamedParameterJdbcTemplate template;
 
 	public User findByAddress(String email) {
-		String sql="select id,name,email,password,zip_code,address,telephone where email=:email";
+		String sql="select * from users where email=:email";
 		User user =new User();
 		SqlParameterSource param=new MapSqlParameterSource().addValue("email",email);
 		user=template.queryForObject(sql,param,userRowMapper);
