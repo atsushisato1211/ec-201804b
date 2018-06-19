@@ -51,7 +51,7 @@ public class UserLoginController {
 	 */
 	@RequestMapping(value = "/login")
 	public String login(@Validated UserLoginForm form, BindingResult result) {
-		User user = repository.findByAddress(form.getEmail());
+		User user = repository.findByEmail(form.getEmail());
 
 		if (user == null) {
 			result.rejectValue("email", null, "メールアドレスが不正です");
