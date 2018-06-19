@@ -10,8 +10,5 @@ spring:
       prefix: /WEB-INF/views/
       suffix: .jsp
 server:
+  servlet:
       context-path: /web
-
-security:
-  basic:
-    enabled: false

@@ -1,5 +1,6 @@
 package jp.co.rakus.ec201804b;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -7,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -14,9 +16,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
 
-	
+
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
@@ -30,20 +33,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		
 		http.authorizeRequests() // 認可に関する設定
-		.antMatchers("/", "/index").permitAll() //「/」などのパスは全てのユーザに許可
+		.antMatchers("/user/item","/", "/index").permitAll() //「/」などのパスは全てのユーザに許可
 		//.antMatchers("/admin/**").hasRole("ADMIN") // /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 		//.antMatchers("/member/**").hasRole("MEMBER") // /member/から始まるパスはMEMBER権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 		.anyRequest().authenticated();
 		
 		
 		// BASIC認証の有効化
-		//http.httpBasic().disable();
+		http.httpBasic().disable();
 		http.formLogin() // ログインに関する設定
 				.loginPage("/index") // ログイン画面に遷移させるパス(ログイン認証が必要なパスを指定してかつログインされていないとこのパスに遷移される)
 				.loginProcessingUrl("/login") // ログインボタンを押した際に遷移させるパス(ここに遷移させれば自動的にログインが行われる)
-				.failureUrl("/?error=true") // ログイン失敗に遷移させるパス
+				.failureUrl("/index?error=true") // ログイン失敗に遷移させるパス
 				.defaultSuccessUrl("/user/item", false) // 第1引数:デフォルトでログイン成功時に遷移させるパス
 														// 第2引数: true :認証後常に第1引数のパスに遷移
 														// false:認証されてなくて一度ログイン画面に飛ばされてもログインしたら指定したURLに遷移
@@ -66,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService())
+		auth.userDetailsService(userDetailsService)
 			.passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
 	}
 	
