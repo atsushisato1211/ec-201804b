@@ -1,19 +1,19 @@
 package jp.co.rakus.ec201804b;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import jp.co.rakus.ec201804b.repository.UserRepository;
 @Configuration 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 
-	@Autowired
-	private UserRepository repository;
 	
 	
 	@Override
@@ -54,4 +54,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.deleteCookies("JSESSIONID") // ログアウト後、Cookieに保存されているセッションIDを削除
 				.invalidateHttpSession(true); // true:ログアウト後、セッションを無効にする false:セッションを無効にしない
 	}
+	
+	/**
+	 * 「認証」に関する設定.<br>
+	 * 認証ユーザを取得する「UserDetailsService」の設定や<br>
+	 * パスワード照合時に使う「PasswordEncoder」の設定
+	 * 
+	 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder)
+	 */
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService())
+			.passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
+	}
+	
+	@Bean
+    PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
 }
