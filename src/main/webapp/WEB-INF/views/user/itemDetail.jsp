@@ -11,9 +11,12 @@
 
 <header>
 		<div id="userHeader" align="right">
-			<p>こんにちはゲストさん</p>
-			<p><a href="userLogin.html">ログイン</a></p>
-			<p><a href="viewShoppingCart.html">カートの中身を見る</a></p>
+			<p>こんにちはゲストさん</p><p>
+			<a href="<%=request.getContextPath()%>/index">ログイン</a>
+			</p>
+			<p>
+				<a href="<%=request.getContextPath()%>/show/">カートの中身を見る</a>
+			</p>
 		</div>
 				<div id="linkHeader" align="left">
 			<h1 align ="left"><a href="<%=request.getContextPath()%>/item/"><img src="<%=request.getContextPath()%>/img/rakus.jpg" width="50"

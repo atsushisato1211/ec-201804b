@@ -63,7 +63,7 @@ public class ItemController {
 	 * @return userフォルダーのitemDetail.jsp(商品詳細画面)
 	 */
 	@RequestMapping(value="/itemdetail")
-	public String itemdetail(@RequestParam Integer id,Model model) {
+	public String itemdetail(@RequestParam Long id,Model model) {
 		Item item = repository.load(id);
 		model.addAttribute("item",item);
 		

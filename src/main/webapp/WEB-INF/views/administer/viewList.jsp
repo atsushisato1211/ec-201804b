@@ -43,7 +43,11 @@
 						width="150" height="125" alt="<c:out value="${item.name}" />画像"></a></td>
 				<td><c:out value="${item.name}"/></td>
 				<td>&yen;<c:out value="${item.price}" /></td>
-				<td><input type="submit" value="編集" align="center"><br><br>
+				<td>
+				<form action="<%=request.getContextPath()%>/menu/itemContent" align="center" method="post">
+				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>
+				<input type="submit" value="編集" align="center"><br>
+	</form>
 				<!-- <input type="submit" value="削除" align="center"> -->
 				<form action="<%=request.getContextPath()%>/menu/changeByDeleted" align="center" method="post">
 				<c:if test="${item.deleted==true}">
