@@ -7,12 +7,29 @@ public class UserRegistrationForm {
 	private String password;
 	private String confirmationpassword;
 	private String zipCode;
+	private String zipCode1;
+	private String zipCode2;
 	private String address;
 	private String telephone;
-
 	private String telephone1;
 	private String telephone2;
 	private String telephone3;
+
+	public String getZipCode1() {
+		return zipCode1;
+	}
+
+	public void setZipCode1(String zipCode1) {
+		this.zipCode1 = zipCode1;
+	}
+
+	public String getZipCode2() {
+		return zipCode2;
+	}
+
+	public void setZipCode2(String zipCode2) {
+		this.zipCode2 = zipCode2;
+	}
 
 	public String getConfirmationpassword() {
 		return confirmationpassword;
@@ -55,7 +72,7 @@ public class UserRegistrationForm {
 	}
 
 	public String getZipCode() {
-		return zipCode;
+		return zipCode1 + "-" + zipCode2;
 	}
 
 	public void setZipCode(String zipCode) {

@@ -32,7 +32,6 @@ public class UserRepository {
 		try {
 			String sql="select id,name,email,password,zip_code,address,telephone from "+ TABLE_NAME + " where email=:email";
 			User user =new User();
-			System.out.println(email);
 			SqlParameterSource param=new MapSqlParameterSource().addValue("email",email);
 			user=template.queryForObject(sql,param,userRowMapper);
 			return user;

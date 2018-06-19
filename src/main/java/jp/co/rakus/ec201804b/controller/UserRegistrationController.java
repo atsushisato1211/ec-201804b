@@ -56,9 +56,9 @@ public class UserRegistrationController {
 		BeanUtils.copyProperties(form, user);
 		user.setTelephone(form.getTelephone());
 		String encryptionPassword = passwordEncoder.encode(user.getPassword());
-		System.out.println(user.getPassword());
 		user.setPassword(encryptionPassword);
-		System.out.println(user.getPassword());
+		user.setZipCode(form.getZipCode());
+		System.out.println(user.getZipCode());
 		userRepository.insert(user);
 		return "redirect:/index";// 要編集
 
