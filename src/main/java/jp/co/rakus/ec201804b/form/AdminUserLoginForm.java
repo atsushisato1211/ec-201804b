@@ -4,9 +4,8 @@ public class AdminUserLoginForm {
 	
 	private Long id;
 	private String name;
-	private Integer price;
-	private String imagePath;
-	private Boolean deleted;
+	private String email;
+	private String password;
 	
 	public Long getId() {
 		return id;
@@ -20,22 +19,16 @@ public class AdminUserLoginForm {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getPrice() {
-		return price;
+	public String getEmail() {
+		return email;
 	}
-	public void setPrice(Integer price) {
-		this.price = price;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getImagePath() {
-		return imagePath;
+	public String getPassword() {
+		return password;
 	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-	public Boolean getDeleted() {
-		return deleted;
-	}
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

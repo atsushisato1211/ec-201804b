@@ -62,6 +62,6 @@ public class UserLoginController {
 		if (result.hasErrors()) {
 			return index();
 		}
-		return "/item";
+		return "redirect:/item/";
 	}
 }

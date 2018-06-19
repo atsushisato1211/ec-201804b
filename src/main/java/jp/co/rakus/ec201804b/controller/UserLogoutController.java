@@ -24,8 +24,7 @@ public class UserLogoutController {
 	 * @return　ログイン画面
 	 */
 	@RequestMapping(value = "sessionInvalidate")
-	public String sessionInvalidate(User user
-			, SessionStatus sessionStatus) {
+	public String sessionInvalidate(User user, SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
 		return "redirect:/index";
 	}
