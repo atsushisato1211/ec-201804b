@@ -55,8 +55,10 @@ public class UserLoginController {
 
 		if (user == null) {
 			result.rejectValue("email", null, "メールアドレスが不正です");
-		} else if (!passwordEncoder.matches(user.getPassword(), form.getPassword())) {
-			result.rejectValue("pass", null, "パスワードが合いません");
+		} 
+		//else if (!passwordEncoder.matches(user.getPassword(), form.getPassword())) {
+		else if(!user.getPassword().equals(form.getPassword())) {
+		result.rejectValue("pass", null, "パスワードが合いません");
 		}
 
 		if (result.hasErrors()) {

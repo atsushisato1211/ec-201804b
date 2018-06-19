@@ -11,7 +11,6 @@
 <body>
 	<header>
 		<div id="userHeader" align="right">
-			<p>こんにちはゲストさん</p>
 			<p>
 				<a href="${pageContext.request.contextPath}">カートの中身を見る</a>
 			</p>

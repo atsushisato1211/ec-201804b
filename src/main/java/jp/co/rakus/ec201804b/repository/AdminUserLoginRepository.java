@@ -24,7 +24,7 @@ public class AdminUserLoginRepository {
 	private NamedParameterJdbcTemplate template;
 
 	public AdminUser findByAddress(String email) {
-		String sql="select id,name,email,password where email=:email";
+		String sql="select * from admin_users where email=:email";
 		AdminUser adminUser =new AdminUser();
 		SqlParameterSource param=new MapSqlParameterSource().addValue("email",email);
 		adminUser=template.queryForObject(sql,param,adminUserRowMapper);
