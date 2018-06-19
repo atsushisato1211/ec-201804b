@@ -31,7 +31,6 @@ public class OrderRepository {
 			long beforOrderId = 0;
 			while (rs.next()) {
 				long currentOrderId = rs.getInt("order_id");
-				System.out.println(currentOrderId);
 				if (currentOrderId != beforOrderId) {
 					order = new Order();
 					order.setId(currentOrderId);
@@ -54,6 +53,9 @@ public class OrderRepository {
 				OrderItem orderItem = new OrderItem();
 				orderItem.setId(rs.getLong("id"));
 				orderItem.setItemId(rs.getLong("item_id"));
+				orderItem.setOrderId(rs.getLong("orderitem_order_id"));
+				orderItem.setQuantity(rs.getInt("orderitem_quantity"));
+				
 				Item item = new Item();
 				item.setName(rs.getString("item_name"));
 				item.setPrice(rs.getInt("item_price"));
@@ -61,8 +63,7 @@ public class OrderRepository {
 				item.setImagePath(rs.getString("imagePath"));
 				item.setDeleted(rs.getBoolean("deleted"));
 				orderItem.setItem(item);
-				orderItem.setOrderId(rs.getLong("orderitem_order_id"));
-				orderItem.setQuantity(rs.getInt("orderitem_quantity"));
+				
 				order.getOrderItemList().add(orderItem);
 				beforOrderId = currentOrderId;
 			}
@@ -71,9 +72,17 @@ public class OrderRepository {
 	};
 	
 	public List<Order> findAll() {
-		String sql = "o.order";
+		String sql = "select o.id as order_id, order_number, status, "
+				+ "total_price, order_date, delivery_name,delivery_email,"
+				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
+				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
+				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
+				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "left outer join order_items oi "
+				+ "on (o.id = oi.order_id) "
+				+ "join items i on (oi.item_id = i.id)";
 		List<Order> orderList = template.query(sql, ORDER_RSE);
-		return orderList; 
+		return orderList;
 	}
 
 }

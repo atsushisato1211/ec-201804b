@@ -17,8 +17,10 @@ public class AdminMenuController {
 	@Autowired
 	private ItemRepository repository;
 
+
 	@RequestMapping("/")
 	public String index() {
+		
 		return "administer/menu";
 	}
 	
