@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/menu")
 public class AdminMenuController {
-
+	
 	@RequestMapping("/")
 	public String index() {
+		
 		return "administer/menu";
 	}
 	
