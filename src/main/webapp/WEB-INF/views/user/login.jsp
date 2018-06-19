@@ -25,7 +25,6 @@
 		</div>
 	</header>
 
-
 	<form:form modelAttribute="userLoginForm"
 		action="${pageContext.request.contextPath}/login">
 		<div align="center">
