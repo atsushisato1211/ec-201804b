@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form modelAttribute="userRegistrationForm" action="${pageContext.request.contextPath}/registration/form" method="post">
+<form:form modelAttribute="userRegistrationForm" action="${pageContext.request.contextPath}/registration/create" method="post">
 <h2>利用者登録</h2><br>
 名前：<form:input path="name"/><br>
 メールアドレス：<form:input path="email"/><br>

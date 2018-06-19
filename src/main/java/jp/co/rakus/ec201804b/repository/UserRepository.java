@@ -18,28 +18,33 @@ public class UserRepository {
 		user.setName(rs.getString("name"));
 		user.setEmail(rs.getString("email"));
 		user.setPassword(rs.getString("password"));
-		user.setZipCode(rs.getString("zipCode"));
+		user.setZipCode(rs.getString("zip_code"));
 		user.setAddress(rs.getString("address"));
 		user.setTelephone(rs.getString("telephone"));
 		return user;
 	};
 	
-	private static final String TABLE_NAME = "kari"; //要編集
+	private static final String TABLE_NAME = "test"; //要編集
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 
-	public User findByAddress(String email) {
-		String sql="select id,name,email,password,zip_code,address,telephone where email=:email";
-		User user =new User();
-		SqlParameterSource param=new MapSqlParameterSource().addValue("email",email);
-		user=template.queryForObject(sql,param,userRowMapper);
-		return user;
+	public User findByEmail(String email) {
+		try {
+			String sql="select id,name,email,password,zip_code,address,telephone from "+ TABLE_NAME + " where email=:email";
+			User user =new User();
+			System.out.println(email);
+			SqlParameterSource param=new MapSqlParameterSource().addValue("email",email);
+			user=template.queryForObject(sql,param,userRowMapper);
+			return user;
+		}catch(Exception e) {
+			return null;
+		}
 	}
 
 	public User insert(User user) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
 		String sql = "insert into " + TABLE_NAME
-				+ " (name,email,password,zipCode,address,telephone) values (:name,:email,:password,:zipCode,:address,:telephone)";
+				+ " (name,email,password,zip_code,address,telephone) values (:name,:email,:password,:zipCode,:address,:telephone)";
 		template.update(sql, param);
 		return user;
 	}
