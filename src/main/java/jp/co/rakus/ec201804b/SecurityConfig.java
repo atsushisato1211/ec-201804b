@@ -5,12 +5,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration 
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 
@@ -37,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		
 		// BASIC認証の有効化
-		http.httpBasic().disable();
+		//http.httpBasic().disable();
 		http.formLogin() // ログインに関する設定
 				.loginPage("/index") // ログイン画面に遷移させるパス(ログイン認証が必要なパスを指定してかつログインされていないとこのパスに遷移される)
 				.loginProcessingUrl("/login") // ログインボタンを押した際に遷移させるパス(ここに遷移させれば自動的にログインが行われる)
