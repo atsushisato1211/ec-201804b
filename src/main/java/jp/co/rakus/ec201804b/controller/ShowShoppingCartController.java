@@ -14,7 +14,7 @@ import jp.co.rakus.ec201804b.repository.OrderRepository;
 
 @Controller
 @Transactional
-@RequestMapping("/")
+@RequestMapping("/show")
 public class ShowShoppingCartController {
 	
 	@Autowired
@@ -23,7 +23,7 @@ public class ShowShoppingCartController {
 	@Autowired
 	private HttpSession session;
 
-	@RequestMapping("/show")
+	@RequestMapping("/")
 	public String show() {
 //		List<Order> orderList =orderRepository.findAll();
 //		session.setAttribute("orderList", orderList);

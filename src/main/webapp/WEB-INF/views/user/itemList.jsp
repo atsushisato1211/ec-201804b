@@ -14,10 +14,10 @@
 		<div id="userHeader" align="right">
 			<p>こんにちはゲストさん</p>
 			<p>
-				<a href="userLogin.html">ログイン</a>
+				<a href="<%=request.getContextPath()%>/index">ログイン</a>
 			</p>
 			<p>
-				<a href="viewShoppingCart.html">カートの中身を見る</a>
+				<a href="<%=request.getContextPath()%>/show/">カートの中身を見る</a>
 			</p>
 		</div>
 		<div id="linkHeader" align="left">
