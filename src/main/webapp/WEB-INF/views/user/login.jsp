@@ -24,7 +24,7 @@
 			<div id="title" align="center"></div>
 		</div>
 	</header>
-
+	<form:errors path="userLoginForm.*" />
 	<form:form modelAttribute="userLoginForm"
 		action="${pageContext.request.contextPath}/login">
 		<div align="center">

@@ -16,9 +16,10 @@ import jp.co.rakus.ec201804b.domain.LoginUser;
 import jp.co.rakus.ec201804b.domain.User;
 import jp.co.rakus.ec201804b.repository.UserRepository;
 
-public class UserDetailsServiceImpl {
-	@Service
-	public class MemberDetailsServiceImpl implements UserDetailsService {
+@Service
+public class UserDetailsServiceImpl  implements UserDetailsService {
+	
+	
 		/** DBから情報を得るためのリポジトリ */
 		@Autowired
 		private UserRepository userRepository;
@@ -46,5 +47,5 @@ public class UserDetailsServiceImpl {
 			return new LoginUser(user, authorityList);
 
 		}
-	}
+	
 }
