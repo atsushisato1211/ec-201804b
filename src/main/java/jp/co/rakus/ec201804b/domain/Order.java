@@ -7,7 +7,7 @@ public class Order {
 	private Long id;
 	private String orderNumber;
 	private Long status;
-	private List<Item> orderItemList;
+	private List<OrderItem> orderItemList;
 	private Integer totalPrice;
 	private Date orderDate;
 	private String deliveryName;
@@ -34,10 +34,10 @@ public class Order {
 	public void setStatus(Long status) {
 		this.status = status;
 	}
-	public List<Item> getOrderItemList() {
+	public List<OrderItem> getOrderItemList() {
 		return orderItemList;
 	}
-	public void setOrderItemList(List<Item> orderItemList) {
+	public void setOrderItemList(List<OrderItem> orderItemList) {
 		this.orderItemList = orderItemList;
 	}
 	public Integer getTotalPrice() {
