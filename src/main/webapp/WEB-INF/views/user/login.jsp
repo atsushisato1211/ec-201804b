@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -21,29 +22,24 @@
 					height="50" alt="ロゴ画像">ＥＣサイトラクス</a>
 			</h1>
 			<div id="title" align="center"></div>
+		</div>
 	</header>
 
-	<h1>ECサイトラクス</h1>
 
 	<form:form modelAttribute="userLoginForm"
 		action="${pageContext.request.contextPath}/login">
-		<table class="t1">
-			<tr>
-				<td><h3>ログイン</h3></td>
-			</tr>
-			<tr>
-				<td>メールアドレス:<form:input path="email"/></td>
-			</tr>
-			<tr>
-				<td>パスワード:<form:input path="password" /></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="ログイン"></td>
-			</tr>
-			<tr>
-				<td><a href="userRegister.html">新規登録はこちら</a></td>
-			</tr>
-		</table>
+		<div align="center">
+			<h3>ログイン</h3>
+			<form:errors path="email" cssStyle="color:red" element="div" />
+			メールアドレス:
+			<form:input path="email" />
+			<br>
+			<form:errors path="password" cssStyle="color:red" element="div" />
+			パスワード:
+			<form:input path="password" />
+			<br> <input type="submit" value="ログイン"><br> 
+			<a href="${pageContext.request.contextPath}/">新規登録はこちら</a>
+		</div>
 	</form:form>
 
 </body>

@@ -10,9 +10,7 @@
 </head>
 <body>
 	<header>
-		<div id="userHeader" align="right">
-
-		</div>
+		<div id="userHeader" align="right"></div>
 		<div id="linkHeader" align="left">
 			<h1 align="left">
 				<a href="../user/itemList.html"><img src="../img/rakus.jpg"
@@ -28,10 +26,12 @@
 		<h2>ログイン</h2>
 		<form:form modelAttribute="adminUserLoginForm"
 			action="${pageContext.request.contextPath}/admin/login">
-	
+			<form:errors path="email" cssStyle="color:red" element="div" />
 					メールアドレス：<form:input path="email" />
-					<br>パスワード： <form:input path="password" />
-					<br><input type="submit" value="ログイン" />
+			<form:errors path="password" cssStyle="color:red" element="div" />
+			<br>パスワード： <form:input path="password" />
+			<br>
+			<input type="submit" value="ログイン" />
 		</form:form>
 	</div>
 </body>

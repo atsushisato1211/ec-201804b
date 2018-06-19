@@ -45,9 +45,11 @@ public class UserLoginController {
 	/**
 	 * ユーザー情報をメールアドレスから検索してパスワードが一致するか調べるメソッド.
 	 * 
-	 * @param form ユーザーのログイン情報が入ったいformクラス
-	 * @param result BindingResult
-	 * @return　商品の一覧を表示するjspのリンク先を戻り値にしている
+	 * @param form
+	 *            ユーザーのログイン情報が入ったいformクラス
+	 * @param result
+	 *            BindingResult
+	 * @return 商品の一覧を表示するjspのリンク先を戻り値にしている
 	 */
 	@RequestMapping(value = "/login")
 	public String login(@Validated UserLoginForm form, BindingResult result) {
@@ -55,10 +57,10 @@ public class UserLoginController {
 
 		if (user == null) {
 			result.rejectValue("email", null, "メールアドレスが不正です");
-		} 
-		//else if (!passwordEncoder.matches(user.getPassword(), form.getPassword())) {
-		else if(!user.getPassword().equals(form.getPassword())) {
-		result.rejectValue("pass", null, "パスワードが合いません");
+		}
+		// else if (!passwordEncoder.matches(user.getPassword(), form.getPassword())) {
+		else if (!user.getPassword().equals(form.getPassword())) {
+			result.rejectValue("password", null, "パスワードが合いません");
 		}
 
 		if (result.hasErrors()) {
