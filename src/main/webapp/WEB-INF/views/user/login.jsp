@@ -33,7 +33,7 @@
 				<td><h3>ログイン</h3></td>
 			</tr>
 			<tr>
-				<td>メールアドレス:<form:input path=email "/></td>
+				<td>メールアドレス:<form:input path="email"/></td>
 			</tr>
 			<tr>
 				<td>パスワード:<form:input path="password" /></td>

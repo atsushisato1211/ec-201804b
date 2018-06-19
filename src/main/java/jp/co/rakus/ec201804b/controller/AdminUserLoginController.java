@@ -36,7 +36,7 @@ public class AdminUserLoginController {
 	 */
 	@RequestMapping(value="/index")
 	public String index() {
-		return "/user/adminUserLodin";
+		return "/user/adminUserLogin";
 	}
 	
 	@RequestMapping(value="/login")
