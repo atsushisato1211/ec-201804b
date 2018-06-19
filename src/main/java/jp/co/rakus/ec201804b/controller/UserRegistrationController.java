@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.rakus.ec201804b.domain.User;
 import jp.co.rakus.ec201804b.form.UserRegistrationForm;
@@ -32,7 +33,8 @@ public class UserRegistrationController {
 		return new BCryptPasswordEncoder();
 	}
 
-	@ModelAttribute UserRegistrationForm setUpForm() {
+	@ModelAttribute
+	UserRegistrationForm setUpForm() {
 		return new UserRegistrationForm();
 	}
 
@@ -42,13 +44,23 @@ public class UserRegistrationController {
 	}
 
 	@RequestMapping(value = "/create")
-	public String Registration(@Validated UserRegistrationForm form, BindingResult result, Model model) {
+	public String Registration(@Validated UserRegistrationForm form, BindingResult result, RedirectAttributes redirectAttributes,Model model) {
 		User user = new User();
 		if (!form.getPassword().equals(form.getConfirmationpassword())) {
-			result.rejectValue("confirmationpassword", "", "パスワードが一致しません");
+			result.rejectValue("confirmationpassword", "", "設定したパスワードを再度入力して下さい");
 		}
 		if (userRepository.findByEmail(form.getEmail()) != null) {
 			result.rejectValue("email", "", "そのアドレスはすでに使われています");
+		}
+		if(form.getZipCode1().isEmpty() && form.getZipCode2().isEmpty()) {
+			result.rejectValue("zipCode1", "", "郵便番号入力して下さい");
+		}else if(form.getZipCode1().isEmpty() || form.getZipCode2().isEmpty()) {
+			result.rejectValue("zipCode1", "", "郵便番号を正しく入力して下さい");
+		}
+		if(form.getTelephone1().isEmpty() && form.getTelephone2().isEmpty() && form.getTelephone3().isEmpty()) {
+			result.rejectValue("telephone1","","電話番号を入力して下さい");
+		}else if(form.getTelephone1().isEmpty()|| form.getTelephone2().isEmpty()|| form.getTelephone3().isEmpty()) {
+			result.rejectValue("telephone1", "","電話番号を正しく入力して下さい");
 		}
 		if (result.hasErrors()) {
 			return form(model);
@@ -58,7 +70,6 @@ public class UserRegistrationController {
 		String encryptionPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encryptionPassword);
 		user.setZipCode(form.getZipCode());
-		System.out.println(user.getZipCode());
 		userRepository.insert(user);
 		return "redirect:/index";// 要編集
 
