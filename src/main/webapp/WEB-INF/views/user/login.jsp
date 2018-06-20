@@ -31,12 +31,13 @@
 		</div>
 	</header>
 	<div align="center">
-	
+	<h3>ログイン</h3>
+	<form:errors path="userLoginForm.*" cssStyle="color:red" element="div"/>
 	<form:form modelAttribute="userLoginForm"
 		action="${pageContext.request.contextPath}/login">
 		
-			<h3>ログイン</h3>
-			<form:errors path="userLoginForm.*" cssStyle="color:red" element="div"/>
+			
+			
 			<form:errors path="email" cssStyle="color:red" element="div" />
 			メールアドレス:
 			<form:input path="email" />
