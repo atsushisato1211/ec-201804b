@@ -25,23 +25,22 @@
 </header>
 <form:form modelAttribute="userRegistrationForm" action="${pageContext.request.contextPath}/registration/create" method="post">
 <h2>利用者登録</h2><br>
-<form:errors path="name" cssStyle="color:red" element="div"/>
-名前：<form:input path="name"/><br>
-<form:errors path="email" cssStyle="color:red" element="div"/>
-メールアドレス：<form:input path="email"/><br>
-<form:errors path="password" cssStyle="color:red" element="div"/>
-パスワード：<form:password path="password"/><br>
-<form:errors path="confirmationpassword" cssStyle="color:red" element="div"/>
-確認用パスワード：<form:password path="confirmationpassword"/><br>
-<form:errors path="zipCode1" cssStyle="color:red" element="div"/>
-<form:errors path="zipCode2" cssStyle="color:red" element="div"/>
-郵便番号：<form:input path="zipCode1" maxlength="3"/> - <form:input path="zipCode2" maxlength="4" onKeyUp="AjaxZip3.zip2addr('zipCode1','zipCode2','address','address')"/><br>
-<form:errors path="address" cssStyle="color:red" element="div"/>
-住所：<form:input path="address"/><br>
-<form:errors path="telephone1" cssStyle="color:red" element="div"/>
-<form:errors path="telephone2" cssStyle="color:red" element="div"/>
-<form:errors path="telephone3" cssStyle="color:red" element="div"/>
-電話番号：<form:input path="telephone1" maxlength="3"/> - <form:input path="telephone2" maxlength="4"/> - <form:input path="telephone3" maxlength="4"/><br>
+<table>
+<tr><form:errors path="name" cssStyle="color:red" element="div"/>
+<td>名前：</td><td><form:input path="name"/></td></tr>
+<tr><form:errors path="email" cssStyle="color:red" element="div"/>
+<td>メールアドレス：</td><td><form:input path="email"/></td><tr>
+<tr><form:errors path="password" cssStyle="color:red" element="div"/>
+<td>パスワード：</td><td><form:password path="password"/></td></tr>
+<tr><form:errors path="confirmationpassword" cssStyle="color:red" element="div"/>
+<td>確認用パスワード：</td><td><form:password path="confirmationpassword"/></td></tr>
+<tr><form:errors path="zipCode1" cssStyle="color:red" element="div"/>
+<td>郵便番号：</td><td><form:input path="zipCode1" maxlength="3"/> - <form:input path="zipCode2" maxlength="4" onKeyUp="AjaxZip3.zip2addr('zipCode1','zipCode2','address','address')"/></td></tr>
+<tr><form:errors path="address" cssStyle="color:red" element="div"/>
+<td>住所：</td><td><form:input path="address"/></td></tr>
+<tr><form:errors path="telephone1" cssStyle="color:red" element="div"/>
+<td>電話番号：</td><td><form:input path="telephone1" maxlength="3"/> - <form:input path="telephone2" maxlength="4"/> - <form:input path="telephone3" maxlength="4"/></td></tr>
+</table>
 <input type="submit" value="登録する"/><input type="reset" value="クリア"/>
 </form:form>
 </body>
