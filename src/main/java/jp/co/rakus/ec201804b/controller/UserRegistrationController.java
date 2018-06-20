@@ -18,6 +18,7 @@ import jp.co.rakus.ec201804b.repository.UserRepository;
 
 
 /**
+ * 利用者に関する処理を行うコントローラです.
  * @author @{nobuteru.kato}
  *
  */
@@ -38,11 +39,24 @@ public class UserRegistrationController {
 		return new UserRegistrationForm();
 	}
 
+	/**
+	 * 初期画面を表示するためのメソッドです.
+	 * @param model
+	 * @return 利用者登録画面
+	 */
 	@RequestMapping(value = "/form")
 	public String form(Model model) {
 		return "user/userRegistration";
 	}
 
+	/**
+	 * 利用者登録処理を行うメソッドです.
+	 * @param form フォーム
+	 * @param result エラー内容
+	 * @param redirectAttributes
+	 * @param model
+	 * @return 利用者のログイン画面
+	 */
 	@RequestMapping(value = "/create")
 	public String Registration(@Validated UserRegistrationForm form, BindingResult result, RedirectAttributes redirectAttributes,Model model) {
 		User user = new User();
