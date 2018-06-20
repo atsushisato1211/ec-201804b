@@ -35,7 +35,7 @@
 <div align ="center">
 	<h2>商品一覧</h2>
 	<form action="<%=request.getContextPath()%>/item/findByName">
-		名前<input type="text" name="useritem"> 
+		名前<input type="text" name="useritem" value="${itemName}"> 
 		<button type="submit" class="btn btn-info">検索</button>
 	</form>
 </div>
