@@ -82,7 +82,7 @@ public class UserRegistrationController {
 		if(form.getTelephone1().matches("\\d{3}|\\d{2}") == false || form.getTelephone2().matches("\\d{4}") == false || form.getTelephone3().matches("\\d{4}") == false) {
 			result.rejectValue("telephone1", null,"電話番号には数字を入力して下さい");
 			isTelephoneError = true;
-		}
+		} 
 		}
 		if (result.hasErrors()) {
 			System.out.println(result);

@@ -41,7 +41,7 @@ public class AdminUserLoginController {
 	
 	@RequestMapping(value="/login")
 	public String login(@Validated AdminUserLoginForm form,BindingResult result){
-		AdminUser adminUser=repository.findByAddress(form.getEmail());
+		AdminUser adminUser=repository.findByEmail(form.getEmail());
 		
 		if(adminUser==null) {
 			result.rejectValue("email",null ,"メールアドレスが不正です");
