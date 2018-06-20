@@ -55,28 +55,35 @@ public class ItemController {
 		List<Item>list = repository.findByNameAndNotDeleted(useritem);
 		model.addAttribute("itemList", list);
 		model.addAttribute("itemName",useritem);
+		System.out.println(list.isEmpty());
 		
 		return "user/itemList";
 		
 	}
 	@RequestMapping(value = "/findByNameAndSort")
-	public String findByNameAndSort(@RequestParam String useritem,@RequestParam String itemSort, Model model) {
-		if(useritem==null || useritem.isEmpty()) {
-			System.out.println("00000000000000"+useritem);
-			System.out.println(itemSort);
-			return findBySort(itemSort,model);
+	public String findByNameAndSort(@RequestParam String useritem,@RequestParam String itemSort,@RequestParam String sortOption, Model model) {
+		System.out.println(sortOption);
+		if(sortOption.equals("ASC")) {
+			sortOption="ASC";
+		}else {
+			sortOption="DESC";			
 		}
-		List<Item>list = repository.findByNameAndSortNotDeleted(useritem, itemSort);
+		System.out.println("bbbbbbbbbbb"+sortOption);
+		if(useritem==null || useritem.isEmpty()) {
+			return findBySort(itemSort,sortOption,model);
+		}
+		List<Item>list = repository.findByNameAndSortNotDeleted(useritem, itemSort,sortOption);
 		model.addAttribute("itemList", list);
+		model.addAttribute("itemName",useritem);
 		
 		return "user/itemList";
 		
 	}
 	@RequestMapping(value = "/findBySort")
-	public String findBySort(String itemSort, Model model) {
-		System.out.println("aaaaaaaaaaaaaaaaaaaa"+itemSort);
-		List<Item>list = repository.findAllBySortAndNotDeleted(itemSort);
+	public String findBySort(String itemSort,String sortOption, Model model) {
+		List<Item>list = repository.findAllBySortAndNotDeleted(itemSort,sortOption);
 		model.addAttribute("itemList", list);
+		
 		
 		return "user/itemList";
 		

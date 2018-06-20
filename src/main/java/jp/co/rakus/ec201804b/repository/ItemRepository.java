@@ -69,14 +69,14 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト
 	 */
 	public List<Item> findAll() {
-		String sql = "select id,name,price,imagePath from " + TABLE_NAME + " order by id";
+		String sql = "select iid,name,description,price,imagePath,deleted from " + TABLE_NAME + " order by id";
 		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
 	}
-	public List<Item> findAllBySortAndNotDeleted(String itemSort) {
+	public List<Item> findAllBySortAndNotDeleted(String itemSort,String sortOption) {
 //		String sql = "select * from " + TABLE_NAME + " order by sort=:sort";
-		String sql = "select * from " + TABLE_NAME + " order by "+itemSort;
-		SqlParameterSource param = new MapSqlParameterSource();//.addValue("sort",itemSort);
+		String sql = "select id,name,description,price,imagePath,deleted from " + TABLE_NAME + " order by "+itemSort+" "+sortOption;
+		SqlParameterSource param = new MapSqlParameterSource();
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 //		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
@@ -88,7 +88,7 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト 削除フラグがtrueのみ
 	 */
 	public List<Item> findAllByNotDeleted() {
-		String sql = "select * from " + TABLE_NAME + " where deleted=true order by id";
+		String sql = "select id,name,description,price,imagePath,deleted from " + TABLE_NAME + " where deleted=true order by id";
 		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
 	}
@@ -101,7 +101,7 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト
 	 */
 	public List<Item> findByName(String name) {
-		String sql = "select * from " + TABLE_NAME + " where name like :name order by id";
+		String sql = "select id,name,description,price,imagePath,deleted from " + TABLE_NAME + " where name like :name order by id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
@@ -115,14 +115,15 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト
 	 */
 	public List<Item> findByNameAndNotDeleted(String name) {
-		String sql = "select * from " + TABLE_NAME + " where deleted=true and name like :name order by id";
+		String sql = "select id,name,description,price,imagePath,deleted from " + TABLE_NAME + " where deleted=true and name like :name order by id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
 	}
-	public List<Item> findByNameAndSortNotDeleted(String name,String itemsort) {
-		String sql = "select * from " + TABLE_NAME + " where deleted=true and name like :name order by :sort";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%").addValue("sort",itemsort);
+	public List<Item> findByNameAndSortNotDeleted(String name,String itemsort,String sortOption) {
+		System.out.println("name&sort");
+		String sql = "select id,name,description,price,imagePath,deleted from " + TABLE_NAME + " where deleted=true and name like :name order by "+itemsort+" "+sortOption;
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
 	}
