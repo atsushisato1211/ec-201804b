@@ -8,30 +8,66 @@ import javax.validation.constraints.Size;
 
 
 public class UserRegistrationForm {
+	/**
+	 * 名前
+	 */
 	@NotBlank(message="お名前を入力して下さい")
 	private String name;
+	/**
+	 * メールアドレス
+	 */
 	@Email(message="アドレスが不正です")
 	@NotBlank(message="アドレスを入力して下さい")
 	private String email;
+	/**
+	 * パスワード
+	 */
 	@NotBlank(message="パスワードを入力してください")
 	@Size(min=8,max=16,message="8桁以上16桁以下で設定してください")
 	private String password;
+	/**
+	 * 確認用パスワード
+	 */
 	@NotBlank(message="確認用パスワードを入力してください")
 	private String confirmationpassword;
 	//@NotBlank(message="郵便番号を入力して下さい")
+	/**
+	 * 郵便番号
+	 */
 	private String zipCode;
+	/**
+	 * 郵便番号の左3桁
+	 */
 	private String zipCode1;
 	//@Size(min=4,max=4,message="4桁の数字を入力して下さい")
+	/**
+	 * 郵便番号の右4桁
+	 */
 	private String zipCode2;
+	/**
+	 * 住所
+	 */
 	@NotBlank(message="住所を入力して下さい")
 	private String address;
 	//@NotBlank(message="電話番号を入力してください")
+	/**
+	 * 電話番号
+	 */
 	private String telephone;
 	//@Size(min=2,max=3,message="2桁以上3桁以内の数字を入力して下さい")
+	/**
+	 * 電話番号の左側
+	 */
 	private String telephone1;
 	//@Size(min=4,max=4,message="4桁の数字を入力して下さい")
+	/**
+	 * 電話番号の真ん中
+	 */
 	private String telephone2;
 	//@Size(min=4,max=4,message="4桁の数字を入力して下さい")
+	/**
+	 * 電話番号の右側
+	 */
 	private String telephone3;
 
 	public String getZipCode1() {
