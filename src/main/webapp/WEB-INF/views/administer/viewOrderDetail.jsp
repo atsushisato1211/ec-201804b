@@ -93,7 +93,7 @@
         <th nowrap>ステータス変更</th>
       </tr>
       <tr>
-        <td>未入金</td>
+        <td><c:out value="${order.status}"/></td>
         <td><form action="#"  name="form1" method="post" onsubmit="return check()" onreset="return kakunin()">
 <select name="都道府県">
 <option value="1">未入金</option>
