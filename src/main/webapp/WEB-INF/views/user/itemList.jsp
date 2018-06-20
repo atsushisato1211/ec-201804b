@@ -13,30 +13,20 @@
 	href="<%=request.getContextPath()%>/css/ecHeader.css" />
 </head>
 <body>
-	<header>
-		<div id="userHeader" align="right">
-			<p>こんにちはゲストさん</p>
-			<p>
-				<a href="<%=request.getContextPath()%>/index">ログイン</a>
-			</p>
-			<p>
-				<a href="<%=request.getContextPath()%>/show/">カートの中身を見る</a>
-			</p>
-		</div>
-		<div id="linkHeader" align="left">
-			<h1 align="left">
-				<a href="<%=request.getContextPath()%>/item/"><img
-					src="<%=request.getContextPath()%>/img/rakus.jpg" width="50"
-					height="50" alt="ロゴ">ＥＣサイトラクス</a>
-			</h1>
-		</div>
-		<div id="title" align="center"></div>
-	</header>
+	<jsp:include page="userHeader.jsp" />
 <div align ="center">
 	<h2>商品一覧</h2>
 	<form action="<%=request.getContextPath()%>/item/findByName">
-		名前<input type="text" name="useritem"> 
+		名前<input type="text" name="useritem" value="${itemName}"> 
 		<button type="submit" class="btn btn-info">検索</button>
+			</form>
+			<form action="<%=request.getContextPath()%>/item/findByNameAndSort" align="center">
+		<input type="hidden" name="useritem" value="${itemname}">
+		<select name="itemSort" onChange="this.form.submit()">  
+		<option value="id" selected="selected">---</option>
+		  <option value="name">名前順</option>
+		  <option value="price">価格順</option>
+		</select>
 	</form>
 </div>
 	<br>

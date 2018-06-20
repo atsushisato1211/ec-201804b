@@ -46,10 +46,36 @@ public class ItemController {
 	 */
 	@RequestMapping(value = "/findByName")
 	public String findByName(@RequestParam String useritem, Model model) {
-		if(useritem.isEmpty()) {
+//		if(useritem.isEmpty()) {
+//			return "redirect:/item/";
+//		}
+		if(useritem==null || useritem.isEmpty()) {
 			return "redirect:/item/";
 		}
 		List<Item>list = repository.findByNameAndNotDeleted(useritem);
+		model.addAttribute("itemList", list);
+		model.addAttribute("itemName",useritem);
+		
+		return "user/itemList";
+		
+	}
+	@RequestMapping(value = "/findByNameAndSort")
+	public String findByNameAndSort(@RequestParam String useritem,@RequestParam String itemSort, Model model) {
+		if(useritem==null || useritem.isEmpty()) {
+			System.out.println("00000000000000"+useritem);
+			System.out.println(itemSort);
+			return findBySort(itemSort,model);
+		}
+		List<Item>list = repository.findByNameAndSortNotDeleted(useritem, itemSort);
+		model.addAttribute("itemList", list);
+		
+		return "user/itemList";
+		
+	}
+	@RequestMapping(value = "/findBySort")
+	public String findBySort(String itemSort, Model model) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaa"+itemSort);
+		List<Item>list = repository.findAllBySortAndNotDeleted(itemSort);
 		model.addAttribute("itemList", list);
 		
 		return "user/itemList";
