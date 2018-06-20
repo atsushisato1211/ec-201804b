@@ -24,7 +24,7 @@ public class UserRepository {
 		return user;
 	};
 	
-	private static final String TABLE_NAME = "test"; //要編集
+	private static final String TABLE_NAME = "users"; //要編集
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 
@@ -42,9 +42,13 @@ public class UserRepository {
 
 	public User insert(User user) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
-		String sql = "insert into " + TABLE_NAME
+		String sql = "insert into users "
 				+ " (name,email,password,zip_code,address,telephone) values (:name,:email,:password,:zipCode,:address,:telephone)";
+		try{
 		template.update(sql, param);
+		}catch(Exception e) {
+		e.printStackTrace();
+		}
 		return user;
 	}
 }

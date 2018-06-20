@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -34,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests() // 認可に関する設定
-		.antMatchers("/item/","/show/","/item/itemdetail","/", "/index").permitAll() //「/」などのパスは全てのユーザに許可
+		.antMatchers("/**/**").permitAll() //「/」などのパスは全てのユーザに許可
 		//.antMatchers("/admin/**").hasRole("ADMIN") // /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 		//.antMatchers("/member/**").hasRole("MEMBER") // /member/から始まるパスはMEMBER権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 		.anyRequest().authenticated();
@@ -46,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/index") // ログイン画面に遷移させるパス(ログイン認証が必要なパスを指定してかつログインされていないとこのパスに遷移される)
 				.loginProcessingUrl("/login") // ログインボタンを押した際に遷移させるパス(ここに遷移させれば自動的にログインが行われる)
 				.failureUrl("/index?error=true") // ログイン失敗に遷移させるパス
-				.defaultSuccessUrl("/user/item", false) // 第1引数:デフォルトでログイン成功時に遷移させるパス
+				.defaultSuccessUrl("/item/", false) // 第1引数:デフォルトでログイン成功時に遷移させるパス
 														// 第2引数: true :認証後常に第1引数のパスに遷移
 														// false:認証されてなくて一度ログイン画面に飛ばされてもログインしたら指定したURLに遷移
 				.usernameParameter("email") // 認証時に使用するユーザ名のリクエストパラメータ名(今回はメールアドレスを使用)
@@ -69,11 +70,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService)
-			.passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
+			.passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
 	@Bean
     PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 }

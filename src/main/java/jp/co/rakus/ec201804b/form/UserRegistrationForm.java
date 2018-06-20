@@ -18,7 +18,7 @@ public class UserRegistrationForm {
 	private String password;
 	@NotBlank(message="")
 	private String confirmationpassword;
-	@NotBlank(message="郵便番号を入力して下さい")
+	//@NotBlank(message="郵便番号を入力して下さい")
 	private String zipCode;
 	private String zipCode1;
 	//@Size(min=4,max=4,message="4桁の数字を入力して下さい")

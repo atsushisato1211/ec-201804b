@@ -20,7 +20,7 @@ import jp.co.rakus.ec201804b.repository.UserRepository;
 
 @Controller
 @Transactional
-@RequestMapping(value = "registration")
+@RequestMapping(value = "/registration")
 public class UserRegistrationController {
 	@Autowired
 	private UserRepository userRepository;
@@ -28,17 +28,14 @@ public class UserRegistrationController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@Bean
-	private PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	
 
 	@ModelAttribute
 	UserRegistrationForm setUpForm() {
 		return new UserRegistrationForm();
 	}
 
-	@RequestMapping(value = "form")
+	@RequestMapping(value = "/form")
 	public String form(Model model) {
 		return "user/userRegistration";
 	}
@@ -47,22 +44,23 @@ public class UserRegistrationController {
 	public String Registration(@Validated UserRegistrationForm form, BindingResult result, RedirectAttributes redirectAttributes,Model model) {
 		User user = new User();
 		if (!form.getPassword().equals(form.getConfirmationpassword())) {
-			result.rejectValue("confirmationpassword", "", "設定したパスワードを再度入力して下さい");
+			result.rejectValue("confirmationpassword", null, "設定したパスワードを再度入力して下さい");
 		}
 		if (userRepository.findByEmail(form.getEmail()) != null) {
-			result.rejectValue("email", "", "そのアドレスはすでに使われています");
+			result.rejectValue("email", null, "そのアドレスはすでに使われています");
 		}
 		if(form.getZipCode1().isEmpty() && form.getZipCode2().isEmpty()) {
-			result.rejectValue("zipCode1", "", "郵便番号入力して下さい");
+			result.rejectValue("zipCode1", null, "郵便番号入力して下さい");
 		}else if(form.getZipCode1().isEmpty() || form.getZipCode2().isEmpty()) {
-			result.rejectValue("zipCode1", "", "郵便番号を正しく入力して下さい");
+			result.rejectValue("zipCode1", null, "郵便番号を正しく入力して下さい");
 		}
 		if(form.getTelephone1().isEmpty() && form.getTelephone2().isEmpty() && form.getTelephone3().isEmpty()) {
-			result.rejectValue("telephone1","","電話番号を入力して下さい");
+			result.rejectValue("telephone1",null,"電話番号を入力して下さい");
 		}else if(form.getTelephone1().isEmpty()|| form.getTelephone2().isEmpty()|| form.getTelephone3().isEmpty()) {
-			result.rejectValue("telephone1", "","電話番号を正しく入力して下さい");
+			result.rejectValue("telephone1", null,"電話番号を正しく入力して下さい");
 		}
 		if (result.hasErrors()) {
+			System.out.println(result);
 			return form(model);
 		}
 		BeanUtils.copyProperties(form, user);
