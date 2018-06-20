@@ -27,28 +27,32 @@
 		<div id="title" align="center">
 		</div>
 </header>
+<div align="center">
 <form:form modelAttribute="userRegistrationForm" action="${pageContext.request.contextPath}/registration/create" method="post">
 <h2>利用者登録</h2><br>
 <table>
 <tr><form:errors path="name" cssStyle="color:red" element="div"/>
-<td>名前：</td><td><form:input path="name"/></td></tr>
+
+<td><label for="name">名前：</label></td><td><form:input path="name"/></td></tr>
+
 <tr><form:errors path="email" cssStyle="color:red" element="div"/>
-<td>メールアドレス：</td><td><form:input path="email"/></td><tr>
+<td><label for="email">メールアドレス：</label></td><td><form:input path="email"/></td><tr>
 <tr><form:errors path="password" cssStyle="color:red" element="div"/>
-<td>パスワード：</td><td><form:password path="password"/></td></tr>
+<td><label for="password">パスワード：</label></td><td><form:password path="password"/></td></tr>
 <tr><form:errors path="confirmationpassword" cssStyle="color:red" element="div"/>
-<td>確認用パスワード：</td><td><form:password path="confirmationpassword"/></td></tr>
+<td><label for="confirmationpassword">確認用パスワード：</label></td><td><form:password path="confirmationpassword"/></td></tr>
 <tr><form:errors path="zipCode1" cssStyle="color:red" element="div"/>
-<td>郵便番号：</td><td><form:input path="zipCode1" maxlength="3"/> - <form:input path="zipCode2" maxlength="4" onKeyUp="AjaxZip3.zip2addr('zipCode1','zipCode2','address','address')"/></td></tr>
+<td><label for="zipCode1">郵便番号：</label></td><td><form:input path="zipCode1" maxlength="3"/> - <form:input path="zipCode2" maxlength="4" onKeyUp="AjaxZip3.zip2addr('zipCode1','zipCode2','address','address')"/></td></tr>
 <tr><form:errors path="address" cssStyle="color:red" element="div"/>
-<td>住所：</td><td><form:input path="address"/></td></tr>
+<td><label for="address">住所：</label></td><td><form:input path="address"/></td></tr>
 <tr><form:errors path="telephone1" cssStyle="color:red" element="div"/>
-<td>電話番号：</td><td><form:input path="telephone1" maxlength="3"/> - <form:input path="telephone2" maxlength="4"/> - <form:input path="telephone3" maxlength="4"/></td></tr>
+<td><label for="telephone1">電話番号：</label></td><td><form:input path="telephone1" maxlength="3"/> - <form:input path="telephone2" maxlength="4"/> - <form:input path="telephone3" maxlength="4"/></td></tr>
 </table>
 <button type="submit" class="btn btn-warning">登録する</button>
 <button type="reset" class="btn btn-primary">クリア</button>
 <!-- <input type="submit" value="登録する"/> -->
 <!--<input type="reset" value="クリア"/>-->
 </form:form>
+</div>
 </body>
 </html>

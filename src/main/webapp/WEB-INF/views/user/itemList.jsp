@@ -5,7 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>商品一覧</title>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/ecHeader.css" />
 </head>
@@ -29,13 +32,13 @@
 		</div>
 		<div id="title" align="center"></div>
 	</header>
-
-	<h2 align="center">商品一覧</h2>
-	<form action="<%=request.getContextPath()%>/item/findByName" align="center">
-		名前<input type="text" name="useritem" align="center"> <input
-			type="submit" value="検索" align="center">
+<div align ="center">
+	<h2>商品一覧</h2>
+	<form action="<%=request.getContextPath()%>/item/findByName">
+		名前<input type="text" name="useritem"> 
+		<button type="submit" class="btn btn-info">検索</button>
 	</form>
-
+</div>
 	<br>
 
 	<table border="1" align="center">
