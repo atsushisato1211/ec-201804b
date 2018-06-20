@@ -32,8 +32,16 @@
 
 	<h2 align="center">商品一覧</h2>
 	<form action="<%=request.getContextPath()%>/item/findByName" align="center">
-		名前<input type="text" name="useritem" align="center"> <input
+		名前<input type="text" name="useritem" align="center" value="${itemname}"> <input
 			type="submit" value="検索" align="center">
+			</form>
+			<form action="<%=request.getContextPath()%>/item/findByNameAndSort" align="center">
+		<input type="hidden" name="useritem" value="${itemname}">
+		<select name="itemSort" onChange="this.form.submit()">  
+		<option value="id" selected="selected">---</option>
+		  <option value="name">名前順</option>
+		  <option value="price">価格順</option>
+		</select>
 	</form>
 
 	<br>
