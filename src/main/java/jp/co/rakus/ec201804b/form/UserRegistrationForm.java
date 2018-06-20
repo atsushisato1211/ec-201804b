@@ -23,6 +23,7 @@ public class UserRegistrationForm {
 	private String zipCode1;
 	//@Size(min=4,max=4,message="4桁の数字を入力して下さい")
 	private String zipCode2;
+	@NotBlank(message="住所を入力して下さい")
 	private String address;
 	//@NotBlank(message="電話番号を入力してください")
 	private String telephone;
