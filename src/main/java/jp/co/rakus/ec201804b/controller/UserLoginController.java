@@ -1,5 +1,7 @@
 package jp.co.rakus.ec201804b.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ public class UserLoginController {
 	private UserRepository repository;
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	private static final Logger Logger=LoggerFactory.getLogger(UserLoginController.class);
 
 	@ModelAttribute
 	public UserLoginForm setUpForm() {
@@ -62,10 +66,14 @@ public class UserLoginController {
 		else if (!user.getPassword().equals(form.getPassword())) {
 			result.rejectValue("password", null, "パスワードが合いません");
 		}
+		
+		Logger.info("記事の情報入ってる");
+		Logger.error("記事の情報が入ってない");
 
 		if (result.hasErrors()) {
 			return index();
 		}
+		
 		return "redirect:/item/";
 	}
 }
