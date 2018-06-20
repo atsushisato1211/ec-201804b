@@ -16,6 +16,11 @@ import jp.co.rakus.ec201804b.domain.User;
 import jp.co.rakus.ec201804b.form.UserRegistrationForm;
 import jp.co.rakus.ec201804b.repository.UserRepository;
 
+
+/**
+ * @author @{nobuteru.kato}
+ *
+ */
 @Controller
 @Transactional
 @RequestMapping(value = "/registration")
@@ -41,21 +46,43 @@ public class UserRegistrationController {
 	@RequestMapping(value = "/create")
 	public String Registration(@Validated UserRegistrationForm form, BindingResult result, RedirectAttributes redirectAttributes,Model model) {
 		User user = new User();
+		Boolean isZipCodeError = false;
+		Boolean isTelephoneError = false;
 		if (!form.getPassword().equals(form.getConfirmationpassword())) {
 			result.rejectValue("confirmationpassword", null, "設定したパスワードを再度入力して下さい");
 		}
 		if (userRepository.findByEmail(form.getEmail()) != null) {
 			result.rejectValue("email", null, "そのアドレスはすでに使われています");
 		}
+		if(!isZipCodeError) {
 		if(form.getZipCode1().isEmpty() && form.getZipCode2().isEmpty()) {
-			result.rejectValue("zipCode1", null, "郵便番号入力して下さい");
+			result.rejectValue("zipCode1", null, "郵便番号には数字を入力して下さい");
+			isZipCodeError = true;
 		}else if(form.getZipCode1().isEmpty() || form.getZipCode2().isEmpty()) {
-			result.rejectValue("zipCode1", null, "郵便番号を正しく入力して下さい");
+			result.rejectValue("zipCode1", null, "郵便番号には数字を入力して下さい");
+			isZipCodeError = true;
 		}
+		}
+		if(!isZipCodeError) {
+		if(form.getZipCode1().matches("\\d{3}") == false || form.getZipCode2().matches("\\d{4}") == false){
+			result.rejectValue("zipCode1", null, "郵便番号には数字を入力して下さい");
+			isZipCodeError = true;
+		}
+		}
+		if(!isTelephoneError) {
 		if(form.getTelephone1().isEmpty() && form.getTelephone2().isEmpty() && form.getTelephone3().isEmpty()) {
-			result.rejectValue("telephone1",null,"電話番号を入力して下さい");
+			result.rejectValue("telephone1",null,"電話番号には数字を入力して下さい");
+			isTelephoneError = true;
 		}else if(form.getTelephone1().isEmpty()|| form.getTelephone2().isEmpty()|| form.getTelephone3().isEmpty()) {
-			result.rejectValue("telephone1", null,"電話番号を正しく入力して下さい");
+			result.rejectValue("telephone1", null,"電話番号には数字を入力して下さい");
+			isTelephoneError = true;
+		}
+		}
+		if(!isTelephoneError) {
+		if(form.getTelephone1().matches("\\d{3}|\\d{2}") == false || form.getTelephone2().matches("\\d{4}") == false || form.getTelephone3().matches("\\d{4}") == false) {
+			result.rejectValue("telephone1", null,"電話番号には数字を入力して下さい");
+			isTelephoneError = true;
+		}
 		}
 		if (result.hasErrors()) {
 			System.out.println(result);
