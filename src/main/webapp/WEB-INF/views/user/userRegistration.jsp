@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="js/ajaxzip3.js" charset="UTF-8"></script>
@@ -19,7 +23,7 @@
 		</div>
 				<div id="linkHeader" align="left">
 			<h1 align ="left"><a href="${pageContext.request.contextPath}/item/"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
-				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1>
+				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1></div>
 		<div id="title" align="center">
 		</div>
 </header>
@@ -41,7 +45,10 @@
 <tr><form:errors path="telephone1" cssStyle="color:red" element="div"/>
 <td>電話番号：</td><td><form:input path="telephone1" maxlength="3"/> - <form:input path="telephone2" maxlength="4"/> - <form:input path="telephone3" maxlength="4"/></td></tr>
 </table>
-<input type="submit" value="登録する"/><input type="reset" value="クリア"/>
+<button type="submit" class="btn btn-warning">登録する</button>
+<button type="reset" class="btn btn-primary">クリア</button>
+<!-- <input type="submit" value="登録する"/> -->
+<!--<input type="reset" value="クリア"/>-->
 </form:form>
 </body>
 </html>
