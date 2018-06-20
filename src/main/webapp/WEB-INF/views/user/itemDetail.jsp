@@ -49,7 +49,7 @@
 	</table>
 		<br>
 	<div id="selectQuantity" align="center">
-	<form action="" method="post">
+	<form:form modelAttribute="orderItemForm" action="${pageContext.request.contextPath}/insert/" method="post">
 					個数：<select name="quantity">
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -61,7 +61,9 @@
 				<option value="8">8</option>
 				<option value="9">9</option>
 			</select></div>
+			<input type="hidden" name="itemId" value="<c:out value="${item.id}"/>">
 			<div ="sendCart" align="center"><p><input type="submit" value="カートに入れる"></p></div>
 		<div ="sendCart" align="center"><p><a href="<%=request.getContextPath()%>/item/">商品一覧画面へ戻る</a></p></div>
+		</form:form>
 </body>
 </html>
