@@ -30,10 +30,11 @@
 			<div id="title" align="center"></div>
 		</div>
 	</header>
-	<form:errors path="userLoginForm.*" />
+	<div align="center">
+	<form:errors path="userLoginForm.*" cssStyle="color:red" element="div"/>
 	<form:form modelAttribute="userLoginForm"
 		action="${pageContext.request.contextPath}/login">
-		<div align="center">
+		
 			<h3>ログイン</h3>
 			<form:errors path="email" cssStyle="color:red" element="div" />
 			メールアドレス:
@@ -44,8 +45,8 @@
 			<form:input path="password" />
 			<br> <input type="submit" value="ログイン"><br> <a
 				href="${pageContext.request.contextPath}/">新規登録はこちら</a>
-		</div>
+		
 	</form:form>
-
+	</div>
 </body>
 </html>
