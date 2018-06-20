@@ -18,7 +18,7 @@ public class UserRepository {
 		user.setName(rs.getString("name"));
 		user.setEmail(rs.getString("email"));
 		user.setPassword(rs.getString("password"));
-		user.setZipCode(rs.getString("zip_code"));
+		user.setZipCode(rs.getString("zipcode"));
 		user.setAddress(rs.getString("address"));
 		user.setTelephone(rs.getString("telephone"));
 		return user;
@@ -30,7 +30,7 @@ public class UserRepository {
 
 	public User findByEmail(String email) {
 		try {
-			String sql="select id,name,email,password,zip_code,address,telephone from "+ TABLE_NAME + " where email=:email";
+			String sql="select id,name,email,password,zipcode,address,telephone from "+ TABLE_NAME + " where email=:email";
 			User user =new User();
 			SqlParameterSource param=new MapSqlParameterSource().addValue("email",email);
 			user=template.queryForObject(sql,param,userRowMapper);
@@ -43,7 +43,7 @@ public class UserRepository {
 	public User insert(User user) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
 		String sql = "insert into users "
-				+ " (name,email,password,zip_code,address,telephone) values (:name,:email,:password,:zipCode,:address,:telephone)";
+				+ " (name,email,password,zipcode,address,telephone) values (:name,:email,:password,:zipCode,:address,:telephone)";
 		try{
 		template.update(sql, param);
 		}catch(Exception e) {
