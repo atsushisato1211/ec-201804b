@@ -9,6 +9,12 @@
 <title>管理者メニュー</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" /></head>
+<script type="text/javascript">
+function formReset(adminUserRegistrationForm){ 
+	document.adminUserRegistrationForm.name.value = '';
+	document.adminUserRegistrationForm.email.value = '';	
+}
+</script>
 <body>
 <header>
 		<div id="userHeader" align="right">
@@ -21,7 +27,7 @@
 		<div id="title" align="center">
 		</div>
 </header>
-<form:form modelAttribute="adminUserRegistrationForm" action="${pageContext.request.contextPath}/adminregistration/create" method="post">
+<form:form modelAttribute="adminUserRegistrationForm" action="${pageContext.request.contextPath}/adminregistration/create" method="post" name="adminUserRegistrationForm">
 <h2>管理者登録</h2><br>
 <table>
 <tr><form:errors path="name" cssStyle="color:red" element="div"/>
@@ -34,7 +40,7 @@
 <td>確認用パスワード：</td><td><form:password path="confirmationpassword"/></td></tr>
 </table>
 <button type="submit" class="btn btn-warning">登録する</button>
-<button type="reset" class="btn btn-primary">クリア</button>
+<button type="button" class="btn btn-primary" onClick='formReset(adminUserRegistrationForm)'>クリア</button>
 <!-- <input type="submit" value="登録する"/> -->
 <!--<input type="reset" value="クリア"/>-->
 </form:form>
