@@ -1,5 +1,6 @@
 package jp.co.rakus.ec201804b.repository;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

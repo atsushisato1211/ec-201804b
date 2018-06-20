@@ -1,5 +1,6 @@
 package jp.co.rakus.ec201804b.repository;
 
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
