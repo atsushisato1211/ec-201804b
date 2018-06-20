@@ -6,7 +6,7 @@ import java.util.List;
 public class Order {
 	private Long id;
 	private String orderNumber;
-	private Long status;
+	private Integer status;
 	private List<OrderItem> orderItemList;
 	private Integer totalPrice;
 	private Date orderDate;
@@ -28,10 +28,10 @@ public class Order {
 	public void setOrderNumber(String orderNumber) {
 		this.orderNumber = orderNumber;
 	}
-	public Long getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
-	public void setStatus(Long status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 	public List<OrderItem> getOrderItemList() {

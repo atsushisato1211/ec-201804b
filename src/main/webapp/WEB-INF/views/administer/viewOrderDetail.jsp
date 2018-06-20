@@ -86,16 +86,15 @@
 				  </tr>
 				  </table><br>
 
-
 	<table border="1">
       <tr>
         <th nowrap>現在のステータス</th>
         <th nowrap>ステータス変更</th>
       </tr>
       <tr>
-        <td><c:out value="${order.status}"/></td>
-        <td><form action="#"  name="form1" method="post" onsubmit="return check()" onreset="return kakunin()">
-<select name="都道府県">
+        <td><c:out value="${value}"/></td>
+        <td><form:form modelAttribute="oderDetailForm" action="${pageContext.request.contextPath}/updateStatus?id=${order.id}">
+<select name="status">
 <option value="1">未入金</option>
 <option value="2" selected>入金済み</option>
 <option value="3">発送済み</option>
@@ -104,7 +103,7 @@
 
 <input type="hidden" name="id" value="">
 <input class="btn" type="submit" value="更新">
-</form></td>
+</form:form></td>
       </tr>
     </table><br>
  <p id="notice-input-text-1" style="display: none; color: red;"> 更新されました。</p><br>

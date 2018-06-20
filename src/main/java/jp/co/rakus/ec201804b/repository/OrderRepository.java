@@ -38,7 +38,7 @@ public class OrderRepository {
 					order = new Order();
 					order.setId(currentOrderId);
 					order.setOrderNumber(rs.getString("order_number"));
-					order.setStatus(rs.getLong("status"));
+					order.setStatus(rs.getInt("status"));
 					order.setOrderItemList(new ArrayList<OrderItem>());
 					order.setTotalPrice(rs.getInt("total_price"));
 					order.setOrderDate(rs.getDate("order_date"));
@@ -101,6 +101,14 @@ public class OrderRepository {
 				+ "join items i on (oi.item_id = i.id) where order_id = :id";
 		List<Order> orderList = template.query(sql, param, ORDER_RSE);
 		return orderList.get(0);
+	}
+	
+	public void update(int status,Long id) {
+		
+		SqlParameterSource param=new MapSqlParameterSource().addValue("status", status).addValue("id", id);
+		String sql="update orders set status=:status where id=:id";
+		
+		template.update(sql, param);
 	}
 
 }
