@@ -19,23 +19,24 @@
 	<header>
 		<div id="userHeader" align="right">
 			<p>
-				<a href="${pageContext.request.contextPath}">カートの中身を見る</a>
+				<a href="${pageContext.request.contextPath}/show/">カートの中身を見る</a>
 			</p>
 		</div>
 		<div id="linkHeader" align="left">
 			<h1 align="left">
-				<a href="itemList.html"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
+				<a href="${pageContext.request.contextPath}/item/"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
 					height="50" alt="ロゴ画像">ＥＣサイトラクス</a>
 			</h1>
 			<div id="title" align="center"></div>
 		</div>
 	</header>
 	<div align="center">
-	<form:errors path="userLoginForm.*" cssStyle="color:red" element="div"/>
+	
 	<form:form modelAttribute="userLoginForm"
 		action="${pageContext.request.contextPath}/login">
 		
 			<h3>ログイン</h3>
+			<form:errors path="userLoginForm.*" cssStyle="color:red" element="div"/>
 			<form:errors path="email" cssStyle="color:red" element="div" />
 			メールアドレス:
 			<form:input path="email" />
