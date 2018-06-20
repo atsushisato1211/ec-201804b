@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec201804b.domain.Order;
+import jp.co.rakus.ec201804b.domain.OrderItem;
 import jp.co.rakus.ec201804b.repository.OrderRepository;
 
 @Controller
@@ -25,8 +26,14 @@ public class ShowShoppingCartController {
 
 	@RequestMapping("/")
 	public String show() {
-//		List<Order> orderList =orderRepository.findAll();
-//		session.setAttribute("orderList", orderList);
+		List<Order> orderList =orderRepository.findAll();
+		for (Order order : orderList) {
+			for (OrderItem item : order.getOrderItemList()) {
+				System.out.println(item.getItem().getImagePath());
+			}
+		}
+		
+		session.setAttribute("orderList", orderList);
 		return "user/viewShoppingCart";
 	}
 }
