@@ -21,17 +21,20 @@
 		<button type="submit" class="btn btn-info">検索</button>
 			</form>
 			<form action="<%=request.getContextPath()%>/item/findByNameAndSort" align="center">
-		<input type="hidden" name="useritem" value="${itemname}">
+		<input type="hidden" name="useritem" value="${itemName}">
 		<select name="itemSort" onChange="this.form.submit()">  
-		<option value="id" selected="selected">---</option>
+		<option value="id">ソート</option>
 		  <option value="name">名前順</option>
 		  <option value="price">価格順</option>
 		</select>
+<input type="hidden" value="ASC" name="sortOption">
+		<%-- <form:checkbox path="sortOption" value="DESC"/>降順で検索 --%>
+		<input type="checkbox" name="sortOption" value="DESC">降順で検索 
 	</form>
 </div>
-	<br>
-
-	<table border="1" align="center">
+	<br><c:choose>
+	<c:when test="${itemList.isEmpty()}"><c:out value="${itemName}"/>は商品名に該当しません。</c:when>
+	<c:otherwise><table border="1" align="center">
 		<tr>
 			<th colspan="2">商品名</th>
 			<th>価格</th>
@@ -49,8 +52,13 @@
 				<td>&yen;<c:out value="${item.price}" /></td>
 			</tr>
 		</c:forEach>
-	</table>
+	</table></c:otherwise>
+	</c:choose>
 	
+	
+	<c:if test="${!itemList.isEmpty()}">
+	
+	</c:if>
 	
 
 </body>
