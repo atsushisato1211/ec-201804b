@@ -71,12 +71,12 @@
 				<option value="8">8</option>
 				<option value="9">9</option>
 			</select></div>
-<<<<<<< HEAD
+
 			<div ="sendCart" align="center"><p><button type="submit" class="btn btn-info">カートに入れる</button></p></div>
-=======
+
 			<input type="hidden" name="itemId" value="<c:out value="${item.id}"/>">
-			<div ="sendCart" align="center"><p><input type="submit" value="カートに入れる"></p></div>
->>>>>>> feature/insert
+<!-- 		<div ="sendCart" align="center"><p><input type="submit" value="カートに入れる"></p></div> -->	
+
 		<div ="sendCart" align="center"><p><a href="<%=request.getContextPath()%>/item/">商品一覧画面へ戻る</a></p></div>
 		</form:form>
 </body>
