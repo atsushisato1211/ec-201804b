@@ -9,7 +9,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import jp.co.rakus.ec201804b.domain.Item;
@@ -84,6 +86,21 @@ public class OrderRepository {
 				+ "join items i on (oi.item_id = i.id)";
 		List<Order> orderList = template.query(sql, ORDER_RSE);
 		return orderList;
+	}
+	
+	public Order load(long id) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id",id);
+		String sql = "select o.id as order_id, order_number, status, "
+				+ "total_price, order_date, delivery_name,delivery_email,"
+				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
+				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
+				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
+				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "left outer join order_items oi "
+				+ "on (o.id = oi.order_id) "
+				+ "join items i on (oi.item_id = i.id) where order_id = :id";
+		List<Order> orderList = template.query(sql, param, ORDER_RSE);
+		return orderList.get(0);
 	}
 
 }
