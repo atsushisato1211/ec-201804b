@@ -32,6 +32,28 @@
 	<h2  align="center">商品詳細</h2>
 	<table border="1" align="center">
 		<tr>
+			<td colspan="2" rowspan="2"><img src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>" width="150"
+				height="150" alt="商品画像">
+			</td>
+			<th>商品名：</th>
+			<td align="center"><c:out value="${item.name}" /></td>
+		</tr>
+		<tr>
+			<th>価格：</th>
+			<td align="center">&yen;<c:out value="${item.price}" /></td>
+		</tr>
+	<%-- 	<tr>
+			<th>商品説明：</th>
+			<td><pre><c:out value="${item.description}" /></pre></td>
+		</tr> --%>
+		<tr>
+			<th colspan="2">商品説明：</th>
+			<td colspan="2"><pre><c:out value="${item.description}" /></pre></td>
+		</tr>
+	</table>
+		<br>
+	<table border="1" align="center">
+		<tr>
 			<td colspan="2" rowspan="3"><img src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>" width="150"
 				height="150" alt="商品画像">
 			</td>
@@ -42,10 +64,11 @@
 			<th>価格：</th>
 			<td align="center">&yen;<c:out value="${item.price}" /></td>
 		</tr>
-		<tr>
+	<tr>
 			<th>商品説明：</th>
-			<td><c:out value="${item.description}" /></td>
+			<td><pre><c:out value="${item.description}" /></pre></td>
 		</tr>
+		
 	</table>
 		<br>
 	<div id="selectQuantity" align="center">
