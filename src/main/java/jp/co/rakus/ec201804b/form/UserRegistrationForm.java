@@ -16,7 +16,7 @@ public class UserRegistrationForm {
 	@NotBlank(message="パスワードを入力してください")
 	@Size(min=8,max=16,message="8桁以上16桁以下で設定してください")
 	private String password;
-	@NotBlank(message="")
+	@NotBlank(message="確認用パスワードを入力してください")
 	private String confirmationpassword;
 	//@NotBlank(message="郵便番号を入力して下さい")
 	private String zipCode;
