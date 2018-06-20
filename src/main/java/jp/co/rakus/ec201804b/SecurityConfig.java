@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		
 		// BASIC認証の有効化
-		http.httpBasic().disable();
+		//http.httpBasic().disable();
 		http.formLogin() // ログインに関する設定
 				.loginPage("/index") // ログイン画面に遷移させるパス(ログイン認証が必要なパスを指定してかつログインされていないとこのパスに遷移される)
 				.loginProcessingUrl("/login") // ログインボタンを押した際に遷移させるパス(ここに遷移させれば自動的にログインが行われる)

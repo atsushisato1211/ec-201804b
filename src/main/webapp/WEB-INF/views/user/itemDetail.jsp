@@ -11,24 +11,8 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/ecHeader.css" />
 </head>
-
-<header>
-		<div id="userHeader" align="right">
-			<p>こんにちはゲストさん</p><p>
-			<a href="<%=request.getContextPath()%>/index">ログイン</a>
-			</p>
-			<p>
-				<a href="<%=request.getContextPath()%>/show/">カートの中身を見る</a>
-			</p>
-		</div>
-				<div id="linkHeader" align="left">
-			<h1 align ="left"><a href="<%=request.getContextPath()%>/item/"><img src="<%=request.getContextPath()%>/img/rakus.jpg" width="50"
-				height="50" alt="ロゴ">ＥＣサイトラクス</a></h1></div>
-		<div id="title" align="center">
-		</div>
-</header>
 <body>
-
+<jsp:include page="userHeader.jsp" />
 	<br>
 
 
