@@ -17,7 +17,7 @@ public class Error500Controller implements HandlerExceptionResolver{
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj, Exception e) {
 		logger.error("Has Error",e);
-		return new ModelAndView("redirect:/error500");
+		return new ModelAndView("user/error500");
 	}
 
 }
