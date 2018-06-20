@@ -5,9 +5,15 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Insert title here</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/ecHeader.css">
+<script src="js/bootstrap.min.js"></script>
+
 </head>
 <body>
 	<header>
@@ -36,8 +42,8 @@
 			<form:errors path="password" cssStyle="color:red" element="div" />
 			パスワード:
 			<form:input path="password" />
-			<br> <input type="submit" value="ログイン"><br> 
-			<a href="${pageContext.request.contextPath}/">新規登録はこちら</a>
+			<br> <input type="submit" value="ログイン"><br> <a
+				href="${pageContext.request.contextPath}/">新規登録はこちら</a>
 		</div>
 	</form:form>
 

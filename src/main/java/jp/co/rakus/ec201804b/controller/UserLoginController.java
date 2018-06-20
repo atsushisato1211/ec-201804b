@@ -6,14 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import jp.co.rakus.ec201804b.domain.User;
 import jp.co.rakus.ec201804b.form.UserLoginForm;
-import jp.co.rakus.ec201804b.repository.UserRepository;
 
 /**
  * ユーザーがログインするコントローラー.
@@ -24,11 +21,10 @@ import jp.co.rakus.ec201804b.repository.UserRepository;
 @Controller
 @RequestMapping(value = "/")
 public class UserLoginController {
-	@Autowired
-	private UserRepository repository;
+	
 	@Autowired
 	PasswordEncoder passwordEncoder;
-
+	
 	@ModelAttribute
 	public UserLoginForm setUpForm() {
 		return new UserLoginForm();
@@ -49,7 +45,6 @@ public class UserLoginController {
 		}
 		return "user/login";
 	}
-
 
 //	/**
 //	 * ユーザー情報をメールアドレスから検索してパスワードが一致するか調べるメソッド.
@@ -75,4 +70,5 @@ public class UserLoginController {
 //		}
 //		return "redirect:/item/";
 //	}
+
 }
