@@ -41,9 +41,11 @@
 			<br>
 			<form:errors path="password" cssStyle="color:red" element="div" />
 			パスワード:
-			<form:input path="password" />
-			<br> <input type="submit" value="ログイン"><br> <a
-				href="${pageContext.request.contextPath}/">新規登録はこちら</a>
+			<form:password path="password" />
+			<br> 
+			<!-- <input type="submit" value="ログイン"> -->
+			<button type="button" class="btn btn-info">ログイン</button><br> 
+			<a href="${pageContext.request.contextPath}/registration/form">新規登録はこちら</a>
 		</div>
 	</form:form>
 
