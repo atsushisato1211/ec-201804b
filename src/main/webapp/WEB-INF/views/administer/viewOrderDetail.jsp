@@ -6,7 +6,10 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div align="center">
@@ -102,13 +105,13 @@
 </select>
 
 <input type="hidden" name="id" value="">
-<input class="btn" type="submit" value="更新">
+<button type="submit" class="btn btn-info">更新</button>
 </form:form></td>
       </tr>
     </table><br>
  <p id="notice-input-text-1" style="display: none; color: red;"> 更新されました。</p><br>
 <br>
-    <a href="./orderList.html">注文一覧に戻る</a>
+    <a href="${pageContext.request.contextPath}/orderList/">注文一覧に戻る</a>
 </div>
 </body>
 </html>
