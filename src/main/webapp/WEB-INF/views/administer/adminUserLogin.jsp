@@ -24,12 +24,12 @@
 			<div id="title" align="center"></div>
 		</div>
 	</header>
-
-
-		<form:form modelAttribute="adminUserLoginForm" action="${pageContext.request.contextPath}/admin/login">
-	<div align="center">
+	<div align="center">	
 		<h2>ログイン</h2>
 		<form:errors path="adminUserLoginForm.*" cssStyle="color:red" element="div"/>
+		<form:form modelAttribute="adminUserLoginForm" action="${pageContext.request.contextPath}/admin/login">
+	
+		
 			<form:errors path="email" cssStyle="color:red" element="div" />
 					<label for="email">
 					メールアドレス：<form:input path="email" /></label>
