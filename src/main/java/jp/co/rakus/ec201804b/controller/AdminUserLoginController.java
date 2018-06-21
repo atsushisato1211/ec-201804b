@@ -37,8 +37,8 @@ public class AdminUserLoginController {
 			@RequestParam(required = false) String adminError) {
 		System.err.println("login error:" + adminError);
 		if (adminError != null) {
-			System.err.println("member: login failed");
-			result.addError(new ObjectError("loginError", "メールアドレスまたはパスワードが不正です。"));
+			System.err.println("admin: login failed");
+			result.addError(new ObjectError("adminLoginError", "メールアドレスまたはパスワードが不正です。"));
 		}
 		return "administer/adminUserLogin";
 	}
