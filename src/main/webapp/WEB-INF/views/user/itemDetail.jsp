@@ -10,6 +10,7 @@
 <title>商品詳細</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/ecHeader.css" />
+<link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="userHeader.jsp" />
@@ -59,7 +60,7 @@
 	</table>
 		<br>
 	<div id="selectQuantity" align="center">
-	<form:form modelAttribute="orderItemForm" action="${pageContext.request.contextPath}/user/insert" method="post">
+	<form:form modelAttribute="orderItemForm" action="${pageContext.request.contextPath}/user/insert">
 					個数：<select name="quantity">
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -70,16 +71,18 @@
 				<option value="7">7</option>
 				<option value="8">8</option>
 				<option value="9">9</option>
-			</select></div>
+			</select>
 
 			<div ="sendCart" align="center"><p><button type="submit" class="btn btn-info">カートに入れる</button></p></div>
-
+			
 
 			<input type="hidden" name="itemId" value="<c:out value="${item.id}"/>">
+			</form:form>
+			</div>
 <!-- 		<div ="sendCart" align="center"><p><input type="submit" value="カートに入れる"></p></div> -->	
 
 		<div ="sendCart" align="center"><p><a href="<%=request.getContextPath()%>/user/item">商品一覧画面へ戻る</a></p></div>
-		</form:form>
+		
 
 </body>
 </html>

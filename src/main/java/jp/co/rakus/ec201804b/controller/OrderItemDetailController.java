@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import jp.co.rakus.ec201804b.domain.Order;
 import jp.co.rakus.ec201804b.form.OrderDetailForm;
 import jp.co.rakus.ec201804b.repository.OrderRepository;
@@ -51,10 +53,11 @@ public class OrderItemDetailController {
 	}
 
 	@RequestMapping(value="/updateStatus")
-	public String viewOrderDetail(@RequestParam Long id,OrderDetailForm form,Model model) {
+	public String viewOrderDetail(@RequestParam Long id,OrderDetailForm form,RedirectAttributes redirect,Model model) {
 		int status=Integer.parseInt(form.getStatus());
 		orderRepository.update(status,id);
-		
+		String str = "更新されました。";
+		redirect.addFlashAttribute("update", str);
 		return "redirect:/admin/orderDetail?id="+id;
 	}
 

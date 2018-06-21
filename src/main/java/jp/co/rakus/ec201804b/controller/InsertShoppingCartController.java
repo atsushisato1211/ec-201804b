@@ -31,6 +31,6 @@ public class InsertShoppingCartController {
 		orderItem.setQuantity(form.getQuantity());
 		orderRepository.insert(orderItem);
 		
-		return "redirect:/user/show/";
+		return "redirect:/user/show";
 	}
 }

@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminHeader.css" />
 </head>
 <body>
 <jsp:include page="adminHeader.jsp" />
@@ -110,7 +111,7 @@
 </form:form></td>
       </tr>
     </table><br>
- <p id="notice-input-text-1" style="display: none; color: red;"> 更新されました。</p><br>
+ <c:out value ="${update}"/><br>
 <br>
     <a href="${pageContext.request.contextPath}/admin/orderList/">注文一覧に戻る</a>
 </div>
