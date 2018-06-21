@@ -47,9 +47,14 @@ public class ItemController {
 	public String findByName(@RequestParam String useritem, Model model) {
 
 		if(useritem==null || useritem.isEmpty()) {
-			return "redirect:user/item";
+			return "redirect:/user/item";
 		}
 		List<Item>list = repository.findByNameAndNotDeleted(useritem);
+		
+		if(list.isEmpty()) {
+			model.addAttribute("erroritemName",useritem);
+			useritem=null;
+		}
 		model.addAttribute("itemList", list);
 		model.addAttribute("itemName",useritem);
 		
@@ -75,8 +80,14 @@ public class ItemController {
 			return findBySort(itemSort,sortOption,model);
 		}
 		List<Item>list = repository.findByNameAndSortNotDeleted(useritem, itemSort,sortOption);
+		System.out.println(useritem);
+		if(list.isEmpty()) {
+			model.addAttribute("erroritemName",useritem);
+			useritem="";
+		}
 		model.addAttribute("itemList", list);
 		model.addAttribute("itemName",useritem);
+		model.addAttribute("sortOption",sortOption);
 		
 		return "user/itemList";
 	}
@@ -92,6 +103,7 @@ public class ItemController {
 	public String findBySort(String itemSort,String sortOption, Model model) {
 		List<Item>list = repository.findAllBySortAndNotDeleted(itemSort,sortOption);
 		model.addAttribute("itemList", list);
+		model.addAttribute("sortOption",sortOption);
 		
 		return "user/itemList";
 		
@@ -110,7 +122,20 @@ public class ItemController {
 		model.addAttribute("item",item);
 		
 		return "user/itemDetail";
+	}
+	
+	@RequestMapping(value="/itemInitials")
+	public String itemInitials(@RequestParam String initials,Model model) {
+		List<Item>list = repository.findByInitialsAndNotDeleted(initials);
+		model.addAttribute("itemList", list);
 		
+		if(list.isEmpty()) {
+			model.addAttribute("erroritemName","「"+initials+"」から始まる野菜はありません");
+			initials="";
+		}
+		model.addAttribute("itemList", list);
+		
+		return "user/itemList";
 	}
 
 }
