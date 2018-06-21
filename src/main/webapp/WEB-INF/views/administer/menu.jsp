@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -14,27 +15,20 @@
 
 </head>
 <body>
-<header>
-		<div id="userHeader" align="right">
-			<p>こんにちは管理者さん</p>
-			<p><a href="${pageContext.request.contextPath}/admin/logout">ログアウト</a></p>
-		</div>
-				<div id="linkHeader" align="left">
-			<h1 align ="left"><a href="${pageContext.request.contextPath}/admin/menu"><img src="../img/rakus.jpg" width="50"
-				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1>
-		<div id="title" align="center">
-		</div>
-</header>
+<jsp:include page="adminHeader.jsp" />
 
 
 <div align ="center">
     <h2>管理者メニュー画面</h2>
         <a href="${pageContext.request.contextPath}/admin/viewItemInsert">商品を登録</a><br><br>
         <a href="${pageContext.request.contextPath}/admin/viewList">商品一覧</a><br><br>
-        <a href="${pageContext.request.contextPath}/admin/orderList">注文一覧</a>
-        <br>
-        <br>
-        <br>
+        <a href="${pageContext.request.contextPath}/admin/orderList">注文一覧</a><br><br>
+        <sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
+							<sec:authentication var="adminUserName" property="principal.adminUser.name" />
+								
+								
+        <a href="${pageContext.request.contextPath}/admin/form">管理者新規登録</a><br><br>
+        </sec:authorize>
         <a href="${pageContext.request.contextPath}/admin/logout">ログアウト</a>
 
 </div>

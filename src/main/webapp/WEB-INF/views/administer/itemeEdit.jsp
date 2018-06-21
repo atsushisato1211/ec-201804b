@@ -9,17 +9,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/adminHeader.css" />
 </head>
 <body>
-<header>
-		<div id="userHeader" align="right">
-			<p>こんにちは管理者さん</p>
-			<p><a href="administerLogin.html">ログイン</a></p>
-		</div>
-				<div id="linkHeader" align="left">
-			<h1 align ="left"><a href="<%=request.getContextPath()%>admin/menu"><img src="<%=request.getContextPath()%>/img/rakus.jpg" width="50"
-				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1>
-		<div id="title" align="center">
-		</div>
-</header>
+<jsp:include page="adminHeader.jsp" />
 
 
 
