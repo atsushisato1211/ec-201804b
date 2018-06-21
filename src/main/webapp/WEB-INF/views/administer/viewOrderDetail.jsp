@@ -51,10 +51,10 @@
       </tr>
       <tr>
         <td><c:out value="${orderItem.item.name}"/></td>
-        <td><c:out value="${orderItem.item.price}"/>円</td>
+        <td>&yen;<fmt:formatNumber value="${orderItem.item.price}" pattern="###,###"/></td>
         <td>×</td>
         <td><c:out value="${orderItem.quantity}"/></td>
-        <td><c:out value="${orderItem.item.price*orderItem.quantity}"/>円</td>
+        <td>&yen;<fmt:formatNumber value="${orderItem.item.price*orderItem.quantity}" pattern="###,###"/></td>
       </tr>
       </c:forEach>
     </table><br>
@@ -63,11 +63,11 @@
     <table border="1">
 				  <tr>
 				    <th nowrap>小計</th>
-				    <td><c:out value="${order.totalPrice}"/>円</td>
+				    <td>&yen;<fmt:formatNumber value="${order.totalPrice}" pattern="###,###"/></td>
 				  </tr>
 				  <tr>
 				    <th nowrap>税</th>
-				    <td><c:out value="${order.totalPrice*0.08}"/>円</td>
+				    <td>&yen;<fmt:formatNumber value="${order.totalPrice*0.08}" pattern="###,###"/></td>
 				  </tr>
 				  <tr>
 				    <th nowrap>支払い方法</th>
@@ -87,7 +87,7 @@
 				    <th nowrap>
 				      総計
 				    </th>
-				    <td><c:out value="${order.totalPrice*1.08+500}"/>円</td>
+				    <td>&yen;<fmt:formatNumber value="${order.totalPrice*1.08}" pattern="###,###"/></td>
 				  </tr>
 				  </table><br>
 

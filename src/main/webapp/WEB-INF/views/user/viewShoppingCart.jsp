@@ -48,7 +48,7 @@
 
         </table><br>
         
-    <div  align="center"><a href="${pageContext.request.contextPath}/user/payment/make">決済へ</a></div>
+    <div  align="center"><a href="${pageContext.request.contextPath}/user/payment/make?id=${order.id}">決済へ</a></div>
         </c:otherwise>
     </c:choose>
 </c:forEach>

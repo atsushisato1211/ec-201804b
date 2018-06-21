@@ -32,7 +32,7 @@
         <td><c:out value="${order.orderDate}"/></td>
         <td><c:out value="${order.deliveryName}"/></td>
         <td><c:out value="${order.statusString}"/></td>
-        <td><c:out value="${order.totalPrice}"/></td>
+        <td>&yen;<fmt:formatNumber value="${order.totalPrice*1.08}" pattern="###,###"/></td>
       </tr>
      </c:forEach>
     </table>
