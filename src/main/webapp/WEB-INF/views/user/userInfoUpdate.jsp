@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>利用者登フォーム</title>
+<title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="js/ajaxzip3.js" charset="UTF-8"></script>
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 <script type="text/javascript">
-function formReset(userRegistrationForm){ 
+function formReset(userInfoUpdateForm){ 
 	document.userRegistrationForm.name.value = '';
 	document.userRegistrationForm.email.value = '';	
 	document.userRegistrationForm.zipCode1.value = '';	
@@ -27,20 +27,18 @@ function formReset(userRegistrationForm){
 </script>
 </head>
 <body>
-<header>
+<jsp:include page="userHeader.jsp" />
 		<div id="userHeader" align="right">
-			<p>こんにちはゲストさん</p>
-			<p><a href="${pageContext.request.contextPath}/user/show">カートの中身を見る</a></p>
 		</div>
 				<div id="linkHeader" align="left">
 			<h1 align ="left"><a href="${pageContext.request.contextPath}/user/item"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
 				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1></div>
 		<div id="title" align="center">
 		</div>
-</header>
+
 <div align="center">
-<form:form modelAttribute="userRegistrationForm" name="userRegistrationForm" action="${pageContext.request.contextPath}/user/create" method="post">
-<h2>利用者登録</h2><br>
+<form:form modelAttribute="userInfoUpdateForm" name="userInfoUpdateForm" action="${pageContext.request.contextPath}/info/update" method="post">
+<h2>登録情報変更</h2><br>
 <table>
 <tr>
 <td><label for="name">名前：</label></td></tr><tr><td><form:input path="name"/><br>
@@ -49,21 +47,17 @@ function formReset(userRegistrationForm){
 <tr>
 <td><label for="email">メールアドレス：</label></td></tr><tr><td><form:input path="email" placeholder="例：rakus@rakus.co.jp"/><br><form:errors path="email" cssStyle="color:red" element="div"/>
 </td><tr>
-<tr>
-<td><label for="password">パスワード：</label></td></tr><tr><td><form:password path="password" placeholder="8文字以上16文字以内"/><br><form:errors path="password" cssStyle="color:red" element="div"/></td></tr>
-<tr>
-<td><label for="confirmationpassword">確認用パスワード：</label></td></tr><tr><td><form:password path="confirmationpassword"/><br><form:errors path="confirmationpassword" cssStyle="color:red" element="div"/></td></tr>
-<tr>
 <td><label for="zipCode1">郵便番号：</label></td></tr><tr><td><form:input path="zipCode1" maxlength="3" placeholder="例：123"/> - <form:input path="zipCode2" maxlength="4" placeholder="例：4567" onKeyUp="AjaxZip3.zip2addr('zipCode1','zipCode2','address','address')"/><br><form:errors path="zipCode1" cssStyle="color:red" element="div"/></td></tr>
 <tr>
 <td><label for="address">住所：</label></td></tr><tr><td><form:input path="address"/><br><form:errors path="address" cssStyle="color:red" element="div"/></td></tr>
 <tr>
 <td><label for="telephone1">電話番号：</label></td></tr><tr><td><form:input path="telephone1" maxlength="3" placeholder="2桁以上3桁以内"/> - <form:input path="telephone2" maxlength="4" placeholder="4桁"/> - <form:input path="telephone3" maxlength="4" placeholder="4桁"/><br><form:errors path="telephone1" cssStyle="color:red" element="div"/></td></tr>
 </table>
-<button type="submit" class="btn btn-warning">お客様情報を登録する</button>
-<button type="button" class="btn btn-primary" onClick="formReset(userRegistrationForm)">クリア</button>
+<button type="submit" class="btn btn-warning">お客様情報を変更する</button>
+<button type="button" class="btn btn-primary" onClick="formReset(userInfoUpdateForm)">クリア</button>
 
 </form:form>
 </div>
+
 </body>
 </html>

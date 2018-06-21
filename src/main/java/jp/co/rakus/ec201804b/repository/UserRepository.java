@@ -51,4 +51,15 @@ public class UserRepository {
 		}
 		return user;
 	}
+	public void update(User user) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
+		String sql = "update users"
+				+ " (name,email,zipcode,address,telephone) values (:name,:email,:zipCode,:address,:telephone)";
+		try{
+		template.update(sql, param);
+		}catch(Exception e) {
+		e.printStackTrace();
+		}
+	}
+	
 }
