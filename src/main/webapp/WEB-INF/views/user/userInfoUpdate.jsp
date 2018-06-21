@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" />
+<link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="js/ajaxzip3.js" charset="UTF-8"></script>
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
@@ -30,15 +31,12 @@ function formReset(userInfoUpdateForm){
 <jsp:include page="userHeader.jsp" />
 		<div id="userHeader" align="right">
 		</div>
-				<div id="linkHeader" align="left">
-			<h1 align ="left"><a href="${pageContext.request.contextPath}/user/item"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
-				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1></div>
 		<div id="title" align="center">
 		</div>
 
 <div align="center">
-<form:form modelAttribute="userInfoUpdateForm" name="userInfoUpdateForm" action="${pageContext.request.contextPath}/info/update" method="post">
-<h2>登録情報変更</h2><br>
+<form:form modelAttribute="userInfoUpdateForm" name="userInfoUpdateForm" action="${pageContext.request.contextPath}/user/update" method="post">
+<h2>登録者情報変更</h2><br>
 <table>
 <tr>
 <td><label for="name">名前：</label></td></tr><tr><td><form:input path="name"/><br>

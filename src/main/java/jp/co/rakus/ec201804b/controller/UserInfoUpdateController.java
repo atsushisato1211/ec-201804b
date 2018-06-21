@@ -2,6 +2,7 @@ package jp.co.rakus.ec201804b.controller;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,12 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jp.co.rakus.ec201804b.domain.LoginUser;
 import jp.co.rakus.ec201804b.domain.User;
 import jp.co.rakus.ec201804b.form.UserInfoUpdateForm;
 import jp.co.rakus.ec201804b.repository.UserRepository;
 
 @Controller
-@RequestMapping(value="/info")
+@RequestMapping(value="/user")
 public class UserInfoUpdateController {
 	
 	@Autowired
@@ -26,7 +28,7 @@ public class UserInfoUpdateController {
 		return new UserInfoUpdateForm();
 	}
 	
-	@RequestMapping(value = "/reset")
+	@RequestMapping(value = "/info")
 	public String form(Model model) {
 		return "user/userInfoUpdate";
 	}
@@ -34,13 +36,15 @@ public class UserInfoUpdateController {
 	/**
 	 * 利用者情報変更処理を行うメソッドです.
 	 * @param form フォーム
+	 * 
 	 * @param result エラー内容
 	 * @param redirectAttributes
 	 * @param model
 	 * @return 利用者のログイン画面
 	 */
 	@RequestMapping(value="/update")
-	public String Update(@Validated UserInfoUpdateForm form, BindingResult result, RedirectAttributes redirectAttributes,Model model) {
+	public String Update(@AuthenticationPrincipal LoginUser loginUser,  @Validated UserInfoUpdateForm form, BindingResult result, RedirectAttributes redirectAttributes,Model model) {
+		Long id=loginUser.getUser().getId();
 		User user = new User();
 		Boolean isZipCodeError = false;
 		Boolean isTelephoneError = false;
@@ -79,6 +83,7 @@ public class UserInfoUpdateController {
 			return form(model);
 		}
 		BeanUtils.copyProperties(form, user);
+		user.setId(id);
 		user.setTelephone(form.getTelephone());
 		user.setZipCode(form.getZipCode());
 		repository.update(user);
