@@ -14,14 +14,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.rakus.ec201804b.domain.AdminUser;
 import jp.co.rakus.ec201804b.form.AdminUserRegistrationForm;
-import jp.co.rakus.ec201804b.repository.AdminUserLoginRepository;
+import jp.co.rakus.ec201804b.repository.AdminUserRepository;
 
 @Controller
 @Transactional
-@RequestMapping(value = "/adminregistration")
+@RequestMapping(value = "/admin")
 public class AdminUserRegistrationController {
 	@Autowired
-	private AdminUserLoginRepository adminUserLoginRepository;
+	private AdminUserRepository adminUserLoginRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	

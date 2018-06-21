@@ -37,12 +37,12 @@
                 <th></th>
             </tr>
             <tr>
-				<td><a href="${pageContext.request.contextPath}/item/itemdetail"><img src="${pageContext.request.contextPath}/img/<c:out value="${orderItem.item.imagePath}"/>" width="150"height="125" alt="商品画像"></a></td>
-                <td><a href="${pageContext.request.contextPath}/item/itemdetail"></a><c:out value="${orderItem.item.name}"/></td>
+				<td><a href="${pageContext.request.contextPath}/user/itemdetail"><img src="${pageContext.request.contextPath}/img/<c:out value="${orderItem.item.imagePath}"/>" width="150"height="125" alt="商品画像"></a></td>
+                <td><a href="${pageContext.request.contextPath}/user/itemdetail"></a><c:out value="${orderItem.item.name}"/></td>
                 <td>&yen;<c:out value="${orderItem.item.price}"/></td>
                 <td><c:out value="${orderItem.quantity}"/>個</td>
                 <td>
-                    <form action="${pageContext.request.contextPath}/show" method="post">
+                    <form action="${pageContext.request.contextPath}/user/show" method="post">
                         <input type="hidden" name="item.id" value="1">
                         <input type="submit" value="削除">
                     </form>
@@ -51,6 +51,6 @@
         </table><br>
         </c:forEach>
 </c:forEach>
-    <div  align="center"><a href="${pageContext.request.contextPath}/payment/make">決済へ</a></div>
+    <div  align="center"><a href="${pageContext.request.contextPath}/user/make">決済へ</a></div>
 </body>
 </html>

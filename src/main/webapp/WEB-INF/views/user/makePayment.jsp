@@ -11,7 +11,7 @@
 
 <h2 align="center">ご注文内容</h2>
 <hr>
-<form action="${pageContext.request.contextPath}/payment/confirmed" method="post">
+<form action="${pageContext.request.contextPath}/user/confirmed" method="post">
 <table border="1" width="350"  align="center">
 <tr>
 <th>商品名</th>

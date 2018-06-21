@@ -15,7 +15,7 @@
 			<p><a href="administerLogin.html">ログイン</a></p>
 		</div>
 				<div id="linkHeader" align="left">
-			<h1 align ="left"><a href="<%=request.getContextPath()%>/menu/"><img src="<%=request.getContextPath()%>/img/rakus.jpg" width="50"
+			<h1 align ="left"><a href="<%=request.getContextPath()%>admin/menu"><img src="<%=request.getContextPath()%>/img/rakus.jpg" width="50"
 				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1>
 		<div id="title" align="center">
 		</div>
@@ -24,7 +24,7 @@
 
 
 	<h2 align="center">商品登録画面</h2>
-	<form:form modelAttribute="itemForm" enctype="multipart/form-data"  action="${pageContext.request.contextPath}/menu/itemInsert">
+	<form:form modelAttribute="itemForm" enctype="multipart/form-data"  action="${pageContext.request.contextPath}/admin/itemInsert">
 	<table>
 	<tr><td>商品名</td><td><form:input path="name" value="${itemContent.name}"/></td></tr>
 	<tr><td>商品説明</td><td><form:textarea path="description" value="${itemContent.description}"/></td></tr>

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Component
 @Transactional
-@RequestMapping("/payment")
+@RequestMapping("/user")
 public class PaymentController {
 
 	@RequestMapping("/make")

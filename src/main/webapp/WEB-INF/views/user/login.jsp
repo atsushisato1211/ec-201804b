@@ -31,7 +31,7 @@
 	<h3>ログイン</h3>
 	<form:errors path="userLoginForm.*" cssStyle="color:red" element="div"/>
 	<form:form modelAttribute="userLoginForm"
-		action="${pageContext.request.contextPath}/login" class="form-horizontal">
+		action="${pageContext.request.contextPath}/user/login" class="form-horizontal">
 		
 	<table ><tr><form:errors path="email" cssStyle="color:red" element="div" />
 		<td><label for="email">メールアドレス:</label></td>
@@ -41,7 +41,7 @@
 			<td><label for="password">パスワード:</label></td>
 		<td><form:password path="password" /></td></tr>
 			<tr><td colspan="2" align="center"><button type="submit" class="btn btn-info">ログイン</button></td></tr> 
-			<tr><td colspan="2" align="center"><a href="${pageContext.request.contextPath}/registration/form">新規登録はこちら</a></td></tr>
+			<tr><td colspan="2" align="center"><a href="${pageContext.request.contextPath}/user/form">新規登録はこちら</a></td></tr>
 	</table>
 	
 	</form:form>

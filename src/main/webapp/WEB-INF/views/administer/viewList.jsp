@@ -15,7 +15,7 @@
 			<p><a href="administerLogin.html">ログイン</a></p>
 		</div>
 				<div id="linkHeader" align="left">
-			<h1 align ="left"><a href="<%=request.getContextPath()%>/menu/"><img src="<%=request.getContextPath()%>/img/rakus.jpg" width="50"
+			<h1 align ="left"><a href="<%=request.getContextPath()%>admin/menu"><img src="<%=request.getContextPath()%>/img/rakus.jpg" width="50"
 				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1>
 		<div id="title" align="center">
 		</div>
@@ -24,7 +24,7 @@
 
 
 	<h2 align="center">商品一覧</h2>
-	<form action="<%=request.getContextPath()%>/menu/findByName" align="center">
+	<form action="<%=request.getContextPath()%>/admin/findByName" align="center">
 		名前<input type="text" name="adminitem" align="center"> <input
 			type="submit" value="検索" align="center">
 	</form>
@@ -44,12 +44,12 @@
 				<td><c:out value="${item.name}"/></td>
 				<td>&yen;<c:out value="${item.price}" /></td>
 				<td>
-				<form action="<%=request.getContextPath()%>/menu/itemContent" align="center" method="post">
+				<form action="<%=request.getContextPath()%>/admin/itemContent" align="center" method="post">
 				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>
 				<input type="submit" value="編集" align="center"><br>
 	</form>
 				<!-- <input type="submit" value="削除" align="center"> -->
-				<form action="<%=request.getContextPath()%>/menu/changeByDeleted" align="center" method="post">
+				<form action="<%=request.getContextPath()%>/admin/changeByDeleted" align="center" method="post">
 				<c:if test="${item.deleted==true}">
 				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>
 				<input type="hidden" name="deleted" value='<c:out value="${item.deleted}"/>'>

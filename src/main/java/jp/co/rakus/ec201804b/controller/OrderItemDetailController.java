@@ -14,7 +14,7 @@ import jp.co.rakus.ec201804b.form.OrderDetailForm;
 import jp.co.rakus.ec201804b.repository.OrderRepository;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/admin")
 public class OrderItemDetailController {
 	@Autowired
 	OrderRepository orderRepository;
@@ -26,17 +26,23 @@ public class OrderItemDetailController {
 	public OrderDetailForm setUpForm() {
 		return new OrderDetailForm();
 	}
+	
+	
+	public Map<Integer, String> mapCreate(){
+		Map<Integer, String> map = new LinkedHashMap<>();
+		map.put(1, "未入金");
+		map.put(2, "入金済み");
+		map.put(3, "発送済み");
+		map.put(4, "キャンセル");
+		return map;
+	}
 
 	@RequestMapping("/orderDetail")
 	public String orderDetail(@RequestParam long id, Model model) {
 		Order order = orderRepository.load(id);
 
-		Map<Integer, String> statusMap = new LinkedHashMap<>();
-		statusMap.put(1, "未入金");
-		statusMap.put(2, "入金済み");
-		statusMap.put(3, "発送済み");
-		statusMap.put(4, "キャンセル");
 		
+		Map<Integer, String> statusMap = mapCreate();
 		String value = statusMap.get(order.getStatus());
 		
 		session.setAttribute("value", value);
@@ -49,7 +55,7 @@ public class OrderItemDetailController {
 		int status=Integer.parseInt(form.getStatus());
 		orderRepository.update(status,id);
 		
-		return "redirect:/orderDetail?id="+id;
+		return "redirect:/admin/orderDetail?id="+id;
 	}
 
 }

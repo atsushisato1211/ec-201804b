@@ -16,11 +16,11 @@
 	<jsp:include page="userHeader.jsp" />
 <div align ="center">
 	<h2>商品一覧</h2>
-	<form action="<%=request.getContextPath()%>/item/findByName">
+	<form action="<%=request.getContextPath()%>/user/findByName">
 		名前<input type="text" name="useritem" value="${itemName}"> 
 		<button type="submit" class="btn btn-info">検索</button>
 			</form>
-			<form action="<%=request.getContextPath()%>/item/findByNameAndSort" align="center">
+			<form action="<%=request.getContextPath()%>/user/findByNameAndSort" align="center">
 		<input type="hidden" name="useritem" value="${itemname}">
 		<select name="itemSort" onChange="this.form.submit()">  
 		<option value="id" selected="selected">---</option>
@@ -39,11 +39,11 @@
 		<c:forEach var="item" items="${itemList}">
 			<tr>
 				<td><a
-					href="<%=request.getContextPath()%>/item/itemdetail?id=<c:out value="${item.id}"/>"><img
+					href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>"><img
 						src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>"
 						width="150" height="125" alt="<c:out value="${item.name}" />画像"></a></td>
 				<td><a
-					href="<%=request.getContextPath()%>/item/itemdetail?id=<c:out value="${item.id}"/>">
+					href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>">
 						<c:out value="${item.name}" />
 				</a></td>
 				<td>&yen;<c:out value="${item.price}" /></td>

@@ -11,7 +11,7 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/adminHeader.css" />
-<link rel="stylesheet" type="text/css"　href="${pageContext.request.contextPath}/css/adminUserLogin.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminUserLogin.css" />
 </head>
 <body>
 	<header>
@@ -29,11 +29,12 @@
 		<form:form modelAttribute="adminUserLoginForm" action="${pageContext.request.contextPath}/admin/login">
 	<div align="center">
 		<h2>ログイン</h2>
+		<form:errors path="adminUserLoginForm.*" cssStyle="color:red" element="div"/>
 			<form:errors path="email" cssStyle="color:red" element="div" />
 					<label for="email">
 					メールアドレス：<form:input path="email" /></label>
 			<form:errors path="password" cssStyle="color:red" element="div" />
-			<label for="password">パスワード： <form:input path="password" /></label>
+			<label for="password">パスワード： <form:password path="password" /></label>
 			
 			<button type="submit" class="btn btn-info">ログイン</button>
 		

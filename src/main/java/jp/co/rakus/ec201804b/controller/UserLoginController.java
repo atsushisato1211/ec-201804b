@@ -19,7 +19,7 @@ import jp.co.rakus.ec201804b.form.UserLoginForm;
  *
  */
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "/user")
 public class UserLoginController {
 	
 	@Autowired
@@ -40,7 +40,7 @@ public class UserLoginController {
 			@RequestParam(required = false) String error) {
 		System.err.println("login error:" + error);
 		if (error != null) {
-			System.err.println("member: login failed");
+			System.err.println("user: login failed");
 			result.addError(new ObjectError("loginError", "メールアドレスまたはパスワードが不正です。"));
 		}
 		return "user/login";

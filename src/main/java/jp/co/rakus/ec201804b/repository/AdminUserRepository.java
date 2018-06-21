@@ -12,7 +12,7 @@ import jp.co.rakus.ec201804b.domain.AdminUser;
 import jp.co.rakus.ec201804b.domain.User;
 
 @Repository
-public class AdminUserLoginRepository {
+public class AdminUserRepository {
 	private static final RowMapper<AdminUser> adminUserRowMapper = (rs, i) -> {
 		AdminUser adminUser=new AdminUser();
 		adminUser.setId(rs.getLong("id"));

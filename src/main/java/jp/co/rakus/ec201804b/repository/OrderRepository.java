@@ -39,6 +39,7 @@ public class OrderRepository {
 					order.setId(currentOrderId);
 					order.setOrderNumber(rs.getString("order_number"));
 					order.setStatus(rs.getInt("status"));
+					order.setUserId(rs.getLong("user_id"));
 					order.setOrderItemList(new ArrayList<OrderItem>());
 					order.setTotalPrice(rs.getInt("total_price"));
 					order.setOrderDate(rs.getDate("order_date"));
@@ -75,7 +76,7 @@ public class OrderRepository {
 	};
 	
 	public List<Order> findAll() {
-		String sql = "select o.id as order_id, order_number, status, "
+		String sql = "select o.id as order_id, order_number, user_id, status, "
 				+ "total_price, order_date, delivery_name,delivery_email,"
 				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
 				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
@@ -90,7 +91,7 @@ public class OrderRepository {
 	
 	public Order load(long id) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id",id);
-		String sql = "select o.id as order_id, order_number, status, "
+		String sql = "select o.id as order_id, order_number, user_id, status, "
 				+ "total_price, order_date, delivery_name,delivery_email,"
 				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
 				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
@@ -107,6 +108,13 @@ public class OrderRepository {
 		
 		SqlParameterSource param=new MapSqlParameterSource().addValue("status", status).addValue("id", id);
 		String sql="update orders set status=:status where id=:id";
+		
+		template.update(sql, param);
+	}
+	
+	public void updateUserIdById(Long userId, Long id) {
+		SqlParameterSource param=new MapSqlParameterSource().addValue("userId", userId).addValue("id", id);
+		String sql="update orders set user_id=:userId where id=:id";
 		
 		template.update(sql, param);
 	}

@@ -16,15 +16,20 @@
 			<sec:authorize access="hasRole('ROLE_MEMBER') and isAuthenticated()">
 							<sec:authentication var="userName" property="principal.user.name" />
 								<c:out value="${userName}" />&nbsp;さん
+								<p><a href="${pageContext.request.contextPath}/user/logout">ログアウト</a></p>
 								</sec:authorize>
-			</p>
+			<sec:authorize access="!(hasRole('ROLE_MEMBER') and isAuthenticated())">
+								ゲスト&nbsp;さん</p>
+								<p><a href="${pageContext.request.contextPath}/user/index">ログイン</a></p>
+								
+								</sec:authorize>
 			<p>
-				<a href="${pageContext.request.contextPath}/show/">カートの中身を見る</a>
+				<a href="${pageContext.request.contextPath}/user/show">カートの中身を見る</a>
 			</p>
 		</div>
 		<div id="linkHeader" align="left">
 			<h1 align="left">
-				<a href="${pageContext.request.contextPath}/item/"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
+				<a href="${pageContext.request.contextPath}/user/item"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
 					height="50" alt="ロゴ画像">ＥＣサイトラクス</a>
 			</h1>
 			<div id="title" align="center"></div>

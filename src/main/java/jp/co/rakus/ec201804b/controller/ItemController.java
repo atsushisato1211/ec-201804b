@@ -19,7 +19,7 @@ import jp.co.rakus.ec201804b.repository.ItemRepository;
  *
  */
 @Controller
-@RequestMapping(value="/item")
+@RequestMapping(value="/user")
 public class ItemController {
 	@Autowired
 	private ItemRepository repository;
@@ -29,7 +29,7 @@ public class ItemController {
 	 * @param model
 	 * @return userフォルダーのitemList.jsp(商品一覧画面)
 	 */
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/item")
 	public String index(Model model) {
 		List<Item>list = repository.findAllByNotDeleted();
 		model.addAttribute("itemList", list);
@@ -50,7 +50,7 @@ public class ItemController {
 //			return "redirect:/item/";
 //		}
 		if(useritem==null || useritem.isEmpty()) {
-			return "redirect:/item/";
+			return "redirect:user/item";
 		}
 		List<Item>list = repository.findByNameAndNotDeleted(useritem);
 		model.addAttribute("itemList", list);

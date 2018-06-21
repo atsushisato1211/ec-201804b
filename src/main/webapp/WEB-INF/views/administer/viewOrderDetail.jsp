@@ -93,7 +93,7 @@
       </tr>
       <tr>
         <td><c:out value="${value}"/></td>
-        <td><form:form modelAttribute="oderDetailForm" action="${pageContext.request.contextPath}/updateStatus?id=${order.id}">
+        <td><form:form modelAttribute="oderDetailForm" action="${pageContext.request.contextPath}/admin/updateStatus?id=${order.id}">
 <select name="status">
 <option value="1">未入金</option>
 <option value="2" selected>入金済み</option>
@@ -108,7 +108,7 @@
     </table><br>
  <p id="notice-input-text-1" style="display: none; color: red;"> 更新されました。</p><br>
 <br>
-    <a href="./orderList.html">注文一覧に戻る</a>
+    <a href="/admin/orderList">注文一覧に戻る</a>
 </div>
 </body>
 </html>

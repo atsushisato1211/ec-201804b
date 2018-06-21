@@ -34,16 +34,16 @@
       </tr>
       <c:forEach var="order" items="${orderList}">
       <tr>
-        <td><a href="${pageContext.request.contextPath}/orderDetail?id=${order.id}"><c:out value="${order.orderNumber}"/></a></td>
+        <td><a href="${pageContext.request.contextPath}/admin/orderDetail?id=${order.id}"><c:out value="${order.orderNumber}"/></a></td>
         <td><c:out value="${order.orderDate}"/></td>
         <td><c:out value="${order.deliveryName}"/></td>
-        <td><c:out value="${order.status}"/></td>
+        <td><c:out value="${order.statusString}"/></td>
         <td><c:out value="${order.totalPrice}"/></td>
       </tr>
      </c:forEach>
     </table>
     <br>
-    <a href="${pageContext.request.contextPath}/menu/">メニューに戻る</a>
+    <a href="${pageContext.request.contextPath}/admin/menu">メニューに戻る</a>
 </div>
 	
 </body>

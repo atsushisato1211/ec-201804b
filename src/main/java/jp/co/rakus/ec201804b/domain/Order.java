@@ -6,7 +6,9 @@ import java.util.List;
 public class Order {
 	private Long id;
 	private String orderNumber;
+	private Long userId;
 	private Integer status;
+	private String statusString;
 	private List<OrderItem> orderItemList;
 	private Integer totalPrice;
 	private Date orderDate;
@@ -28,11 +30,27 @@ public class Order {
 	public void setOrderNumber(String orderNumber) {
 		this.orderNumber = orderNumber;
 	}
+	
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 	public Integer getStatus() {
 		return status;
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	
+	
+	
+	public String getStatusString() {
+		return statusString;
+	}
+	public void setStatusString(String statusString) {
+		this.statusString = statusString;
 	}
 	public List<OrderItem> getOrderItemList() {
 		return orderItemList;

@@ -21,7 +21,7 @@
 		<div id="title" align="center">
 		</div>
 </header>
-<form:form modelAttribute="adminUserRegistrationForm" action="${pageContext.request.contextPath}/adminregistration/create" method="post">
+<form:form modelAttribute="adminUserRegistrationForm" action="${pageContext.request.contextPath}/admin/create" method="post">
 <h2>管理者登録</h2><br>
 <table>
 <tr><form:errors path="name" cssStyle="color:red" element="div"/>

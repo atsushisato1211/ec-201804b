@@ -1,6 +1,7 @@
 package jp.co.rakus.ec201804b.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,18 +13,27 @@ import jp.co.rakus.ec201804b.domain.Order;
 import jp.co.rakus.ec201804b.repository.OrderRepository;
 
 @Controller
-@RequestMapping("/orderList")
+@RequestMapping("/admin")
 public class OrderItemListController {
 
 	@Autowired
 	private OrderRepository orderRepository;
 	
 	@Autowired
+	private OrderItemDetailController orderItemDetail;
+	
+	@Autowired
 	private HttpSession session;
 	
-	@RequestMapping("/")
+	@RequestMapping("/orderList")
 	public String show() {
 		List<Order> orderList =orderRepository.findAll();
+		
+		for (Order order : orderList) {
+			Map<Integer, String> statusMap = orderItemDetail.mapCreate();
+			String value = statusMap.get(order.getStatus());
+			order.setStatusString(value);
+		}
 		session.setAttribute("orderList", orderList);
 		return "administer/viewOrderList";
 	}

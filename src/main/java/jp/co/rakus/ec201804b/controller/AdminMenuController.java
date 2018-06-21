@@ -22,7 +22,7 @@ import jp.co.rakus.ec201804b.form.ItemForm;
 import jp.co.rakus.ec201804b.repository.ItemRepository;
 
 @Controller
-@RequestMapping("/menu")
+@RequestMapping("/admin")
 public class AdminMenuController {
 	@Autowired
 	private ItemRepository repository;
@@ -36,7 +36,7 @@ public class AdminMenuController {
 	}
 
 
-	@RequestMapping("/")
+	@RequestMapping("/menu")
 	public String index() {
 		
 		return "administer/menu";

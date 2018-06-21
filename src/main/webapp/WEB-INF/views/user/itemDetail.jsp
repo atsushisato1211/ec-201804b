@@ -72,6 +72,6 @@
 				<option value="9">9</option>
 			</select></div>
 			<div ="sendCart" align="center"><p><button type="submit" class="btn btn-info">カートに入れる</button></p></div>
-		<div ="sendCart" align="center"><p><a href="<%=request.getContextPath()%>/item/">商品一覧画面へ戻る</a></p></div>
+		<div ="sendCart" align="center"><p><a href="<%=request.getContextPath()%>/user/item">商品一覧画面へ戻る</a></p></div>
 </body>
 </html>

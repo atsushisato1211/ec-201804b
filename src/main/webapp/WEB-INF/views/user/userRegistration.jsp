@@ -18,17 +18,16 @@
 <header>
 		<div id="userHeader" align="right">
 			<p>こんにちはゲストさん</p>
-			<p><a href="${pageContext.request.contextPath}/index">ログイン</a></p>
-			<p><a href="${pageContext.request.contextPath}/show">カートの中身を見る</a></p>
+			<p><a href="${pageContext.request.contextPath}/user/show">カートの中身を見る</a></p>
 		</div>
 				<div id="linkHeader" align="left">
-			<h1 align ="left"><a href="${pageContext.request.contextPath}/item/"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
+			<h1 align ="left"><a href="${pageContext.request.contextPath}/user/item"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
 				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1></div>
 		<div id="title" align="center">
 		</div>
 </header>
 <div align="center">
-<form:form modelAttribute="userRegistrationForm" action="${pageContext.request.contextPath}/registration/create" method="post">
+<form:form modelAttribute="userRegistrationForm" action="${pageContext.request.contextPath}/user/create" method="post">
 <h2>利用者登録</h2><br>
 <table>
 <tr><form:errors path="name" cssStyle="color:red" element="div"/>

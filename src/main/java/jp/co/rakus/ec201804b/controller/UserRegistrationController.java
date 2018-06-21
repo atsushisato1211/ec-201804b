@@ -23,7 +23,7 @@ import jp.co.rakus.ec201804b.repository.UserRepository;
  */
 @Controller
 @Transactional
-@RequestMapping(value = "/registration")
+@RequestMapping(value = "user/")
 public class UserRegistrationController {
 	@Autowired
 	private UserRepository userRepository;
@@ -94,7 +94,7 @@ public class UserRegistrationController {
 		user.setPassword(encryptionPassword);
 		user.setZipCode(form.getZipCode());
 		userRepository.insert(user);
-		return "redirect:/index";// 要編集
+		return "redirect:/user/index";// 要編集
 
 	}
 }
