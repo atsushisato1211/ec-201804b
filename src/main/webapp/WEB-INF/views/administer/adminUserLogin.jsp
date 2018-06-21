@@ -15,15 +15,14 @@
 </head>
 <body>
 	<header>
-		<div id="userHeader" align="right"></div>
-		<div id="linkHeader" align="left">
-			<h1 align="left">
-				<a href="../user/itemList.html"><img src="../img/rakus.jpg"
-					width="50" height="50" alt="ロゴ画像">ＥＣサイトラクス</a>
-			</h1>
-			<div id="title" align="center"></div>
+		<div id="userHeader" align="right">
 		</div>
-	</header>
+				<div id="linkHeader" align="left">
+			<h1 align ="left"><a href="${pageContext.request.contextPath}/admin/menu"><img src="../img/rakus.jpg" width="50"
+				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1>
+		<div id="title" align="center"></div>
+		</div>
+</header>
 	<div align="center">	
 		<h2>ログイン</h2>
 		<form:errors path="adminUserLoginForm.*" cssStyle="color:red" element="div"/>

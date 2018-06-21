@@ -12,6 +12,7 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<jsp:include page="adminHeader.jsp" />
 <div align="center">
 
 <h1>注文詳細画面</h1>

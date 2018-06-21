@@ -13,16 +13,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminHeader.css" />
 </head>
 <body>
-	<header>
-		<div id="userHeader" align="right"></div>
-		<div id="linkHeader" align="left">
-			<h1 align="left">
-				<a href="${pageContext.request.contextPath}/menu/"><img src="../img/rakus.jpg"
-					width="50" height="50" alt="ロゴ画像">ＥＣサイトラクス</a>
-			</h1>
-			<div id="title" align="center"></div>
-		</div>
-	</header>
+<jsp:include page="adminHeader.jsp" />
 	
 	<div align="center">
 
