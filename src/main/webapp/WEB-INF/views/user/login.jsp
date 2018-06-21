@@ -14,9 +14,7 @@
 <body>
 	<header>
 		<div id="userHeader" align="right">
-			<p>
-				<a href="${pageContext.request.contextPath}/show/">カートの中身を見る</a>
-			</p>
+			
 		</div>
 		<div id="linkHeader" align="left">
 			<h1 align="left">
