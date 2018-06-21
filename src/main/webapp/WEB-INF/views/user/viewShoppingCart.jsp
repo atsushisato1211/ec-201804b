@@ -8,23 +8,13 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" />
 </head>
 <body>
-<header>
-		<div id="userHeader" align="right">
-			<p>こんにちはゲストさん</p>
-			<p><a href="${pageContext.request.contextPath}/index">ログイン</a></p>
-		</div>
-				<div id="linkHeader" align="left">
-			<h1 align ="left"><a href="${pageContext.request.contextPath}/item/"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
-				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1>
-		<div id="title" align="center">
-		</div>
-</header>
+<jsp:include page="userHeader.jsp" />
 
     <h2 align="center">ショッピングカート一覧</h2>
     
     <c:forEach var="order" items="${orderList}">
     <c:choose>
-	<c:when test="${order.orderItemList==null}">
+	<c:when test="${order.orderItemList.isEmpty()}">
     <p align="center">カートに商品がありません</p>
 	</c:when>
 	<c:otherwise>

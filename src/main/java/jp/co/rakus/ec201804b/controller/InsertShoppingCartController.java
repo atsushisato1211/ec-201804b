@@ -12,7 +12,7 @@ import jp.co.rakus.ec201804b.form.OrderItemForm;
 import jp.co.rakus.ec201804b.repository.OrderRepository;
 
 @Controller
-@RequestMapping("/insert")
+@RequestMapping("/user")
 public class InsertShoppingCartController {
 	
 	@Autowired
@@ -21,16 +21,16 @@ public class InsertShoppingCartController {
 	@Autowired
 	private HttpSession session;
 
-	@RequestMapping("/")
+	@RequestMapping("/insert")
 	public String insertItem(OrderItemForm form) {
-		System.out.println("controllerを呼びました");
+		
 		OrderItem orderItem = new OrderItem();
 		BeanUtils.copyProperties(form,orderItem);
 		orderItem.setItemId(form.getItemId().longValue());
 		orderItem.setOrderId((long) 1);
-		orderItem.setQuantity(1);
+		orderItem.setQuantity(form.getQuantity());
 		orderRepository.insert(orderItem);
 		
-		return "redirect:/show/";
+		return "redirect:/user/show/";
 	}
 }
