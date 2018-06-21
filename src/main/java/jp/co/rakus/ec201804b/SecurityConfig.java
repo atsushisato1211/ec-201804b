@@ -37,9 +37,9 @@ public class SecurityConfig {
 					//ユーザーがいけるパスだけを記述する
 					// .antMatchers("/admin/**").hasRole("ADMIN") //
 					// /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
-					// .antMatchers("/member/**").hasRole("MEMBER") //
+					.antMatchers("/user**/**").hasRole("USER") //
 					// /member/から始まるパスはMEMBER権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
-					.anyRequest().authenticated();
+					.antMatchers("/user/payment/**").authenticated();
 
 			// BASIC認証の有効化
 			// http.httpBasic().disable();

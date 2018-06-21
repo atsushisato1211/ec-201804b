@@ -13,10 +13,10 @@
 </body><header>
 		<div id="userHeader" align="right">
 			<p>こんにちは管理者さん</p>
-			<p><a href="administerLogin.html">ログアウト</a></p>
+			<p><a href="">ログアウト</a></p>
 		</div>
 				<div id="linkHeader" align="left">
-			<h1 align ="left"><a href="${pageContext.request.contextPath}/menu/"><img src="../img/rakus.jpg" width="50"
+			<h1 align ="left"><a href="${pageContext.request.contextPath}/admin/menu"><img src="../img/rakus.jpg" width="50"
 				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1>
 		<div id="title" align="center">
 		</div>
