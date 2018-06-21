@@ -33,9 +33,9 @@ function formReset(adminUserRegistrationForm){
 <tr><form:errors path="name" cssStyle="color:red" element="div"/>
 <td>名前：</td><td><form:input path="name"/></td></tr>
 <tr><form:errors path="email" cssStyle="color:red" element="div"/>
-<td>メールアドレス：</td><td><form:input path="email"/></td><tr>
+<td>メールアドレス：</td><td><form:input path="email" placeholder="例：rakus@rakus.co.jp"/></td><tr>
 <tr><form:errors path="password" cssStyle="color:red" element="div"/>
-<td>パスワード：</td><td><form:password path="password"/></td></tr>
+<td>パスワード：</td><td><form:password path="password" placeholder="8文字以上16文字以内"/></td></tr>
 <tr><form:errors path="confirmationpassword" cssStyle="color:red" element="div"/>
 <td>確認用パスワード：</td><td><form:password path="confirmationpassword"/></td></tr>
 </table>
