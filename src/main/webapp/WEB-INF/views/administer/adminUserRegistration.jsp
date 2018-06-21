@@ -27,22 +27,24 @@ function formReset(adminUserRegistrationForm){
 		<div id="title" align="center">
 		</div>
 </header>
+<div align="center">
 <form:form modelAttribute="adminUserRegistrationForm" action="${pageContext.request.contextPath}/admin/create" method="post" name="adminUserRegistrationForm">
 <h2>管理者登録</h2><br>
 <table>
-<tr><form:errors path="name" cssStyle="color:red" element="div"/>
-<td>名前：</td><td><form:input path="name"/></td></tr>
-<tr><form:errors path="email" cssStyle="color:red" element="div"/>
-<td>メールアドレス：</td><td><form:input path="email" placeholder="例：rakus@rakus.co.jp"/></td><tr>
-<tr><form:errors path="password" cssStyle="color:red" element="div"/>
-<td>パスワード：</td><td><form:password path="password" placeholder="8文字以上16文字以内"/></td></tr>
-<tr><form:errors path="confirmationpassword" cssStyle="color:red" element="div"/>
-<td>確認用パスワード：</td><td><form:password path="confirmationpassword"/></td></tr>
+<tr>
+<td>名前：</td></tr><tr><td><form:input path="name"/><br><form:errors path="name" cssStyle="color:red" element="div"/></td></tr>
+<tr>
+<td>メールアドレス：</td></tr><tr><td><form:input path="email" placeholder="例：rakus@rakus.co.jp"/><br><form:errors path="email" cssStyle="color:red" element="div"/></td><tr>
+<tr>
+<td>パスワード：</td></tr><tr><td><form:password path="password" placeholder="8文字以上16文字以内"/><br><form:errors path="password" cssStyle="color:red" element="div"/></td></tr>
+<tr>
+<td>確認用パスワード：</td></tr><tr><td><form:password path="confirmationpassword"/><br><form:errors path="confirmationpassword" cssStyle="color:red" element="div"/></td></tr>
 </table>
-<button type="submit" class="btn btn-warning">登録する</button>
+<button type="submit" class="btn btn-warning">管理者情報を登録する</button>
 <button type="button" class="btn btn-primary" onClick='formReset(adminUserRegistrationForm)'>クリア</button>
 <!-- <input type="submit" value="登録する"/> -->
 <!--<input type="reset" value="クリア"/>-->
 </form:form>
+</div>
 </body>
 </html>
