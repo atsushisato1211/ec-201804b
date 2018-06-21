@@ -73,12 +73,16 @@ public class ItemRepository {
 		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
 	}
+	/**
+	 * ユーザの全件検索+ソートを行うメソッド.
+	 * @param itemSort ソートする種類
+	 * @param sortOption 昇順or降順
+	 * @return 商品全件 削除フラグがtrueのみ
+	 */
 	public List<Item> findAllBySortAndNotDeleted(String itemSort,String sortOption) {
-//		String sql = "select * from " + TABLE_NAME + " order by sort=:sort";
 		String sql = "select id,name,description,price,imagePath,deleted from " + TABLE_NAME + " order by "+itemSort+" "+sortOption;
 		SqlParameterSource param = new MapSqlParameterSource();
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
-//		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
 	}
 
@@ -120,6 +124,13 @@ public class ItemRepository {
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
 	}
+	/**
+	 * 名前検索+ソートを行うメソッド.
+	 * @param name 商品名
+	 * @param itemsort ソートする種類
+	 * @param sortOption 昇順or降順
+	 * @return 商品名の詳細情報
+	 */
 	public List<Item> findByNameAndSortNotDeleted(String name,String itemsort,String sortOption) {
 		System.out.println("name&sort");
 		String sql = "select id,name,description,price,imagePath,deleted from " + TABLE_NAME + " where deleted=true and name like :name order by "+itemsort+" "+sortOption;
@@ -143,6 +154,10 @@ public class ItemRepository {
 		template.update(sql, param);
 	}
 
+	/**
+	 * 管理者の商品更新を行うメソッド.
+	 * @param item 既存の商品クラス
+	 */
 	public void itemupdate(Item item) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(item);
 		if (item.getId() == null) {
@@ -150,13 +165,14 @@ public class ItemRepository {
 		}
 		String sql = "update " + TABLE_NAME + " set name=:name,description=:description,"
 				+ "price=:price,imagePath=:imagePath,deleted=:deleted where id=:id";
-		// SqlParameterSource param = new
-		// MapSqlParameterSource().addValue("imagePath",item.getImagePath()).addValue("id",
-		// item.getId());
 		template.update(sql, param);
 
 	}
 
+	/**
+	 * 管理者の商品追加を行うメソッド.
+	 * @param item 新しい商品クラス
+	 */
 	synchronized public void itemInsert(Item item) {
 		if (item.getId() == null) {
 			item.setId(MaxId());
@@ -164,13 +180,14 @@ public class ItemRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(item);
 		String sql = "insert into " + TABLE_NAME + " values(:id,:name,:description,"
 				+ ":price,:imagePath,true )";
-		// SqlParameterSource param = new
-		// MapSqlParameterSource().addValue("imagePath",item.getImagePath()).addValue("id",
-		// item.getId());
 		template.update(sql, param);
 
 	}
 
+	/**
+	 * 商品IDを取得するメソッド.
+	 * @return 現状の商品IDの最大値+1
+	 */
 	public Long MaxId() {
 		String sql = "select max(id)+1 from " + TABLE_NAME;
 		SqlParameterSource param = new MapSqlParameterSource();
