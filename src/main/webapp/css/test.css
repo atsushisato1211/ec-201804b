@@ -1,9 +1,13 @@
 @charset "UTF-8";
+
 .nav {
-  width: 750px;
+  width: 1000px;
   height: 40px;
-  margin: 0 auto;
+  margin: 100px auto;
   padding: 0;
+  position: fixed;
+   top : 0; 
+   
   display: flex;
 }
 .nav li {
@@ -12,7 +16,7 @@
 }
 .nav li a {
   display: block;
-  width: 150px;
+  width: 200px;
   height: 40px;
   text-align: center;
   color: #fff;
