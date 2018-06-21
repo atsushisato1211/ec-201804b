@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -46,6 +47,7 @@
         </c:forEach>
 
         </table><br>
+        
     <div  align="center"><a href="${pageContext.request.contextPath}/user/payment/make">決済へ</a></div>
         </c:otherwise>
     </c:choose>

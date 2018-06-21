@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.rakus.ec201804b.domain.Order;
 import jp.co.rakus.ec201804b.domain.OrderItem;
 import jp.co.rakus.ec201804b.form.OrderItemForm;
 import jp.co.rakus.ec201804b.repository.OrderRepository;
@@ -27,9 +28,8 @@ public class InsertShoppingCartController {
 		OrderItem orderItem = new OrderItem();
 		BeanUtils.copyProperties(form,orderItem);
 		orderItem.setItemId(form.getItemId().longValue());
-		orderItem.setOrderId((long) 1);
-		orderItem.setQuantity(form.getQuantity());
-		orderRepository.insert(orderItem);
+//		orderItem.setOrderId();
+		orderRepository.insertOrderItem(orderItem);
 		
 		return "redirect:/user/show";
 	}
