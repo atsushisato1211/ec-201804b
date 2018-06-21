@@ -3,7 +3,10 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>決済する</title>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" />
 </head>
 <body>
@@ -60,7 +63,7 @@
 メールアドレス：rakus@co.jp<br>
 住所：東京都渋谷区<br>
 電話番号：0568-544-2585<br><br>
-<input type="submit" value="確定">
+<button type="submit" class="btn btn-info">確定</button>
 </form></div>
 
 </body>
