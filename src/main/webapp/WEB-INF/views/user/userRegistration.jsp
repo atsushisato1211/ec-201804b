@@ -13,6 +13,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="js/ajaxzip3.js" charset="UTF-8"></script>
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+<script type="text/javascript">
+function formReset(userRegistrationForm){ 
+	document.userRegistrationForm.name.value = '';
+	document.userRegistrationForm.email.value = '';	
+	document.userRegistrationForm.zipCode1.value = '';	
+	document.userRegistrationForm.zipCode2.value = '';	
+	document.userRegistrationForm.address.value = '';	
+	document.userRegistrationForm.telephone1.value = '';	
+	document.userRegistrationForm.telephone2.value = '';	
+	document.userRegistrationForm.telephone3.value = '';	
+}
+</script>
 </head>
 <body>
 <header>
@@ -27,7 +39,11 @@
 		</div>
 </header>
 <div align="center">
+<<<<<<< HEAD
 <form:form modelAttribute="userRegistrationForm" action="${pageContext.request.contextPath}/user/create" method="post">
+=======
+<form:form modelAttribute="userRegistrationForm" name="userRegistrationForm" action="${pageContext.request.contextPath}/registration/create" method="post">
+>>>>>>> bf85cc2638818c5a81da4134d45bc80693f33f50
 <h2>利用者登録</h2><br>
 <table>
 <tr><form:errors path="name" cssStyle="color:red" element="div"/>
@@ -48,7 +64,7 @@
 <td><label for="telephone1">電話番号：</label></td><td><form:input path="telephone1" maxlength="3"/> - <form:input path="telephone2" maxlength="4"/> - <form:input path="telephone3" maxlength="4"/></td></tr>
 </table>
 <button type="submit" class="btn btn-warning">登録する</button>
-<button type="reset" class="btn btn-primary">クリア</button>
+<button type="button" class="btn btn-primary" onClick="formReset(userRegistrationForm)">クリア</button>
 <!-- <input type="submit" value="登録する"/> -->
 <!--<input type="reset" value="クリア"/>-->
 </form:form>

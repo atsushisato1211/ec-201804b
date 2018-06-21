@@ -9,6 +9,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
+
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.rakus.ec201804b.domain.Item;
 import jp.co.rakus.ec201804b.domain.Order;
 import jp.co.rakus.ec201804b.domain.OrderItem;
+import jp.co.rakus.ec201804b.form.ItemForm;
 
 @Repository
 public class OrderRepository {
@@ -89,6 +93,7 @@ public class OrderRepository {
 		return orderList;
 	}
 	
+
 	public Order load(long id) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id",id);
 		String sql = "select o.id as order_id, order_number, user_id, status, "
@@ -117,6 +122,35 @@ public class OrderRepository {
 		String sql="update orders set user_id=:userId where id=:id";
 		
 		template.update(sql, param);
+	}
+
+	public void insert(OrderItem orderItem) {
+		System.out.println("insertを呼ばれました");
+		if (orderItem.getId() == null) {
+			orderItem.setId(MaxId());
+		}
+
+		try {
+			String sql = "insert into order_items values(:id,:itemId,:orderId,:quantity)";
+			SqlParameterSource param = new BeanPropertySqlParameterSource(orderItem);
+			template.update(sql, param);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+//		SqlParameterSource param = new MapSqlParameterSource().addValue("id", orderItem.getId()).addValue("item_id", orderItem.getItemId()).addValue("order_id", orderItem.getOrderId()).addValue("quantity",orderItem.getQuantity());
+	}
+	
+	public void deleteByItemId() {
+		
+	}
+	
+	public Long MaxId() {
+		String sql = "select max(id)+1 from order_items";
+		SqlParameterSource param = new MapSqlParameterSource();
+
+		return template.queryForObject(sql, param, Long.class);
+
 	}
 
 }

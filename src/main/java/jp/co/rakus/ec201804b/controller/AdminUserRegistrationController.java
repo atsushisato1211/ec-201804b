@@ -16,6 +16,10 @@ import jp.co.rakus.ec201804b.domain.AdminUser;
 import jp.co.rakus.ec201804b.form.AdminUserRegistrationForm;
 import jp.co.rakus.ec201804b.repository.AdminUserRepository;
 
+/**
+ * @author nobuteru.kato
+ * 管理者登録を行うコントローラです.
+ */
 @Controller
 @Transactional
 @RequestMapping(value = "/admin")
@@ -29,11 +33,24 @@ public class AdminUserRegistrationController {
 	private AdminUserRegistrationForm setUpForm() {
 		return new AdminUserRegistrationForm();
 	}
+	/**
+	 * 管理者登録ページを表示します.
+	 * @param model
+	 * @return 管理者登録ページ
+	 */
 	@RequestMapping(value = "/form")
 	public String form(Model model) {
 		return "administer/adminUserRegistration";
 	}
 	
+	/**
+	 * 管理者の登録に関する処理を行います.
+	 * @param form フォーム
+	 * @param result エラー情報
+	 * @param redirectAttributes
+	 * @param model
+	 * @return 管理者ログインページ
+	 */
 	@RequestMapping(value = "/create")
 	public String Registration(@Validated AdminUserRegistrationForm form,BindingResult result,RedirectAttributes redirectAttributes, Model model) {
 	AdminUser adminUser = new AdminUser();
@@ -41,7 +58,6 @@ public class AdminUserRegistrationController {
 		result.rejectValue("confirmationpassword", null, "設定したパスワードを再度入力して下さい");
 	}
 	if (adminUserLoginRepository.findByEmail(form.getEmail()) != null) {
-		System.out.println("aaaa");
 		result.rejectValue("email", null, "そのアドレスはすでに使われています");
 	}
 	if(result.hasErrors()) {

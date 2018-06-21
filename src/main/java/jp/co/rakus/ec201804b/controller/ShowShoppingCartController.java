@@ -27,11 +27,11 @@ public class ShowShoppingCartController {
 	@RequestMapping("/show")
 	public String show() {
 		List<Order> orderList =orderRepository.findAll();
-		for (Order order : orderList) {
-			for (OrderItem item : order.getOrderItemList()) {
-				System.out.println(item.getItem().getImagePath());
-			}
-		}
+//		for (Order order : orderList) {
+//			for (OrderItem item : order.getOrderItemList()) {
+//				System.out.println(item.getItem().getImagePath());
+//			}
+//		}
 		
 		session.setAttribute("orderList", orderList);
 		return "user/viewShoppingCart";

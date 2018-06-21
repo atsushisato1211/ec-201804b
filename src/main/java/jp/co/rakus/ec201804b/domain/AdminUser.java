@@ -1,9 +1,26 @@
 package jp.co.rakus.ec201804b.domain;
 
+/**
+ * 管理者情報に関するクラスです.
+ * @author nobuteru.kato
+ *
+ */
 public class AdminUser {
+	/**
+	 * ID
+	 */
 	private Long id;
+	/**
+	 * 名前
+	 */
 	private String name;
+	/**
+	 * メールアドレス
+	 */
 	private String email;
+	/**
+	 * パスワード
+	 */
 	private String password;
 	
 	public Long getId() {

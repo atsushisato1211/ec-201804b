@@ -1,13 +1,39 @@
 package jp.co.rakus.ec201804b.domain;
 
+/**
+ * 利用者情報に関するクラスです.
+ * @author nobuteru.kato
+ *
+ */
 public class User {
 
+	/**
+	 * ID
+	 */
 	private long id;
+	/**
+	 * 名前
+	 */
 	private String name;
+	/**
+	 * メールアドレス
+	 */
 	private String email;
+	/**
+	 * パスワード
+	 */
 	private String password;
+	/**
+	 * 郵便番号
+	 */
 	private String zipCode;
+	/**
+	 * 郵便番号
+	 */
 	private String address;
+	/**
+	 * 電話番号
+	 */
 	private String telephone;
 
 	public long getId() {
