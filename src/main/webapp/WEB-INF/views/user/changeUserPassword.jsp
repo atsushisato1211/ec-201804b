@@ -26,12 +26,15 @@
 			action="${pageContext.request.contextPath}/user/change">
 			<table>
 				<tr>
+					<form:errors path="password" cssStyle="color:red" element="div" />
 					<td>現在のパスワード:<form:password path="password" /></td>
 				</tr>
 				<tr>
+					<form:errors path="newPassword" cssStyle="color:red" element="div" />
 					<td>新しいパスワード:<form:password path="newPassword" /></td>
 				</tr>
 				<tr>
+					<form:errors path="newConfirmationPassword" cssStyle="color:red" element="div" />
 					<td>新しいパスワードの確認:<form:password path="newConfirmationPassword" /></td>
 				</tr>
 				<tr>
