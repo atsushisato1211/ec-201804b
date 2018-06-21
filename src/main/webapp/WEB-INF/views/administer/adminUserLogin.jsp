@@ -39,6 +39,6 @@
 			<button type="submit" class="btn btn-info">ログイン</button>
 		
 	</div>
-		</form:form>	
+		</form:form>
 </body>
 </html>
