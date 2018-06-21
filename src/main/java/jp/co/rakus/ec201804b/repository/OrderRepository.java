@@ -80,6 +80,7 @@ public class OrderRepository {
 	};
 	
 	public List<Order> findAll() {
+		List<Order> orderList = new ArrayList<>();
 		String sql = "select o.id as order_id, order_number, user_id, status, "
 				+ "total_price, order_date, delivery_name,delivery_email,"
 				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
@@ -89,8 +90,9 @@ public class OrderRepository {
 				+ "left outer join order_items oi "
 				+ "on (o.id = oi.order_id) "
 				+ "join items i on (oi.item_id = i.id)";
-		List<Order> orderList = template.query(sql, ORDER_RSE);
+		orderList = template.query(sql, ORDER_RSE);
 		return orderList;
+	
 	}
 	
 
@@ -124,7 +126,7 @@ public class OrderRepository {
 		template.update(sql, param);
 	}
 
-	public void insert(OrderItem orderItem) {
+	public void insertOrderItem(OrderItem orderItem) {
 		System.out.println("insertを呼ばれました");
 		if (orderItem.getId() == null) {
 			if(MaxId() != null)
@@ -132,16 +134,13 @@ public class OrderRepository {
 			else
 				orderItem.setId((long) 1);
 		}
-
 		try {
 			String sql = "insert into order_items values(:id,:itemId,:orderId,:quantity)";
 			SqlParameterSource param = new BeanPropertySqlParameterSource(orderItem);
 			template.update(sql, param);
 		}catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
-//		SqlParameterSource param = new MapSqlParameterSource().addValue("id", orderItem.getId()).addValue("item_id", orderItem.getItemId()).addValue("order_id", orderItem.getOrderId()).addValue("quantity",orderItem.getQuantity());
 	}
 	
 	public void deleteByItemId() {
