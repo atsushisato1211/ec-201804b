@@ -69,7 +69,7 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト
 	 */
 	public List<Item> findAll() {
-		String sql = "select iid,name,description,price,imagePath,deleted from " + TABLE_NAME + " order by id";
+		String sql = "select id,name,description,price,imagePath,deleted from " + TABLE_NAME + " order by id";
 		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
 	}

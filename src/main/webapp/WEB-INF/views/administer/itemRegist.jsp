@@ -25,15 +25,11 @@
 </header>
 
 
-<<<<<<< HEAD
 
-	<h2 align="center">商品登録画面</h2>
+	<div align="center">
+	<h2>商品登録画面</h2>
 	<form:form modelAttribute="itemForm" enctype="multipart/form-data"  action="${pageContext.request.contextPath}/admin/itemInsert">
-=======
-<div align="center">
-	<h2 >商品登録画面</h2>
-	<form:form modelAttribute="itemForm" enctype="multipart/form-data"  action="${pageContext.request.contextPath}/menu/itemInsert">
->>>>>>> bf85cc2638818c5a81da4134d45bc80693f33f50
+
 	<table>
 	<tr><td><label for="name">商品名:</label></td><td><form:input path="name" value="${itemContent.name}"/></td></tr>
 	<tr><td><label for="description">商品説明:</label></td><td><form:textarea path="description" value="${itemContent.description}"/></td></tr>

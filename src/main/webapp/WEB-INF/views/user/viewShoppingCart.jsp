@@ -42,26 +42,19 @@
                 <td>&yen;<c:out value="${orderItem.item.price}"/></td>
                 <td><c:out value="${orderItem.quantity}"/>個</td>
                 <td>
-<<<<<<< HEAD
                     <form action="${pageContext.request.contextPath}/user/show" method="post">
-=======
-                    <form action="${pageContext.request.contextPath}/show/" method="post">
->>>>>>> bf85cc2638818c5a81da4134d45bc80693f33f50
+
                         <input type="hidden" name="item.id" value="1">
                         <input type="submit" value="削除">
                     </form>
                 </td>
             </tr>
         </c:forEach>
-<<<<<<< HEAD
-</c:forEach>
-    <div  align="center"><a href="${pageContext.request.contextPath}/user/make">決済へ</a></div>
-=======
+
         </table><br>
-    <div  align="center"><a href="${pageContext.request.contextPath}/payment/make">決済へ</a></div>
+    <div  align="center"><a href="${pageContext.request.contextPath}/user/make">決済へ</a></div>
         </c:otherwise>
     </c:choose>
 </c:forEach>
->>>>>>> bf85cc2638818c5a81da4134d45bc80693f33f50
 </body>
 </html>

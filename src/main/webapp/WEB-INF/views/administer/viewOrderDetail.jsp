@@ -111,11 +111,7 @@
     </table><br>
  <p id="notice-input-text-1" style="display: none; color: red;"> 更新されました。</p><br>
 <br>
-<<<<<<< HEAD
-    <a href="/admin/orderList">注文一覧に戻る</a>
-=======
-    <a href="${pageContext.request.contextPath}/orderList/">注文一覧に戻る</a>
->>>>>>> bf85cc2638818c5a81da4134d45bc80693f33f50
+    <a href="${pageContext.request.contextPath}/admin/orderList/">注文一覧に戻る</a>
 </div>
 </body>
 </html>

@@ -57,7 +57,7 @@ public class AdminMenuController {
 	@RequestMapping(value = "/findByName")
 	public String findByName(@RequestParam String adminitem, Model model) {
 		if(adminitem.isEmpty()) {
-			return "redirect:/menu/viewList";
+			return "redirect:/admin/viewList";
 		}
 		List<Item>list = repository.findByName(adminitem);
 		model.addAttribute("itemList", list);

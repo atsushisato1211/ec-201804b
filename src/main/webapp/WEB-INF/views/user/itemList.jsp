@@ -20,13 +20,9 @@
 		名前<input type="text" name="useritem" value="${itemName}"> 
 		<button type="submit" class="btn btn-info">検索</button>
 			</form>
-<<<<<<< HEAD
 			<form action="<%=request.getContextPath()%>/user/findByNameAndSort" align="center">
 		<input type="hidden" name="useritem" value="${itemname}">
-=======
-			<form action="<%=request.getContextPath()%>/item/findByNameAndSort" align="center">
-		<input type="hidden" name="useritem" value="${itemName}">
->>>>>>> bf85cc2638818c5a81da4134d45bc80693f33f50
+
 		<select name="itemSort" onChange="this.form.submit()">  
 		<option value="id">ソート</option>
 		  <option value="name">名前順</option>
