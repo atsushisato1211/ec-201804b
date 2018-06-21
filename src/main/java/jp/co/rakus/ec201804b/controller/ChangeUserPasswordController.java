@@ -1,6 +1,5 @@
 package jp.co.rakus.ec201804b.controller;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import jp.co.rakus.ec201804b.domain.LoginUser;
 import jp.co.rakus.ec201804b.domain.User;
 import jp.co.rakus.ec201804b.form.ChangeUserPasswordForm;
@@ -41,16 +39,21 @@ public class ChangeUserPasswordController {
 	public String change(@AuthenticationPrincipal LoginUser loginUser,@Validated ChangeUserPasswordForm form ,BindingResult result,RedirectAttributes attribute,Model model) {
 		Long id=loginUser.getUser().getId();
 		User user = new User();
-		if (!form.getNewPassword().equals(form.getNewConfirmationPassword())) {
-			result.rejectValue("newConfirmationPassword", null, "設定したパスワードを再度入力して下さい");
+		String password = form.getPassword();
+		String encodePassword = repository.load(id).getPassword();
+		if(!passwordEncoder.matches(password, encodePassword)) {
+			result.rejectValue("password",null,"パスワードが一致しません");
 		}
-		BeanUtils.copyProperties(form, user);
-		String encryptionPassword = passwordEncoder.encode(user.getPassword());
-		user.setPassword(encryptionPassword);
-		user.setId(id);
-		repository.changeUserPassword(user);
+		
+		if (!form.getNewPassword().equals(form.getNewConfirmationPassword())) {
+		//	result.rejectValue("newConfirmationPassword", null, "設定したパスワードを再度入力して下さい");
+		}
+		if(result.hasErrors()) {
+			
+			return form(model);
+		}
+		String encryptionPassword = passwordEncoder.encode(form.getNewConfirmationPassword());
+		repository.changeUserPassword(encryptionPassword,id);
 		return "redirect:/user/index";
 	}
-	
-
 }

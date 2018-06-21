@@ -18,6 +18,7 @@
 								<c:out value="${userName}" />&nbsp;さん
 								<p><a href="${pageContext.request.contextPath}/user/logout">ログアウト</a></p>
 								<p><a href="${pageContext.request.contextPath}/user/info">登録者情報変更</a></p>
+								<p><a href="${pageContext.request.contextPath}/user/password">パスワード変更</a></p>
 								</sec:authorize>
 			<sec:authorize access="!(hasRole('ROLE_MEMBER') and isAuthenticated())">
 								ゲスト&nbsp;さん</p>
