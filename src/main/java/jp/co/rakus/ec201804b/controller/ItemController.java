@@ -35,7 +35,6 @@ public class ItemController {
 		model.addAttribute("itemList", list);
 		
 		return "user/itemList";
-		
 	}
 
 	/**
@@ -46,29 +45,32 @@ public class ItemController {
 	 */
 	@RequestMapping(value = "/findByName")
 	public String findByName(@RequestParam String useritem, Model model) {
-//		if(useritem.isEmpty()) {
-//			return "redirect:/item/";
-//		}
+
 		if(useritem==null || useritem.isEmpty()) {
 			return "redirect:/item/";
 		}
 		List<Item>list = repository.findByNameAndNotDeleted(useritem);
 		model.addAttribute("itemList", list);
 		model.addAttribute("itemName",useritem);
-		System.out.println(list.isEmpty());
 		
 		return "user/itemList";
-		
 	}
+	/**
+	 * 名前検索+ソートを行うメソッド.
+	 * sortOptionの値が「ASC」でないなら「DESC」に変更する。
+	 * @param useritem 商品名
+	 * @param itemSort ソートの種類
+	 * @param sortOption 昇順か降順
+	 * @param model 全件検索情報
+	 * @return 全件検索画面
+	 */
 	@RequestMapping(value = "/findByNameAndSort")
 	public String findByNameAndSort(@RequestParam String useritem,@RequestParam String itemSort,@RequestParam String sortOption, Model model) {
-		System.out.println(sortOption);
 		if(sortOption.equals("ASC")) {
 			sortOption="ASC";
 		}else {
 			sortOption="DESC";			
 		}
-		System.out.println("bbbbbbbbbbb"+sortOption);
 		if(useritem==null || useritem.isEmpty()) {
 			return findBySort(itemSort,sortOption,model);
 		}
@@ -77,13 +79,19 @@ public class ItemController {
 		model.addAttribute("itemName",useritem);
 		
 		return "user/itemList";
-		
 	}
+	/**
+	 * 全件検索+ソートを行うメソッド.
+	 * 
+	 * @param itemSort
+	 * @param sortOption
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/findBySort")
 	public String findBySort(String itemSort,String sortOption, Model model) {
 		List<Item>list = repository.findAllBySortAndNotDeleted(itemSort,sortOption);
 		model.addAttribute("itemList", list);
-		
 		
 		return "user/itemList";
 		
@@ -91,6 +99,7 @@ public class ItemController {
 	
 	/**
 	 * 商品詳細を表示させるメソッド.
+	 * 名前検索+ソートを行うメソッドで商品名がない場合にこのメソッドに遷移する。
 	 * @param id 商品id
 	 * @param model
 	 * @return userフォルダーのitemDetail.jsp(商品詳細画面)
