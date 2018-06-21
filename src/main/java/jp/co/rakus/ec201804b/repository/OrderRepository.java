@@ -127,7 +127,10 @@ public class OrderRepository {
 	public void insert(OrderItem orderItem) {
 		System.out.println("insertを呼ばれました");
 		if (orderItem.getId() == null) {
-			orderItem.setId(MaxId());
+			if(MaxId() != null)
+				orderItem.setId(MaxId());
+			else
+				orderItem.setId((long) 1);
 		}
 
 		try {
