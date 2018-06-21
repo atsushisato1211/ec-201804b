@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>管理者メニュー</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" /></head>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminHeader.css" /></head>
 <script type="text/javascript">
 function formReset(adminUserRegistrationForm){ 
 	document.adminUserRegistrationForm.name.value = '';
