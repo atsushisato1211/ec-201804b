@@ -10,14 +10,59 @@
 <title>商品一覧</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/imgslide.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/ecHeader.css" />
 </head>
 <body>
 	<jsp:include page="userHeader.jsp" />
 	
-	
-	
+	<h2 id="item">おすすめの商品</h2>
+	<!-- スライダー部 -->
+<div id="stage">
+	<input id="r1" type="radio" name="slider8">
+	<input id="r2" type="radio" name="slider8">
+	<input id="r3" type="radio" name="slider8">
+	<input id="r4" type="radio" name="slider8">
+	<input id="r5" type="radio" name="slider8">
+	<input id="r6" type="radio" name="slider8">
+	<input id="r7" type="radio" name="slider8">
+	<input id="r8" type="radio" name="slider8">
+  <!-- スライド群 -->
+  <div id="photos">
+  	<div id="photo1" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/001.jpg"></a></div>
+    <div id="photo2" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/002.jpg"></a></div>
+    <div id="photo3" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/003.jpg"></a></div>
+    <div id="photo4" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/004.jpg"></a></div>
+    <div id="photo5" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/005.jpg"></a></div>
+    <div id="photo6" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/006.jpg"></a></div>
+    <div id="photo7" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/007.jpg"></a></div>
+    <div id="photo8" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/008.jpg"></a></div>
+  	<div id="photo9" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/009.jpg"></a></div>
+  	<div id="photo10" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/010.jpg"></a></div>
+  	<div id="photo11" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/011.jpg"></a></div>
+  	<div id="photo12" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/012.jpg"></a></div>
+  	<div id="photo13" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/013.jpg"></a></div>
+  </div>
+  <!-- スライダー部の高さ確保 -->
+  <div style="padding-top:20%;"></div>
+  <!-- スライドボタン -->
+  <div id="btns">
+  	<label for="r1" id="btn1" class="p_bar"></label>
+  	<label for="r2" id="btn2" class="p_bar"></label>
+  	<label for="r3" id="btn3" class="p_bar"></label>
+  	<label for="r4" id="btn4" class="p_bar"></label>
+  	<label for="r5" id="btn5" class="p_bar"></label>
+  	<label for="r6" id="btn6" class="p_bar"></label>
+  	<label for="r7" id="btn7" class="p_bar"></label>
+  	<label for="r8" id="btn8" class="p_bar"></label>
+  	
+    <!-- 位置表示バー -->
+    <div id="p_btn"></div>
+  </div>
+  <!-- ボタン部の高さ確保 -->
+  <div style="padding-top:2%;"></div>
+</div>
 	
 <div align ="center">
 	<h2>商品一覧</h2>

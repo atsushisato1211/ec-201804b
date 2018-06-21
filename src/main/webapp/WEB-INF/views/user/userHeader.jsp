@@ -128,17 +128,6 @@
 <li><a href="#">Cart</a>
 <ul>
 <li><a href="${pageContext.request.contextPath}/user/show">カートの中身を見る</a></li>
-<li><a href="#">d1</a>
-<ul>
-<li><a href="#">d2</a></li>
-<li><a href="#">d2</a>
-<ul class="left">
-<li><a href="#">d3</a></li>
-<li><a href="#">d3</a></li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 </li>
 <sec:authorize access="hasRole('ROLE_MEMBER') and isAuthenticated()">
