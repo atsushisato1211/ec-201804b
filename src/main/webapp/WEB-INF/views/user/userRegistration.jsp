@@ -39,11 +39,7 @@ function formReset(userRegistrationForm){
 		</div>
 </header>
 <div align="center">
-<<<<<<< HEAD
-<form:form modelAttribute="userRegistrationForm" action="${pageContext.request.contextPath}/user/create" method="post">
-=======
-<form:form modelAttribute="userRegistrationForm" name="userRegistrationForm" action="${pageContext.request.contextPath}/registration/create" method="post">
->>>>>>> bf85cc2638818c5a81da4134d45bc80693f33f50
+<form:form modelAttribute="userRegistrationForm" name="userRegistrationForm" action="${pageContext.request.contextPath}/user/create" method="post">
 <h2>利用者登録</h2><br>
 <table>
 <tr><form:errors path="name" cssStyle="color:red" element="div"/>

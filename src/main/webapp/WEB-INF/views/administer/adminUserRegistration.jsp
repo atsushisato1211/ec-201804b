@@ -27,11 +27,7 @@ function formReset(adminUserRegistrationForm){
 		<div id="title" align="center">
 		</div>
 </header>
-<<<<<<< HEAD
-<form:form modelAttribute="adminUserRegistrationForm" action="${pageContext.request.contextPath}/admin/create" method="post">
-=======
-<form:form modelAttribute="adminUserRegistrationForm" action="${pageContext.request.contextPath}/adminregistration/create" method="post" name="adminUserRegistrationForm">
->>>>>>> bf85cc2638818c5a81da4134d45bc80693f33f50
+<form:form modelAttribute="adminUserRegistrationForm" action="${pageContext.request.contextPath}/admin/create" method="post" name="adminUserRegistrationForm">
 <h2>管理者登録</h2><br>
 <table>
 <tr><form:errors path="name" cssStyle="color:red" element="div"/>

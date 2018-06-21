@@ -39,7 +39,6 @@ public class UserRegistrationForm {
 	 * 郵便番号の左3桁
 	 */
 	private String zipCode1;
-	//@Size(min=4,max=4,message="4桁の数字を入力して下さい")
 	/**
 	 * 郵便番号の右4桁
 	 */
@@ -54,17 +53,14 @@ public class UserRegistrationForm {
 	 * 電話番号
 	 */
 	private String telephone;
-	//@Size(min=2,max=3,message="2桁以上3桁以内の数字を入力して下さい")
 	/**
 	 * 電話番号の左側
 	 */
 	private String telephone1;
-	//@Size(min=4,max=4,message="4桁の数字を入力して下さい")
 	/**
 	 * 電話番号の真ん中
 	 */
 	private String telephone2;
-	//@Size(min=4,max=4,message="4桁の数字を入力して下さい")
 	/**
 	 * 電話番号の右側
 	 */
