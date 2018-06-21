@@ -59,7 +59,7 @@
 	</table>
 		<br>
 	<div id="selectQuantity" align="center">
-	<form:form modelAttribute="orderItemForm" action="${pageContext.request.contextPath}/insert/" method="post">
+	<form:form modelAttribute="orderItemForm" action="${pageContext.request.contextPath}/user/insert" method="post">
 					個数：<select name="quantity">
 				<option value="1">1</option>
 				<option value="2">2</option>
