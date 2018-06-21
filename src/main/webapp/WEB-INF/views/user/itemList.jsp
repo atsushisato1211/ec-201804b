@@ -9,11 +9,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>商品一覧</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/ecHeader.css" />
 </head>
 <body>
 	<jsp:include page="userHeader.jsp" />
+	
+	
+	
+	
 <div align ="center">
 	<h2>商品一覧</h2>
 	<form action="<%=request.getContextPath()%>/user/findByName">
@@ -21,7 +26,7 @@
 		<button type="submit" class="btn btn-info">検索</button>
 			</form>
 			<form action="<%=request.getContextPath()%>/user/findByNameAndSort" align="center">
-		<input type="hidden" name="useritem" value="${itemname}">
+		<input type="hidden" name="useritem" value="${itemName}">
 
 		<select name="itemSort" onChange="this.form.submit()">  
 		<option value="id">ソート</option>
@@ -30,11 +35,15 @@
 		</select>
 <input type="hidden" value="ASC" name="sortOption">
 		<%-- <form:checkbox path="sortOption" value="DESC"/>降順で検索 --%>
-		<input type="checkbox" name="sortOption" value="DESC">降順で検索 
+		<c:choose><c:when test="${sortOption.equals('DESC')}">
+		<input type="checkbox" name="sortOption" value="DESC" checked="checked">降順で検索 </c:when>
+		<c:otherwise>
+		<input type="checkbox" name="sortOption" value="DESC">降順で検索 </c:otherwise>
+	</c:choose>
 	</form>
 </div>
 	<br><c:choose>
-	<c:when test="${itemList.isEmpty()}"><c:out value="${itemName}"/>は商品名に該当しません。</c:when>
+	<c:when test="${itemList.isEmpty()}"><c:out value="${erroritemName}"/>は商品名に該当しません。</c:when>
 	<c:otherwise><table border="1" align="center">
 		<tr>
 			<th colspan="2">商品名</th>

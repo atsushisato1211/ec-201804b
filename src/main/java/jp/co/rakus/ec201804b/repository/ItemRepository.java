@@ -124,6 +124,12 @@ public class ItemRepository {
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
 	}
+	public List<Item> findByInitialsAndNotDeleted(String initials) {
+		String sql = "select id,name,description,price,imagePath,deleted from " + TABLE_NAME + " where deleted=true and name like :name order by id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", initials + "%");
+		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
+		return itemList;
+	}
 	/**
 	 * 名前検索+ソートを行うメソッド.
 	 * @param name 商品名

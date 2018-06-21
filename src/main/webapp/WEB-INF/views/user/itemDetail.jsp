@@ -10,6 +10,7 @@
 <title>商品詳細</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/ecHeader.css" />
+<link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="userHeader.jsp" />
