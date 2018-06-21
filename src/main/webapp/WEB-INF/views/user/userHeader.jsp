@@ -108,15 +108,21 @@
 
 </ul>
 </li>
-<li><a href="#">About</a>
+<li><a href="#">Sort</a>
 <ul>
-<li><a href="#">c1</a>
+<li><a href="#">名前</a>
 <ul>
-<li><a href="#">c2</a></li>
-<li><a href="#">c2</a></li>
+<li><a href="<%=request.getContextPath()%>/user/findByNameAndSort?useritem=<c:out value="${itemName}"/>&itemSort=name&sortOption=ASC">昇順</a></li>
+<li><a href="<%=request.getContextPath()%>/user/findByNameAndSort?useritem=<c:out value="${itemName}"/>&itemSort=name&sortOption=DESC">降順</a></li>
 </ul>
 </li>
-<li><a href="#">c1</a></li>
+<li><a href="#">価格</a>
+<ul>
+<li><a href="<%=request.getContextPath()%>/user/findByNameAndSort?useritem=<c:out value="${itemName}"/>&itemSort=price&sortOption=ASC">安い順</a></li>
+<li><a href="<%=request.getContextPath()%>/user/findByNameAndSort?useritem=<c:out value="${itemName}"/>&itemSort=price&sortOption=DESC">高い順</a></li>
+</ul>
+</li>
+<li><a href="<%=request.getContextPath()%>/user/findByNameAndSort?useritem=&itemSort=name&sortOption=ASC">検索リセット</a></li>
 </ul>
 </li>
 <li><a href="#">Cart</a>
