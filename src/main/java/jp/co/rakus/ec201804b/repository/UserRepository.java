@@ -51,6 +51,7 @@ public class UserRepository {
 		}
 		return user;
 	}
+	
 	public void update(User user) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
 		String sql = "update users"
@@ -59,6 +60,17 @@ public class UserRepository {
 		template.update(sql, param);
 		}catch(Exception e) {
 		e.printStackTrace();
+		}
+	}
+	
+	public void changeUserPassword(User user) {
+		SqlParameterSource param=new BeanPropertySqlParameterSource(user);
+		String sql="update users set password=:newConfirmationPassword where id=:id";
+		
+		try {
+			template.update(sql, param);
+		}catch(Exception e) {
+			e.printStackTrace();//エラー文を出してくれる
 		}
 	}
 	
