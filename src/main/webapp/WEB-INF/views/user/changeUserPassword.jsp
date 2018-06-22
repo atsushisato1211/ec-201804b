@@ -22,6 +22,7 @@
 	<div align="center">
 		<h2>パスワード変更画面</h2>
 
+
 		<form:form modelAttribute="changeUserPasswordForm"
 			action="${pageContext.request.contextPath}/user/change">
 			<table>
