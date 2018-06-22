@@ -147,6 +147,7 @@ public class OrderRepository {
 		template.update(sql, param);
 	}
 	
+	
 	public void updateById(User user, Long id) {
 		Long userId = user.getId();
 		String userName = user.getName();
@@ -165,6 +166,20 @@ public class OrderRepository {
 		template.update(sql, param);
 	}
 	
+	public Order findByUserIdAndStatus(Long userId, Integer status) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userid",userId).addValue("status", status);
+		String sql = "select o.id as order_id, order_number, user_id, status, "
+				+ "total_price, order_date, delivery_name,delivery_email,"
+				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
+				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
+				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
+				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "left outer join order_items oi "
+				+ "on (o.id = oi.order_id) "
+				+ "join items i on (oi.item_id = i.id) where user_id = :userId and status=:status";
+		List<Order> orderList = template.query(sql, param, ORDER_RSE);
+		return orderList.get(0);
+	}
 
 	public void insertOrder(Order order) {
 		if (order.getId() == null) {
