@@ -24,7 +24,9 @@ function formReset(userRegistrationForm){
 	document.userRegistrationForm.address.value = '';	
 	document.userRegistrationForm.telephone1.value = '';	
 	document.userRegistrationForm.telephone2.value = '';	
-	document.userRegistrationForm.telephone3.value = '';	
+	document.userRegistrationForm.telephone3.value = '';
+	document.userRegistrationForm.question.value = '';
+	
 }
 </script>
 </head>
@@ -93,6 +95,13 @@ function formReset(userRegistrationForm){
 <span class="form-group has-float-label inline-block-element"><form:input path="telephone3" maxlength="4" placeholder="4桁" class="form-control"/>
 <label for="telephone2">電話番号</label></span>
 <form:errors path="telephone1" cssStyle="color:red" element="div"/>
+</td>
+</tr>
+<tr>
+<td>
+<span class="form-group has-float-label"><form:input path="question" placeholder="解答を入力して下さい" class="form-control"/>
+<label for="question">親の旧姓は？（フルネームで記入してください）</label></span>
+<form:errors path="question" cssStyle="color:red" element="div"/>
 </td>
 </tr>
 </table>

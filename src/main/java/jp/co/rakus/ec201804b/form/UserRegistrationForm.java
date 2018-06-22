@@ -2,7 +2,6 @@ package jp.co.rakus.ec201804b.form;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
@@ -65,6 +64,11 @@ public class UserRegistrationForm {
 	 * 電話番号の右側
 	 */
 	private String telephone3;
+	/**
+	 * 秘密の質問
+	 */
+	@NotBlank(message="解答を入力してください")
+	private String question;
 
 	public String getZipCode1() {
 		return zipCode1;
@@ -162,11 +166,20 @@ public class UserRegistrationForm {
 		this.telephone3 = telephone3;
 	}
 
+	public String getQuestion() {
+		return question;
+	}
+	
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+	
 	@Override
 	public String toString() {
 		return "UserRegistrationForm [name=" + name + ", email=" + email + ", password=" + password + ", zipCode="
 				+ zipCode + ", address=" + address + ", telephone1=" + telephone1 + ", telephone2=" + telephone2
-				+ ", telephone3=" + telephone3 + "]";
+				+ ", telephone3=" + telephone3 + " question= " +question +"]";
 	}
+
 
 }

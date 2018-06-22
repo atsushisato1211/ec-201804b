@@ -9,13 +9,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.rakus.ec201804b.domain.LoginUser;
-import jp.co.rakus.ec201804b.domain.User;
 import jp.co.rakus.ec201804b.form.ChangeUserPasswordForm;
 import jp.co.rakus.ec201804b.repository.UserRepository;
 
+/**
+ * ユーザーのパスワード変更を行うメソッド.
+ * 
+ * @author Nanami.Sasaki
+ *
+ */
 @Controller
 @RequestMapping(value="/user")
 public class ChangeUserPasswordController {
@@ -30,15 +34,30 @@ public class ChangeUserPasswordController {
 		return new ChangeUserPasswordForm();
 	}
 	
+	/**
+	 * jspを表示するメソッド.
+	 * 
+	 * @param model　Model
+	 * @return　JSPのパスを返す
+	 */
 	@RequestMapping(value="/password")
 	public String form(Model model) {
 		return "user/changeUserPassword";
 	}
 	
+	/**
+	 * JSPを表示するメソッド.
+	 * 
+	 * @param loginUser　LoginUser
+	 * @param form　ChangeUserPasswordForm
+	 * @param result　BindingResult
+	 * @param attribute　RedirectAttributes
+	 * @param model　Model
+	 * @return　JSPのパスが戻り値になっている
+	 */
 	@RequestMapping(value="/change")
-	public String change(@AuthenticationPrincipal LoginUser loginUser,@Validated ChangeUserPasswordForm form ,BindingResult result,RedirectAttributes attribute,Model model) {
+	public String change(@AuthenticationPrincipal LoginUser loginUser,@Validated ChangeUserPasswordForm form ,BindingResult result,Model model) {
 		Long id=loginUser.getUser().getId();
-		User user = new User();
 		String password = form.getPassword();
 		String encodePassword = repository.load(id).getPassword();
 		if(!passwordEncoder.matches(password, encodePassword)) {

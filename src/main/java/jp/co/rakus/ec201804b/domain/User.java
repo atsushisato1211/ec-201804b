@@ -35,6 +35,10 @@ public class User {
 	 * 電話番号
 	 */
 	private String telephone;
+	/**
+	 *　秘密の質問 
+	 */
+	private String question;
 
 	public long getId() {
 		return id;
@@ -92,9 +96,18 @@ public class User {
 		this.telephone = telephone;
 	}
 
+	public String getQuestion() {
+		return question;
+	}
+	
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", zipCode="
 				+ zipCode + ", address=" + address + ", telephone=" + telephone + "]";
 	}
+
 }

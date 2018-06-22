@@ -10,6 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.rakus.ec201804b.domain.User;
 
+/**
+ * 利用者情報を操作するレポジトリー.
+ * 
+ * @author Nanami.Sasaki
+ *
+ */
 @Repository
 public class UserRepository {
 	private static final RowMapper<User> userRowMapper = (rs, i) -> {
@@ -21,6 +27,7 @@ public class UserRepository {
 		user.setZipCode(rs.getString("zipcode"));
 		user.setAddress(rs.getString("address"));
 		user.setTelephone(rs.getString("telephone"));
+		user.setQuestion(rs.getString("question"));
 		return user;
 	};
 
@@ -28,9 +35,15 @@ public class UserRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 
+	/**
+	 * メールアドレスからユーザー検索を行うメソッド.
+	 * 
+	 * @param email　メールアドレス
+	 * @return　Userオブジェクトを返す
+	 */
 	public User findByEmail(String email) {
 		try {
-			String sql = "select id,name,email,password,zipcode,address,telephone from " + TABLE_NAME
+			String sql = "select id,name,email,password,zipcode,address,telephone,question from " + TABLE_NAME
 					+ " where email=:email";
 			User user = new User();
 			SqlParameterSource param = new MapSqlParameterSource().addValue("email", email);
@@ -41,10 +54,16 @@ public class UserRepository {
 		}
 	}
 
+	/**
+	 * ユーザー登録を行うメソッド.
+	 * 
+	 * @param user　Userオブジェクト
+	 * @return　Userオブジェクト
+	 */
 	public User insert(User user) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
 		String sql = "insert into users "
-				+ " (name,email,password,zipcode,address,telephone) values (:name,:email,:password,:zipCode,:address,:telephone)";
+				+ " (name,email,password,zipcode,address,telephone,question) values (:name,:email,:password,:zipCode,:address,:telephone,:question)";
 		try {
 			template.update(sql, param);
 		} catch (Exception e) {
@@ -53,6 +72,11 @@ public class UserRepository {
 		return user;
 	}
 
+	/**
+	 * ユーザー情報の変更を行うメソッド.
+	 * 
+	 * @param user　Userオブジェクト
+	 */
 	public void update(User user) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
 		String sql = "update users"
@@ -64,6 +88,12 @@ public class UserRepository {
 		}
 	}
 
+	/**
+	 * パスワードの変更を行うメソッド.
+	 * 
+	 * @param password　パスワード
+	 * @param id　ID
+	 */
 	public void changeUserPassword(String password,Long id) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("password", password).addValue("id", id);
 		String sql = "update users set password=:password where id=:id";
@@ -75,9 +105,15 @@ public class UserRepository {
 		}
 	}
 
+	/**
+	 * IDからユーザー情報の検索を行うメソッド.
+	 * 
+	 * @param id　ID
+	 * @return　Userオブジェクト
+	 */
 	public User load(Long id) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
-		String sql = "select id,name,email,password,zipCode,address,telephone from users where id=:id";
+		String sql = "select id,name,email,password,zipCode,address,telephone,question from users where id=:id";
 
 		try {
 			User user = template.queryForObject(sql, param, userRowMapper);
@@ -86,7 +122,26 @@ public class UserRepository {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
-
+	
+	/**
+	 * 
+	 * メールアドレスと秘密の質問からユーザー情報の検索を行うメソッド.
+	 * 
+	 * @param email　メールアドレス　
+	 * @param question　秘密の質問
+	 * @return Userオブジェクト
+	 */
+	public User searchByEmailAndQuestion(String email,String question) {
+		SqlParameterSource param=new MapSqlParameterSource().addValue("email", email).addValue("question", question);
+		String sql="select id,name,email,password,zipCode,address,telephone,question from users where email=:email and question=:question";
+		
+		try {
+			User user=template.queryForObject(sql, param, userRowMapper);
+			return user;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
