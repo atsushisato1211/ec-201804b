@@ -37,7 +37,9 @@ public class InsertShoppingCartController {
 	@RequestMapping("/insert")
 	public String insertItem(OrderItemForm form,@AuthenticationPrincipal LoginUser userDetails) {
 		
-//		if(orderRepository.findByUserId(userDetails.getUser().getId())==null) {
+		
+		System.out.println(session.getAttribute("userId"));
+		if(session.getAttribute("userId")==null) {
 			Order order= new Order();
 			if(userDetails==null) {
 				long random = (long)-(rand.nextInt(Integer.MAX_VALUE));
@@ -51,6 +53,7 @@ public class InsertShoppingCartController {
 			}
 			else {
 				order.setUserId(userDetails.getUser().getId());
+				session.setAttribute("userId", order.getUserId());
 				order.setDeliveryName(userDetails.getUser().getName());
 				order.setDeliveryEmail(userDetails.getUser().getEmail());
 				order.setDeliveryZipCode(userDetails.getUser().getZipCode());
@@ -68,13 +71,13 @@ public class InsertShoppingCartController {
 			order.setOrderDate(date);
 	
 			orderRepository.insertOrder(order);
-//		}
+		}
 		
 		OrderItem orderItem = new OrderItem();
 		BeanUtils.copyProperties(form,orderItem);
 		orderItem.setItemId(form.getItemId().longValue());
-//		System.out.println(orderRepository.findByUserId(userDetails.getUser().getId()).getId());
-//		orderItem.setOrderId(orderRepository.findByUserId(userDetails.getUser().getId()).getId());
+//		System.out.println(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
+//		orderItem.setOrderId(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
 		orderRepository.insertOrderItem(orderItem);
 		
 		return "redirect:/user/show";
