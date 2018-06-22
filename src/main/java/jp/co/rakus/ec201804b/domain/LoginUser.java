@@ -12,9 +12,7 @@ public class LoginUser extends org.springframework.security.core.userdetails.Use
 	public LoginUser(User user, Collection<GrantedAuthority> authorityList) {
 		super(user.getEmail(), user.getPassword(), authorityList);
 		this.user = user;
-		
 	}
-	
 	public User getUser() {
 		return user;
 	}

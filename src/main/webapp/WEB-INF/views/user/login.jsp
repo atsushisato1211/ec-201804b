@@ -39,7 +39,10 @@
 			<td><label for="password">パスワード:</label></td>
 		<td><form:password path="password" /></td></tr>
 			<tr><td colspan="2" align="center"><button type="submit" class="btn btn-info">ログイン</button></td></tr> 
+			<tr><td><br></td></tr>
 			<tr><td colspan="2" align="center"><a href="${pageContext.request.contextPath}/user/form">新規登録はこちら</a></td></tr>
+			<tr><td><br></td></tr>
+			<tr><td colspan="2" align="center"><a href="${pageContext.request.contextPath}/user/forget">パスワードを忘れた方はこちら</a></td></tr>
 	</table>
 	
 	</form:form>
