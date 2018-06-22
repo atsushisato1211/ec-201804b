@@ -50,12 +50,12 @@ public class UserDetailsServiceImpl  implements UserDetailsService {
 			
 			
 			//orderIdを引っ張ってくる
-			Order order = orderRepository.findByEmail(user.getEmail());
-			if(order != null && order.getUserId() == -1) {
-				Long id = order.getId();
-				orderRepository.updateById(user, id);
-			}
-			
+//			
+//			if(order != null && order.getUserId() == -1) {
+//				Long id = order.getId();
+//				orderRepository.updateById(user, id);
+//			}
+//			}
 			
 			
 			// 権限付与の例

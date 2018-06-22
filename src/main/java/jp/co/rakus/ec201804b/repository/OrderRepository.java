@@ -148,7 +148,7 @@ public class OrderRepository {
 				+ "i.price as item_price, description, imagePath, deleted from orders o "
 				+ "left outer join order_items oi "
 				+ "on (o.id = oi.order_id) "
-				+ "join items i on (oi.item_id = i.id) where deliveryEmail = :email";
+				+ "join items i on (oi.item_id = i.id) where delivery_email = :email";
 		List<Order> orderList = template.query(sql, param, ORDER_RSE);
 		return orderList.get(0);
 	}
