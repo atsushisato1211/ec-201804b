@@ -23,7 +23,7 @@ import jp.co.rakus.ec201804b.domain.Item;
 import jp.co.rakus.ec201804b.domain.Order;
 import jp.co.rakus.ec201804b.domain.OrderItem;
 import jp.co.rakus.ec201804b.domain.User;
-import jp.co.rakus.ec201804b.form.ItemForm;
+
 
 @Repository
 public class OrderRepository {
@@ -159,15 +159,15 @@ public class OrderRepository {
 				.addValue("userName", userName).addValue("userEmail", userEmail)
 				.addValue("userAddress", userAddress).addValue("userTel", userTel)
 				.addValue("userZipCode", userZipCode).addValue("id", id);
-		String sql="update orders set user_id=:userId, deliveryName=:userName, "
-				+ " deliveryEmail=:userEmail, deliveryAddress=:userAddress, "
-				+ " deliveryTel=:userTel, deliveryZipCode=:userZipCode where id=:id";
+		String sql="update orders set user_id=:userId, delivery_name=:userName, "
+				+ " delivery_email=:userEmail, delivery_address=:userAddress, "
+				+ " delivery_tel=:userTel, delivery_zip_code=:userZipCode where id=:id";
 		
 		template.update(sql, param);
 	}
 	
 	public Order findByUserIdAndStatus(Long userId, Integer status) {
-		SqlParameterSource param = new MapSqlParameterSource().addValue("userid",userId).addValue("status", status);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId",userId).addValue("status", status);
 		String sql = "select o.id as order_id, order_number, user_id, status, "
 				+ "total_price, order_date, delivery_name,delivery_email,"
 				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"

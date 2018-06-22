@@ -57,6 +57,7 @@
 お名前：<c:out value="${order.deliveryName}"/><br>
 メールアドレス：<c:out value="${order.deliveryEmail}"/><br>
 住所：<c:out value="${order.deliveryAddress}"/><br>
+郵便番号：<c:out value="${order.deliveryZipCode}"/><br>
 電話番号：<c:out value="${order.deliveryTel}"/><br><br>
 <form action="${pageContext.request.contextPath}/user/confirmed" method="post">
 <button type="submit" class="btn btn-info">確定</button>

@@ -51,6 +51,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException("そのEmailは登録されていません。");
 		}
 		// orderIdを引っ張ってくる
+		System.out.println(session.getAttribute("userId"));
 		if (session.getAttribute("userId") != null) {
 			Long userId = (Long) session.getAttribute("userId");
 			Order order = orderRepository.findByUserIdAndStatus(userId, 0);
@@ -58,6 +59,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			if (order != null) {
 				Long orderId = order.getId();
 				orderRepository.updateById(user, orderId);
+				session.removeAttribute("userId");
 			}
 		}
 
