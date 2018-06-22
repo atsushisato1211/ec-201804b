@@ -75,7 +75,6 @@
 
 			<div ="sendCart" align="center"><p><button type="submit" class="btn btn-info">カートに入れる</button></p></div>
 			
-
 			<input type="hidden" name="itemId" value="<c:out value="${item.id}"/>">
 			</form:form>
 			</div>

@@ -17,7 +17,6 @@
 
     <h2 align="center">ショッピングカート一覧</h2>
     
-    <c:forEach var="order" items="${orderList}">
     <c:choose>
 	<c:when test="${order.orderItemList.isEmpty()}">
     <p align="center">カートに商品がありません</p>
@@ -45,12 +44,9 @@
                 </td>
             </tr>
         </c:forEach>
-
         </table><br>
-        
-    <div  align="center"><a href="${pageContext.request.contextPath}/user/payment/make?id=${order.id}">決済へ</a></div>
         </c:otherwise>
     </c:choose>
-</c:forEach>
+    <div  align="center"><a href="${pageContext.request.contextPath}/user/payment/make?id=${order.id}">決済へ</a></div>
 </body>
 </html>

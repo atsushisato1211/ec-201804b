@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -24,6 +26,9 @@ import jp.co.rakus.ec201804b.form.ItemForm;
 
 @Repository
 public class OrderRepository {
+	
+	@Autowired
+	private HttpSession session;
 
 	@Autowired
 	private NamedParameterJdbcTemplate template;
@@ -92,11 +97,11 @@ public class OrderRepository {
 				+ "join items i on (oi.item_id = i.id)";
 		orderList = template.query(sql, ORDER_RSE);
 		return orderList;
-	
 	}
 	
 
 	public Order load(long id) {
+		try {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id",id);
 		String sql = "select o.id as order_id, order_number, user_id, status, "
 				+ "total_price, order_date, delivery_name,delivery_email,"
@@ -109,6 +114,28 @@ public class OrderRepository {
 				+ "join items i on (oi.item_id = i.id) where order_id = :id";
 		List<Order> orderList = template.query(sql, param, ORDER_RSE);
 		return orderList.get(0);
+		}catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public Order findByUserId(long userId,long orderId) {
+		try {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId",userId).addValue("orderId", orderId);
+		String sql = "select o.id as order_id, order_number, user_id, status, "
+				+ "total_price, order_date, delivery_name,delivery_email,"
+				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
+				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
+				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
+				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "left outer join order_items oi "
+				+ "on (o.id = oi.order_id) "
+				+ "join items i on (oi.item_id = i.id) where user_id = :userId and order_id=:orderId";
+		List<Order> orderList = template.query(sql, param, ORDER_RSE);
+		return orderList.get(0);
+		}catch (Exception e) {
+			return null;
+		}
 	}
 	
 	public void update(int status,Long id) {
@@ -125,15 +152,47 @@ public class OrderRepository {
 		
 		template.update(sql, param);
 	}
+	
+	public void insertOrder(Order order) {
+		if (order.getId() == null) {
+			if(MaxOrderId() != null)
+				order.setId(MaxOrderId());
+			else
+				order.setId((long) 1);
+		}
+		if (order.getOrderNumber() == null) {
+			if(MaxOrderId() != null)
+				order.setOrderNumber(String.valueOf(MaxOrderId()));
+			else
+				order.setOrderNumber("1");
+		}
+		session.setAttribute("orderId", order.getId());
+		System.out.println(order.getId());
+		try {
+			String sql = "insert into orders values(:id,:orderNumber,:userId,:status,:totalPrice,:orderDate,:deliveryName,:deliveryEmail,:deliveryZipCode,:deliveryAddress,:deliveryTel)";
+			SqlParameterSource param = new BeanPropertySqlParameterSource(order);
+			template.update(sql, param);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	public Long MaxOrderId() {
+		String sql = "select max(id)+1 from orders";
+		SqlParameterSource param = new MapSqlParameterSource();
+
+		return template.queryForObject(sql, param, Long.class);
+	}
 
 	public void insertOrderItem(OrderItem orderItem) {
 		System.out.println("insertを呼ばれました");
 		if (orderItem.getId() == null) {
-			if(MaxId() != null)
-				orderItem.setId(MaxId());
+			if(MaxOrderItemId() != null)
+				orderItem.setId(MaxOrderItemId());
 			else
 				orderItem.setId((long) 1);
 		}
+		
+		orderItem.setOrderId((Long) session.getAttribute("orderId"));
 		try {
 			String sql = "insert into order_items values(:id,:itemId,:orderId,:quantity)";
 			SqlParameterSource param = new BeanPropertySqlParameterSource(orderItem);
@@ -143,16 +202,17 @@ public class OrderRepository {
 		}
 	}
 	
-	public void deleteByItemId() {
-		
-	}
-	
-	public Long MaxId() {
+	public Long MaxOrderItemId() {
 		String sql = "select max(id)+1 from order_items";
 		SqlParameterSource param = new MapSqlParameterSource();
 
 		return template.queryForObject(sql, param, Long.class);
-
 	}
+	
+	public void deleteByItemId() {
+		
+	}
+	
+
 
 }
