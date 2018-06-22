@@ -30,7 +30,7 @@ public class ShowShoppingCartController {
 	public String show(@AuthenticationPrincipal LoginUser userDetails) {
 //		List<Order> orderList =orderRepository.findAll();
 		long userId;
-		if(userDetails==null)
+		if(userDetails==null) 
 			userId=(long) session.getAttribute("userId");
 		else
 			userId=userDetails.getUser().getId();

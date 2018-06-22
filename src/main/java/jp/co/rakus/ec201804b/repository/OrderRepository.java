@@ -182,6 +182,7 @@ public class OrderRepository {
 		session.setAttribute("orderId", order.getId());
 		System.out.println(order.getId());
 		try {
+			
 			String sql = "insert into orders values(:id,:orderNumber,:userId,:status,:totalPrice,:orderDate,:deliveryName,:deliveryEmail,:deliveryZipCode,:deliveryAddress,:deliveryTel)";
 			SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 			template.update(sql, param);
@@ -205,9 +206,10 @@ public class OrderRepository {
 			else
 				orderItem.setId((long) 1);
 		}
-		
-		orderItem.setOrderId((Long) session.getAttribute("orderId"));
+		if(orderItem.getOrderId()==null)
+			orderItem.setOrderId((Long) session.getAttribute("orderId"));
 		try {
+			
 			String sql = "insert into order_items values(:id,:itemId,:orderId,:quantity)";
 			SqlParameterSource param = new BeanPropertySqlParameterSource(orderItem);
 			template.update(sql, param);
