@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>パスワードを忘れた方</title>
+<title>パスワード再発行</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
@@ -16,33 +16,28 @@
 </head>
 <body>
 	<jsp:include page="userHeader.jsp" />
-	<form:form modelAttribute="userPasswordForgetForm"
-		action="${pageContext.request.contextPath}/user/checkpassword">
+	<br>
+	<form:form modelAttribute="userNewPasswordForm" action="${pageContext.request.contextPath}/user/postpass">
 		<div align="center">
-			<br> <br>
-			<h2>パスワードを忘れたお客様</h2>
+		<br>
+			<h2>パスワード再発行</h2>
 			<table>
-			
 				<tr>
-					<form:errors path="email" cssStyle="color:red" element="div" />
-					<td><label for="email">Email:</label></td>
-					<td><form:input path="email" /></td>
+					<form:errors path="newPassword" cssStyle="color:red" element="div" />
+					<td><label for="newPassword">新しいパスワード:</label></td>
+					<td><form:password path="newPassword" /></td>
 				</tr>
-
 				<tr>
-					<form:errors path="question" cssStyle="color:red" element="div" />
-					<td><label for="question">親の旧姓:</label></td>
-					<td><form:input path="question" /></td>
+					<form:errors path="" cssStyle="color:red" element="div" />
+					<td><label for="confirmationNewPassword">確認用パスワード:</label></td>
+					<td><form:password path="confirmationNewPassword" /></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><button type="submit"
-							class="btn btn-warning">送る</button></td>
+							class="btn btn-info">申し込む</button></td>
 				</tr>
 			</table>
-
 		</div>
 	</form:form>
-
-
 </body>
 </html>
