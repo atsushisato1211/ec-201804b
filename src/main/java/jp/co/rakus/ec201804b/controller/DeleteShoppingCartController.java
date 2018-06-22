@@ -1,22 +1,29 @@
 package jp.co.rakus.ec201804b.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.rakus.ec201804b.repository.OrderRepository;
 
 @Controller
-@RequestMapping("/delete")
+@RequestMapping("/user")
 public class DeleteShoppingCartController {
 
 	@Autowired
 	private OrderRepository orderRepository;
 	
-//	@RequestMapping("/")
-//	public String deleteItem(Integer id) {
-//		orderRepository.deleteByItemId(id);
-//	}
+	@Autowired
+	private HttpSession session;
+	
+	@RequestMapping("/delete")
+	public String deleteItem(@RequestParam long itemId) {
+		orderRepository.deleteByItemId(itemId,(long) session.getAttribute("orderId"));
+		return "redirect:/user/show";
+	}
 	
 	
 }

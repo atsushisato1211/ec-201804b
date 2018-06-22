@@ -223,8 +223,16 @@ public class OrderRepository {
 		return template.queryForObject(sql, param, Long.class);
 	}
 	
-	public void deleteByItemId() {
+	public void deleteByItemId(long itemId,long orderId) {
+		System.out.println("deleteを呼ばれました");
 		
+		try {
+			SqlParameterSource param=new MapSqlParameterSource().addValue("itemId", itemId).addValue("orderId", orderId);
+			String sql = "delete from order_items where item_id=:itemId and order_id=:orderId";
+			template.update(sql, param);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 

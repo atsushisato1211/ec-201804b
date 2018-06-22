@@ -36,9 +36,9 @@
                 <td>&yen;<c:out value="${orderItem.item.price}"/></td>
                 <td><c:out value="${orderItem.quantity}"/>個</td>
                 <td>
-                    <form action="${pageContext.request.contextPath}/user/show" method="post">
+                    <form action="${pageContext.request.contextPath}/user/delete?itemId=${orderItem.item.id}" method="post">
 
-                        <input type="hidden" name="item.id" value="1">
+                        <!-- <input type="hidden" name="itemId" value=<c:out value="${orderItem.item.id}"/>> -->
                         <input type="submit" value="削除">
                     </form>
                 </td>

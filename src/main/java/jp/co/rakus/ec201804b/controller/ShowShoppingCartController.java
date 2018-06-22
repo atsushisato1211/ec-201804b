@@ -28,10 +28,10 @@ public class ShowShoppingCartController {
 
 	@RequestMapping("/show")
 	public String show(@AuthenticationPrincipal LoginUser userDetails) {
-		List<Order> orderList =orderRepository.findAll();
+//		List<Order> orderList =orderRepository.findAll();
 		long userId;
 		if(userDetails==null)
-			userId=-1;
+			userId=(long) session.getAttribute("userId");
 		else
 			userId=userDetails.getUser().getId();
 		Order order=orderRepository.findByUserId(userId, (long) session.getAttribute("orderId"));

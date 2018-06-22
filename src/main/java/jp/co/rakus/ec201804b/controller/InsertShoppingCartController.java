@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,6 +27,7 @@ import jp.co.rakus.ec201804b.repository.OrderRepository;
 @RequestMapping("/user")
 public class InsertShoppingCartController {
 	
+	Random rand = new Random();
 	@Autowired
 	private OrderRepository orderRepository;
 	
@@ -38,7 +40,9 @@ public class InsertShoppingCartController {
 //		if(orderRepository.findByUserId(userDetails.getUser().getId())==null) {
 			Order order= new Order();
 			if(userDetails==null) {
-				order.setUserId((long) -1);
+				long random = (long)-(rand.nextInt(Integer.MAX_VALUE));
+				session.setAttribute("userId", random);
+				order.setUserId(random);
 				order.setDeliveryName("");
 				order.setDeliveryEmail("");
 				order.setDeliveryZipCode("");
