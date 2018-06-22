@@ -33,7 +33,7 @@ public class SecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			http.antMatcher("/user/**")
 			.authorizeRequests() // 認可に関する設定
-					.antMatchers("/user/index", "/user/item**","/user/insert", "/user/show", "/user/form", "/user/create").permitAll() // 「/」などのパスは全てのユーザに許可
+					.antMatchers("/user/index", "/user/item**","/user/insert", "/user/show", "/user/form", "/user/create", "/user/password", "/user/forget").permitAll() // 「/」などのパスは全てのユーザに許可
 					//ユーザーがいけるパスだけを記述する
 					// .antMatchers("/admin/**").hasRole("ADMIN") //
 					// /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
