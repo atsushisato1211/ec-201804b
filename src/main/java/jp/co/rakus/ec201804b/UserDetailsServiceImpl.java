@@ -3,6 +3,7 @@ package jp.co.rakus.ec201804b;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,52 +21,50 @@ import jp.co.rakus.ec201804b.repository.OrderRepository;
 import jp.co.rakus.ec201804b.repository.UserRepository;
 
 @Service
-public class UserDetailsServiceImpl  implements UserDetailsService {
-	
-	
-		/** DBから情報を得るためのリポジトリ */
-		@Autowired
-		private UserRepository userRepository;
-		
-		@Autowired
-		private OrderRepository orderRepository;
-		
-		@Autowired
-		private HttpSession session;
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see org.springframework.security.core.userdetails.UserDetailsService#
-		 * loadUserByUsername(java.lang.String) DBから検索をし、ログイン情報を構成して返す。
-		 */
-		@Override
-		public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-			System.out.println("user1");
-			User user = userRepository.findByEmail(email);
-			
-			if (user == null) {
-				throw new UsernameNotFoundException("そのEmailは登録されていません。");
-			}
-			
-			
-			//orderIdを引っ張ってくる
-//			
-//			if(order != null && order.getUserId() == -1) {
-//				Long id = order.getId();
-//				orderRepository.updateById(user, id);
-//			}
-//			}
-			
-			
-			// 権限付与の例
-			Collection<GrantedAuthority> authorityList = new ArrayList<>();
-			authorityList.add(new SimpleGrantedAuthority("ROLE_MEMBER")); // ユーザ権限付与
-			// if(member.isAdmin()) {
-			// authorityList.add(new SimpleGrantedAuthority("ROLE_ADMIN")); // 管理者権限付与
-			// }
-			return new LoginUser(user, authorityList);
+	/** DBから情報を得るためのリポジトリ */
+	@Autowired
+	private UserRepository userRepository;
 
+	@Autowired
+	private OrderRepository orderRepository;
+
+	@Autowired
+	private HttpServletRequest request;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.security.core.userdetails.UserDetailsService#
+	 * loadUserByUsername(java.lang.String) DBから検索をし、ログイン情報を構成して返す。
+	 */
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		System.out.println("user1");
+		User user = userRepository.findByEmail(email);
+
+		if (user == null) {
+			throw new UsernameNotFoundException("そのEmailは登録されていません。");
 		}
-	
+
+		// orderIdを引っ張ってくる
+		if (request.getParameter("id") != null) {
+			Long orderId = Long.parseLong(request.getParameter("id"));
+			Order order = orderRepository.load(orderId);
+			if (order != null && order.getUserId() == -1) {
+				orderRepository.updateById(user, orderId);
+			}
+		}
+
+		// 権限付与の例
+		Collection<GrantedAuthority> authorityList = new ArrayList<>();
+		authorityList.add(new SimpleGrantedAuthority("ROLE_MEMBER")); // ユーザ権限付与
+		// if(member.isAdmin()) {
+		// authorityList.add(new SimpleGrantedAuthority("ROLE_ADMIN")); // 管理者権限付与
+		// }
+		return new LoginUser(user, authorityList);
+
+	}
+
 }
