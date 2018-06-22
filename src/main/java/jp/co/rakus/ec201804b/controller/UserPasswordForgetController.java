@@ -19,6 +19,12 @@ import jp.co.rakus.ec201804b.form.UserNewPasswordForm;
 import jp.co.rakus.ec201804b.form.UserPasswordForgetForm;
 import jp.co.rakus.ec201804b.repository.UserRepository;
 
+/**
+ * パスワードを再発行するコントローラー.
+ * 
+ * @author Nanami.Sasaki
+ *
+ */
 @Controller
 @RequestMapping(value="/user")
 public class UserPasswordForgetController {
@@ -41,7 +47,6 @@ public class UserPasswordForgetController {
 		return new UserNewPasswordForm();
 	}
 	
-	
 	@RequestMapping(value="/forget")
 	public String forgetPassword() {
 		return "/user/passwordForget";
@@ -52,13 +57,25 @@ public class UserPasswordForgetController {
 		return "/user/forgetPassword";
 	}
 	
+	/**
+	 * 
+	 * メールアドレスと秘密の質問の内容がDBと合っているか見るメソッド.
+	 * 
+	 * @param loginUser LoginUser
+	 * @param form UserPasswordForgetForm
+	 * @param result BindingResult
+	 * @param model Model
+	 * @param redirect RedirectAttributes
+	 * @return　jspを表示するメソッドを返す
+	 */
 	@RequestMapping(value="/checkpassword")
 	public String checkpassword(@AuthenticationPrincipal LoginUser loginUser,@Validated UserPasswordForgetForm form,BindingResult result,Model model,RedirectAttributes redirect) {
 		//Long id=loginUser.getUser().getId();
 		User user = repository.findByEmail(form.getEmail());
-		session.setAttribute("user_id", user.getId());
-		if(user.equals(null)) {
+		
+		if(user==null) {
 			result.rejectValue("email",null ,"eメールが一致しません");
+			return forgetPassword();
 		}
 		
 		String question = user.getQuestion();
@@ -70,11 +87,19 @@ public class UserPasswordForgetController {
 		if(result.hasErrors()) {
 			return forgetPassword();
 		}
+		session.setAttribute("user_id", user.getId());
 		redirect.addFlashAttribute("password",user.getPassword());
 		
 		return "redirect:/user/filloutpass";
 	}
 	
+	/**
+	 * パスワードの変更を行ったらログイン画面に遷移するメソッド.
+	 * 
+	 * @param form　UserNewPasswordForm
+	 * @param result　BindingResult
+	 * @return　ログイン画面を戻り値にしている
+	 */
 	@RequestMapping("/postpass")
 	public String postNewPassword(@Validated UserNewPasswordForm form,BindingResult result) {
 		Long id = (Long)session.getAttribute("user_id");
