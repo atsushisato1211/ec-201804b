@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.rakus.ec201804b.domain.Item;
 import jp.co.rakus.ec201804b.domain.Order;
 import jp.co.rakus.ec201804b.domain.OrderItem;
+import jp.co.rakus.ec201804b.domain.User;
 import jp.co.rakus.ec201804b.form.ItemForm;
 
 @Repository
@@ -119,12 +120,40 @@ public class OrderRepository {
 		template.update(sql, param);
 	}
 	
-	public void updateUserIdById(Long userId, Long id) {
-		SqlParameterSource param=new MapSqlParameterSource().addValue("userId", userId).addValue("id", id);
-		String sql="update orders set user_id=:userId where id=:id";
+	public void updateById(User user, Long id) {
+		Long userId = user.getId();
+		String userName = user.getName();
+		String userEmail = user.getEmail();
+		String userAddress = user.getAddress();
+		String userTel = user.getTelephone();
+		String userZipCode = user.getZipCode();
+		SqlParameterSource param=new MapSqlParameterSource().addValue("userId", userId)
+				.addValue("userName", userName).addValue("userEmail", userEmail)
+				.addValue("userAddress", userAddress).addValue("userTel", userTel)
+				.addValue("userZipCode", userZipCode).addValue("id", id);
+		String sql="update orders set user_id=:userId, deliveryName=:userName, "
+				+ " deliveryEmail=:userEmail, deliveryAddress=:userAddress, "
+				+ " deliveryTel=:userTel, deliveryZipCode=:userZipCode where id=:id";
 		
 		template.update(sql, param);
 	}
+	
+	public Order findByEmail(String email) {
+		SqlParameterSource param=new MapSqlParameterSource().addValue("email", email);
+		String sql = "select o.id as order_id, order_number, user_id, status, "
+				+ "total_price, order_date, delivery_name,delivery_email,"
+				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
+				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
+				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
+				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "left outer join order_items oi "
+				+ "on (o.id = oi.order_id) "
+				+ "join items i on (oi.item_id = i.id) where deliveryEmail = :email";
+		List<Order> orderList = template.query(sql, param, ORDER_RSE);
+		return orderList.get(0);
+	}
+	
+	
 
 	public void insertOrderItem(OrderItem orderItem) {
 		System.out.println("insertを呼ばれました");
