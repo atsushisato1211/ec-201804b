@@ -10,7 +10,7 @@
 <title>利用者登録フォーム</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/userRegistration.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Registration.css"/>
 <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v3.0.1/dist/bootstrap-float-label.min.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="js/ajaxzip3.js" charset="UTF-8"></script>
