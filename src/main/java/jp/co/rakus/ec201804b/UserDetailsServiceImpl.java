@@ -3,6 +3,7 @@ package jp.co.rakus.ec201804b;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +14,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import jp.co.rakus.ec201804b.domain.LoginUser;
+import jp.co.rakus.ec201804b.domain.Order;
 import jp.co.rakus.ec201804b.domain.User;
+import jp.co.rakus.ec201804b.repository.OrderRepository;
 import jp.co.rakus.ec201804b.repository.UserRepository;
 
 @Service
@@ -23,6 +26,12 @@ public class UserDetailsServiceImpl  implements UserDetailsService {
 		/** DBから情報を得るためのリポジトリ */
 		@Autowired
 		private UserRepository userRepository;
+		
+		@Autowired
+		private OrderRepository orderRepository;
+		
+		@Autowired
+		private HttpSession session;
 
 		/*
 		 * (non-Javadoc)
@@ -35,10 +44,19 @@ public class UserDetailsServiceImpl  implements UserDetailsService {
 			System.out.println("user1");
 			User user = userRepository.findByEmail(email);
 			
-
 			if (user == null) {
 				throw new UsernameNotFoundException("そのEmailは登録されていません。");
 			}
+			
+			
+			//orderIdを引っ張ってくる
+			Order order = orderRepository.findByEmail(user.getEmail());
+			if(order != null && order.getUserId() == -1) {
+				Long id = order.getId();
+				orderRepository.updateById(user, id);
+			}
+			
+			
 			
 			// 権限付与の例
 			Collection<GrantedAuthority> authorityList = new ArrayList<>();

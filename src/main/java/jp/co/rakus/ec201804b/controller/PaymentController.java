@@ -34,6 +34,8 @@ public class PaymentController {
 		return "user/makePayment";
 	}
 	
+	
+	
 	@RequestMapping("/payment/confirmed")
 	public String confirmed() {
 		return "user/confirmedPayment";
