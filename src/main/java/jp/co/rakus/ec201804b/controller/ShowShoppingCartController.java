@@ -5,10 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.rakus.ec201804b.domain.LoginUser;
 import jp.co.rakus.ec201804b.domain.Order;
 import jp.co.rakus.ec201804b.domain.OrderItem;
 import jp.co.rakus.ec201804b.repository.OrderRepository;
@@ -25,15 +27,23 @@ public class ShowShoppingCartController {
 	private HttpSession session;
 
 	@RequestMapping("/show")
-	public String show() {
+	public String show(@AuthenticationPrincipal LoginUser userDetails) {
 		List<Order> orderList =orderRepository.findAll();
+		long userId;
+		if(userDetails==null)
+			userId=-1;
+		else
+			userId=userDetails.getUser().getId();
+		Order order=orderRepository.findByUserId(userId, (long) session.getAttribute("orderId"));
 //		for (Order order : orderList) {
 //			for (OrderItem item : order.getOrderItemList()) {
 //				System.out.println(item.getItem().getImagePath());
 //			}
 //		}
 		
-		session.setAttribute("orderList", orderList);
+		System.out.println(userId+","+(long) session.getAttribute("orderId"));
+		
+		session.setAttribute("order", order);
 		return "user/viewShoppingCart";
 	}
 }
