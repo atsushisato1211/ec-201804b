@@ -18,14 +18,17 @@
 </head>
 <body>
 	<jsp:include page="userHeader.jsp" />
-
+	<br>
 	<div align="center">
+		<br>
 		<h2>パスワード変更画面</h2>
-
-
 		<form:form modelAttribute="changeUserPasswordForm"
 			action="${pageContext.request.contextPath}/user/change">
 			<table>
+				<tr><td><br></td></tr>
+				<tr>
+					<td><br></td>
+				</tr>
 				<tr>
 					<form:errors path="password" cssStyle="color:red" element="div" />
 					<td>現在のパスワード:<form:password path="password" /></td>
@@ -35,14 +38,15 @@
 					<td>新しいパスワード:<form:password path="newPassword" /></td>
 				</tr>
 				<tr>
-					<form:errors path="newConfirmationPassword" cssStyle="color:red" element="div" />
+					<form:errors path="newConfirmationPassword" cssStyle="color:red"
+						element="div" />
 					<td>新しいパスワードの確認:<form:password path="newConfirmationPassword" /></td>
 				</tr>
 				<tr>
-					<td><button type="submit" class="btn btn-warning">パスワードを変更する</button></td>
+					<td colspan="2" align="center"><button type="submit" class="btn btn-warning">パスワードを変更する</button></td>
 				</tr>
 				<tr>
-					<td><button type="button" class="btn btn-primary"
+					<td colspan="2" align="center"><button type="button" class="btn btn-primary"
 							onClick="formReset(userInfoUpdateForm)">クリア</button></td>
 				</tr>
 			</table>

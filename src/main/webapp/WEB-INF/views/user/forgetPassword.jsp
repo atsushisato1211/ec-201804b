@@ -30,7 +30,8 @@
 				<tr>
 					<form:errors path="" cssStyle="color:red" element="div" />
 					<td><label for="confirmationNewPassword">確認用パスワード:</label></td>
-					<td><form:password path="confirmationNewPassword" /></td>
+					<td><form:password
+					 path="confirmationNewPassword" /></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><button type="submit"
