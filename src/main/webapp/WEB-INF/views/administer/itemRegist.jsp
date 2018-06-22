@@ -21,10 +21,10 @@
 	<form:form modelAttribute="itemForm" enctype="multipart/form-data"  action="${pageContext.request.contextPath}/admin/itemInsert">
 
 	<table>
-	<tr><td><label for="name">商品名:</label></td><td><form:input path="name" value="${itemContent.name}"/></td></tr>
-	<tr><td><label for="description">商品説明:</label></td><td><form:textarea path="description" value="${itemContent.description}"/></td></tr>
-	<tr><td><label for="price">商品価格:</label></td><td><form:input path="price" value="${itemContent.price}"/></td></tr>
-	<tr><td><label for="imagePath">商品画像:</label></td><td> <input name="imagePath" type="file" accept="image/*" required/></td></tr>
+	<tr><td><label for="name">商品名:</label></td><td><form:input path="name" value="${itemContent.name}"/><form:errors path="name" cssStyle="color:red" element="div"/></td></tr>
+	<tr><td><label for="description">商品説明:</label></td><td><form:textarea path="description" value="${itemContent.description}"/><form:errors path="description" cssStyle="color:red" element="div"/></td></tr>
+	<tr><td><label for="price">商品価格:</label></td><td><form:input path="price" value="${itemContent.price}"/><form:errors path="price" cssStyle="color:red" element="div"/></td></tr>
+	<tr><td><label for="imagePath">商品画像:</label></td><td> <input name="imagePath" type="file" accept="image/*"/><form:errors path="imagePath" cssStyle="color:red" element="div"/></td></tr>
 	</table>
 	<button type="submit" class="btn btn-info">登録</button>	
 	</form:form>

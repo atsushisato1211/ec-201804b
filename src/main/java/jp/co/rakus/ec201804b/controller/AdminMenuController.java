@@ -137,11 +137,15 @@ public class AdminMenuController {
 	}
 	@RequestMapping(value = "/itemInsert")
 	public String itemInsert(@Validated ItemForm form, BindingResult result, Model model) {
-		
-//		if (result.hasErrors()) {
-//			System.out.println("00000000000000000000");
-//			return itemeContent(form.getId(),model);
-//		}
+		System.out.println(form.getImagePath());
+		System.out.println(form.getImagePath().getName());
+		//System.out.println(form.getImagePath().getOriginalFilename());
+		if(form.getImagePath().getName().equals("imagePath")) {
+			result.rejectValue("imagePath","", "ファイルを選択してください");
+		}
+		if (result.hasErrors()) {
+			return itemeContent();
+		}
 		Item item = new Item();
 		BeanUtils.copyProperties(form, item);
 		/** 画像の処理を行う */
