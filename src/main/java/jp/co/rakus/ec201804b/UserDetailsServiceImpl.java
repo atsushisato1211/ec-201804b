@@ -31,6 +31,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private OrderRepository orderRepository;
 
 	@Autowired
+	private HttpSession session;
+
+	@Autowired
 	private HttpServletRequest request;
 
 	/*
@@ -47,12 +50,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException("そのEmailは登録されていません。");
 		}
-
 		// orderIdを引っ張ってくる
-		if (request.getParameter("id") != null) {
-			Long orderId = Long.parseLong(request.getParameter("id"));
-			Order order = orderRepository.load(orderId);
-			if (order != null && order.getUserId() == -1) {
+		if (session.getAttribute("userId") != null) {
+			Long userId = (Long) session.getAttribute("userId");
+			Order order = orderRepository.findByUserIdAndStatus(userId, 0);
+
+			if (order != null) {
+				Long orderId = order.getId();
 				orderRepository.updateById(user, orderId);
 			}
 		}
