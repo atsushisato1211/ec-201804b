@@ -1,12 +1,19 @@
 package jp.co.rakus.ec201804b.form;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class ItemForm {
 	private Long id;
+	@NotBlank(message="商品名を入力してください")
 	private String name;
+	@NotBlank(message="商品説明を入力してください")
 	private String description;
+	@NotNull(message="商品価格を入力してください")
 	private Integer price;
+	@NotNull(message="画像をアップロードしてください")
 	private MultipartFile imagePath;
 	private Boolean deleted;
 	

@@ -79,19 +79,19 @@ function formReset(userRegistrationForm){
 </tr>
 <tr>
 <td>
-<span class="form-group has-float-label"><form:input path="address" placeholder="住所を入力して下さい" class="form-control"/>
+<span class="form-group has-float-label"><form:input path="address" placeholder="例：〇〇県〇〇市〇〇区" class="form-control"/>
 <label for="address">住所</label></span>
 <form:errors path="address" cssStyle="color:red" element="div"/>
 </td>
 </tr>
 <tr>
 <td>
-<span class="form-group has-float-label inline-block-element"><form:input path="telephone1" maxlength="3" placeholder="2桁以上3桁以内" class="form-control"/>
-<label for="telephone1">電話番号</label></span>-
-<span class="form-group has-float-label inline-block-element"><form:input path="telephone2" maxlength="4" placeholder="4桁" class="form-control"/>
-<label for="telephone2">電話番号</label></span>-
-<span class="form-group has-float-label inline-block-element"><form:input path="telephone3" maxlength="4" placeholder="4桁" class="form-control"/>
-<label for="telephone2">電話番号</label></span>
+<span class="form-group has-float-label inline-block-element"><form:input path="telephone1" maxlength="3" placeholder="例：090または03" class="form-control"/>
+<label for="telephone1">電話番号1</label></span>-
+<span class="form-group has-float-label inline-block-element"><form:input path="telephone2" maxlength="4" placeholder="例:1234" class="form-control"/>
+<label for="telephone2">電話番号2</label></span>-
+<span class="form-group has-float-label inline-block-element"><form:input path="telephone3" maxlength="4" placeholder="例：5678" class="form-control"/>
+<label for="telephone2">電話番号3</label></span>
 <form:errors path="telephone1" cssStyle="color:red" element="div"/>
 </td>
 </tr>
