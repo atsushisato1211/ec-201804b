@@ -16,6 +16,8 @@
 function formReset(adminUserRegistrationForm){ 
 	document.adminUserRegistrationForm.name.value = '';
 	document.adminUserRegistrationForm.email.value = '';	
+	document.adminUserRegistrationForm.password.value = '';	
+	document.adminUserRegistrationForm.confirmationpassword.value = '';	
 }
 </script>
 <body>

@@ -100,7 +100,7 @@ public class UserRegistrationController {
 		}
 		if(form.getQuestion().equals("")) {
 			result.rejectValue("question", null, "旧姓を入力して下さい");
-		}else if(form.getQuestion().matches("\\D") == false) {
+		}else if(form.getQuestion().matches("\\d") == true) {
 			result.rejectValue("question", null, "旧姓を入力して下さい");
 		}
 		if (result.hasErrors()) {
