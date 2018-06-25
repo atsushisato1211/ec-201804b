@@ -137,14 +137,13 @@ public class AdminMenuController {
 	}
 	@RequestMapping(value = "/itemInsert")
 	public String itemInsert(@Validated ItemForm form, BindingResult result, Model model) {
-		System.out.println(form.getImagePath());
-		System.out.println(form.getImagePath().getName());
-		System.out.println(form.getImagePath().getOriginalFilename());
-//		if(form.getImagePath().getName().equals("imagePath")) {
-//			result.rejectValue("imagePath","", "ファイルを選択してください");
-//		}
 		if(form.getImagePath().getOriginalFilename().equals("")) {
 			result.rejectValue("imagePath","", "画像ファイルを選択してください。");
+		}
+		if(form.getName().equals("")) {
+			result.rejectValue("name", "","商品名を入力して下さい");
+		}else if(repository.findByName(form.getName()).size() >= 1 ){
+			result.rejectValue("name", "", "すでに同じ名前で商品が登録されています");
 		}
 		if (result.hasErrors()) {
 			return itemeContent();

@@ -78,6 +78,10 @@ public class UserInfoUpdateController {
 			isTelephoneError = true;
 		} 
 		}
+		
+		if (repository.findByEmail(form.getEmail()) != null) {
+			result.rejectValue("email", null, "そのアドレスはすでに使われています");
+		}
 		if (result.hasErrors()) {
 			System.out.println(result);
 			return form(model);
