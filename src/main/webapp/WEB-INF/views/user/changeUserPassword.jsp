@@ -14,6 +14,12 @@
 	href="${pageContext.request.contextPath}/css/ecHeader.css" />
 <link href="${pageContext.request.contextPath}/css/test.css"
 	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/Registration.css" />
+<link rel="stylesheet"
+	href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v3.0.1/dist/bootstrap-float-label.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -23,31 +29,42 @@
 		<br>
 		<h2>パスワード変更画面</h2>
 		<form:form modelAttribute="changeUserPasswordForm"
+			name="changeUserPasswordForm"
 			action="${pageContext.request.contextPath}/user/change">
 			<table>
-				<tr><td><br></td></tr>
 				<tr>
 					<td><br></td>
 				</tr>
 				<tr>
-					<form:errors path="password" cssStyle="color:red" element="div" />
-					<td>現在のパスワード:<form:password path="password" /></td>
+					<td><br></td>
 				</tr>
 				<tr>
-					<form:errors path="newPassword" cssStyle="color:red" element="div" />
-					<td>新しいパスワード:<form:password path="newPassword" /></td>
+					<td><span class="form-group has-float-label"><form:password
+								path="password" placeholder="8文字以上16文字以内" class="form-control" />
+							<label for="password">現在のパスワード</label></span> <form:errors
+							path="password" cssStyle="color:red" element="div" /></td>
 				</tr>
 				<tr>
-					<form:errors path="newConfirmationPassword" cssStyle="color:red"
-						element="div" />
-					<td>新しいパスワードの確認:<form:password path="newConfirmationPassword" /></td>
+					<td><span class="form-group has-float-label"><form:password
+								path="newPassword" placeholder="8文字以上16文字以内"
+								class="form-control" /> <label for="newPassword">新しいパスワード</label></span>
+						<form:errors path="newPassword" cssStyle="color:red" element="div" /></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><button type="submit" class="btn btn-warning">パスワードを変更する</button></td>
+					<td><span class="form-group has-float-label"><form:password
+								path="newConfirmationPassword" placeholder="8文字以上16文字以内"
+								class="form-control" /> <label for="newConfirmationPassword">確認用パスワード</label></span>
+						<form:errors path="newConfirmationPassword" cssStyle="color:red"
+							element="div" /></td>
+				</tr>
+
+				<tr>
+					<td colspan="2" align="center"><button type="submit"
+							class="btn btn-warning">パスワードを変更する</button></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><button type="button" class="btn btn-primary"
-							onClick="formReset(userInfoUpdateForm)">クリア</button></td>
+					<td colspan="2" align="center"><button type="button"
+							class="btn btn-primary" onClick="formReset(userInfoUpdateForm)">クリア</button></td>
 				</tr>
 			</table>
 		</form:form>

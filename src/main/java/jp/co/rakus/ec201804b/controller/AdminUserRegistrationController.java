@@ -17,8 +17,7 @@ import jp.co.rakus.ec201804b.form.AdminUserRegistrationForm;
 import jp.co.rakus.ec201804b.repository.AdminUserRepository;
 
 /**
- * @author nobuteru.kato
- * 管理者登録を行うコントローラです.
+ * @author nobuteru.kato 管理者登録を行うコントローラです.
  */
 @Controller
 @Transactional
@@ -28,13 +27,15 @@ public class AdminUserRegistrationController {
 	private AdminUserRepository adminUserLoginRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@ModelAttribute
 	private AdminUserRegistrationForm setUpForm() {
 		return new AdminUserRegistrationForm();
 	}
+
 	/**
 	 * 管理者登録ページを表示します.
+	 * 
 	 * @param model
 	 * @return 管理者登録ページ
 	 */
@@ -42,32 +43,36 @@ public class AdminUserRegistrationController {
 	public String form(Model model) {
 		return "administer/adminUserRegistration";
 	}
-	
+
 	/**
 	 * 管理者の登録に関する処理を行います.
-	 * @param form フォーム
-	 * @param result エラー情報
+	 * 
+	 * @param form
+	 *            フォーム
+	 * @param result
+	 *            エラー情報
 	 * @param redirectAttributes
 	 * @param model
 	 * @return 管理者ログインページ
 	 */
 	@RequestMapping(value = "/create")
-	public String Registration(@Validated AdminUserRegistrationForm form,BindingResult result,RedirectAttributes redirectAttributes, Model model) {
-	AdminUser adminUser = new AdminUser();
-	if (!form.getPassword().equals(form.getConfirmationpassword())) {
-		result.rejectValue("confirmationpassword", null, "設定したパスワードを再度入力して下さい");
+	public String Registration(@Validated AdminUserRegistrationForm form, BindingResult result,
+			RedirectAttributes redirectAttributes, Model model) {
+		AdminUser adminUser = new AdminUser();
+		if (!form.getPassword().equals(form.getConfirmationpassword())) {
+			result.rejectValue("confirmationpassword", null, "設定したパスワードを再度入力して下さい");
+		}
+		if (adminUserLoginRepository.findByEmail(form.getEmail()) != null) {
+			result.rejectValue("email", null, "そのアドレスはすでに使われています");
+		}
+		if (result.hasErrors()) {
+			return form(model);
+		}
+		BeanUtils.copyProperties(form, adminUser);
+		String encryptionPassword = passwordEncoder.encode(adminUser.getPassword());
+		adminUser.setPassword(encryptionPassword);
+		adminUserLoginRepository.insert(adminUser);
+		return "redirect:/admin/index";
 	}
-	if (adminUserLoginRepository.findByEmail(form.getEmail()) != null) {
-		result.rejectValue("email", null, "そのアドレスはすでに使われています");
-	}
-	if(result.hasErrors()) {
-		return form(model);
-	}
-	BeanUtils.copyProperties(form, adminUser);
-	String encryptionPassword = passwordEncoder.encode(adminUser.getPassword());
-	adminUser.setPassword(encryptionPassword);
-	adminUserLoginRepository.insert(adminUser);
-	return "redirect:/admin/index";
-	}
-	
+
 }

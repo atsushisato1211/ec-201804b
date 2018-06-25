@@ -30,11 +30,39 @@ public class ItemController {
 	 * @return userフォルダーのitemList.jsp(商品一覧画面)
 	 */
 	@RequestMapping(value = "/item")
-	public String index(Model model) {
+	public String aindex(Model model) {
 		List<Item>list = repository.findAllByNotDeleted();
 		model.addAttribute("itemList", list);
+		model.addAttribute("pageNum", 1);
+		model.addAttribute("maxPageNum", pagingNum(repository.MaxId()));
+		System.out.println(list.size());
+		
+//		return "user/itemList";
+		return index(model);
+	}
+	@RequestMapping(value = "/itema")
+	public String index(Model model) {
+		List<Item>list = repository.findByNewItem();
+		model.addAttribute("newitem", list);
 		
 		return "user/itemList";
+	}
+	
+	@RequestMapping(value = "/page")
+	public String page(@RequestParam Integer pageNum,Model model) {
+		List<Item>list = repository.findAllBypageNumNotDeleted(pageNum);
+		if(repository.MaxId()%10==0) {
+			Long maxPageNum = repository.MaxId()/10;
+			model.addAttribute("maxPageNum", maxPageNum);
+		}else {
+			Long maxPageNum = repository.MaxId()/10+1;			
+			model.addAttribute("maxPageNum", maxPageNum);
+		}
+		model.addAttribute("itemList", list);
+		model.addAttribute("pageNum", pageNum);
+		
+//		return "user/itemList";
+		return index(model);
 	}
 
 	/**
@@ -55,10 +83,13 @@ public class ItemController {
 			model.addAttribute("erroritemName",useritem);
 			useritem=null;
 		}
+		model.addAttribute("pageNum", 1);
+		model.addAttribute("maxPageNum", pagingNum((long) list.size()));
 		model.addAttribute("itemList", list);
 		model.addAttribute("itemName",useritem);
 		
-		return "user/itemList";
+//		return "user/itemList";
+		return index(model);
 	}
 	/**
 	 * 名前検索+ソートを行うメソッド.
@@ -88,8 +119,11 @@ public class ItemController {
 		model.addAttribute("itemList", list);
 		model.addAttribute("itemName",useritem);
 		model.addAttribute("sortOption",sortOption);
+		model.addAttribute("pageNum", 1);
+		model.addAttribute("maxPageNum", pagingNum((long) list.size()));
 		
-		return "user/itemList";
+		//return "user/itemList";
+		return index(model);
 	}
 	/**
 	 * 全件検索+ソートを行うメソッド.
@@ -104,8 +138,11 @@ public class ItemController {
 		List<Item>list = repository.findAllBySortAndNotDeleted(itemSort,sortOption);
 		model.addAttribute("itemList", list);
 		model.addAttribute("sortOption",sortOption);
+		model.addAttribute("pageNum", 1);
+		model.addAttribute("maxPageNum", pagingNum((long) list.size()));
 		
-		return "user/itemList";
+		//return "user/itemList";
+		return index(model);
 		
 	}
 	
@@ -127,15 +164,38 @@ public class ItemController {
 	@RequestMapping(value="/itemInitials")
 	public String itemInitials(@RequestParam String initials,Model model) {
 		List<Item>list = repository.findByInitialsAndNotDeleted(initials);
-		model.addAttribute("itemList", list);
 		
 		if(list.isEmpty()) {
 			model.addAttribute("erroritemName","「"+initials+"」から始まる野菜はありません");
 			initials="";
 		}
 		model.addAttribute("itemList", list);
+		model.addAttribute("pageNum", 1);
+		model.addAttribute("maxPageNum", pagingNum((long) list.size()));
 		
-		return "user/itemList";
+		
+//		return "user/itemList";
+		return index(model);
+	}
+	
+	public Long pagingNum(Long long1) {
+		if(long1<10) {
+			return (long) 1;						
+		}
+		if(long1%10==0) {
+			return (long) (long1/10);
+		}else {
+			return (long) (long1/10+1);			
+		}
+	}
+	public Long paging() {
+		Long maxPageNum;
+		if(repository.MaxId()%10==0) {
+			maxPageNum = repository.MaxId()/10;
+		}else {
+			maxPageNum = repository.MaxId()/10+1;			
+		}
+		return maxPageNum;
 	}
 
 }

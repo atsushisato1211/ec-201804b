@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
@@ -76,9 +77,20 @@ public class InsertShoppingCartController {
 		OrderItem orderItem = new OrderItem();
 		BeanUtils.copyProperties(form,orderItem);
 		orderItem.setItemId(form.getItemId().longValue());
+		List<Order> orderItemList = orderRepository.findByOrderId((long) session.getAttribute("orderId"));
+		for (Order order : orderItemList) {
+			for (OrderItem itemList : order.getOrderItemList()) {
+				if(itemList.getItemId()==form.getItemId().longValue()) {
+					orderRepository.updateOrderItem(orderItem);
+				}else {
+					orderRepository.insertOrderItem(orderItem);
+				}
+			}
+		}
 //		System.out.println(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
 //		orderItem.setOrderId(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
-		orderRepository.insertOrderItem(orderItem);
+		if(orderItemList.size()==0)
+			orderRepository.insertOrderItem(orderItem);
 		
 		return "redirect:/user/show";
 	}

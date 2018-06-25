@@ -1,10 +1,30 @@
 spring:
-
+  mail:
+    default-encoding: UTF-8
+    protocol: smtp
+    host: smtp.gmail.com
+    port: 587
+    username: ec201804b@gmail.com
+    password: kknfrvthynvamnfu
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            #enable: false
+            enable: true
+          socketFactory:
+            #port: 2525
+            port: 587
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+        debug: true
+    test-connection: false
   datasource:
     driver-class-name:  org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/student
     username: postgres
-    password: postgres 
+    password: postgres
   mvc:
     view:
       prefix: /WEB-INF/views/
