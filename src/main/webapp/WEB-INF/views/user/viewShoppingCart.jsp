@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -36,11 +37,11 @@
                 <td>&yen;<c:out value="${orderItem.item.price}"/></td>
                 <td><c:out value="${orderItem.quantity}"/>個</td>
                 <td>
-                    <form action="${pageContext.request.contextPath}/user/delete?itemId=${orderItem.itemId}?orderId=${orderItem.orderId}" method="post">
-
-                        <!-- <input type="hidden" name="itemId" value=<c:out value="${orderItem.item.id}"/>> -->
+                    <form:form action="${pageContext.request.contextPath}/user/delete">
+						<input type="hidden" name ="itemId" value="${orderItem.itemId}"/>
+                        <input type="hidden" name ="orderId" value="${orderItem.orderId}"/>
                         <input type="submit" value="削除">
-                    </form>
+                    </form:form>
                 </td>
             </tr>
         </c:forEach>

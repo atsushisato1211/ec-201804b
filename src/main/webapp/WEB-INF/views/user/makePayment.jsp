@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -59,9 +60,9 @@
 住所：<c:out value="${order.deliveryAddress}"/><br>
 郵便番号：<c:out value="${order.deliveryZipCode}"/><br>
 電話番号：<c:out value="${order.deliveryTel}"/><br><br>
-<form action="${pageContext.request.contextPath}/user/confirmed" method="post">
+<form:form action="${pageContext.request.contextPath}/user/payment/confirmed?orderId=${order.id}">
 <button type="submit" class="btn btn-info">確定</button>
-</form></div>
+</form:form></div>
 
 </body>
 </html>

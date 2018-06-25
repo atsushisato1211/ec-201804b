@@ -20,7 +20,7 @@ public class DeleteShoppingCartController {
 	private HttpSession session;
 	
 	@RequestMapping("/delete")
-	public String deleteItem(@RequestParam("itemId") long itemId, @RequestParam("orderId") long orderId) {
+	public String deleteItem(@RequestParam long itemId, @RequestParam long orderId) {
 		orderRepository.deleteByItemId(itemId,orderId);
 		return "redirect:/user/show";
 	}

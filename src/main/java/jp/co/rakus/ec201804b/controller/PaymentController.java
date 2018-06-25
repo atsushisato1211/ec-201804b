@@ -37,7 +37,8 @@ public class PaymentController {
 	
 	
 	@RequestMapping("/payment/confirmed")
-	public String confirmed() {
+	public String confirmed(@RequestParam Long orderId) {
+		orderRepository.update(1, orderId);
 		return "user/confirmedPayment";
 	}
 }
