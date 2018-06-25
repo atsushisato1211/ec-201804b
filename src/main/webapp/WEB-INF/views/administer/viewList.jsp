@@ -17,10 +17,10 @@
 
 
 	<h2 align="center">商品一覧</h2>
-	<form action="<%=request.getContextPath()%>/admin/findByName" align="center">
+	<form:form action="${pageContext.request.contextPath}/admin/findByName" align="center">
 		名前<input type="text" name="adminitem" align="center"> <input
 			type="submit" value="検索" align="center">
-	</form>
+	</form:form>
 
 	<br>
 
@@ -37,12 +37,12 @@
 				<td><c:out value="${item.name}"/></td>
 				<td>&yen;<c:out value="${item.price}" /></td>
 				<td>
-				<form action="<%=request.getContextPath()%>/admin/itemContent" align="center" method="post">
+				<form:form action="${pageContext.request.contextPath}/admin/itemContent" align="center" method="post">
 				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>
 				<input type="submit" value="編集" align="center"><br>
-	</form>
+	</form:form>
 				<!-- <input type="submit" value="削除" align="center"> -->
-				<form action="<%=request.getContextPath()%>/admin/changeByDeleted" align="center" method="post">
+				<form:form action="${pageContext.request.contextPath}/admin/changeByDeleted" align="center" method="post">
 				<c:if test="${item.deleted==true}">
 				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>
 				<input type="hidden" name="deleted" value='<c:out value="${item.deleted}"/>'>
@@ -51,7 +51,7 @@
 				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>
 				<input type="hidden" name="deleted" value='<c:out value="${item.deleted}"/>'>
 				<input type="submit" value="再表示" align="center"></c:if>
-	</form>
+	</form:form>
 				</td>
 				
 			</tr>
