@@ -139,9 +139,12 @@ public class AdminMenuController {
 	public String itemInsert(@Validated ItemForm form, BindingResult result, Model model) {
 		System.out.println(form.getImagePath());
 		System.out.println(form.getImagePath().getName());
-		//System.out.println(form.getImagePath().getOriginalFilename());
-		if(form.getImagePath().getName().equals("imagePath")) {
-			result.rejectValue("imagePath","", "ファイルを選択してください");
+		System.out.println(form.getImagePath().getOriginalFilename());
+//		if(form.getImagePath().getName().equals("imagePath")) {
+//			result.rejectValue("imagePath","", "ファイルを選択してください");
+//		}
+		if(form.getImagePath().getOriginalFilename().equals("")) {
+			result.rejectValue("imagePath","", "画像ファイルを選択してください。");
 		}
 		if (result.hasErrors()) {
 			return itemeContent();

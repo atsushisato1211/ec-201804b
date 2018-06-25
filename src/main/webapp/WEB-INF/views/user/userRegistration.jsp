@@ -94,7 +94,7 @@ function formReset(userRegistrationForm){
 <span class="form-group has-float-label inline-block-element"><form:input path="telephone2" maxlength="4" placeholder="例:1234" class="form-control"/>
 <label class="text-size" for="telephone2">電話番号2</label></span>-
 <span class="form-group has-float-label inline-block-element"><form:input path="telephone3" maxlength="4" placeholder="例：5678" class="form-control"/>
-<label class="text-size" for="telephone2">電話番号3</label></span>
+<label class="text-size" for="telephone3">電話番号3</label></span>
 <form:errors path="telephone1" cssStyle="color:red" element="div"/>
 </td>
 </tr>
