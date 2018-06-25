@@ -137,9 +137,15 @@ public class AdminMenuController {
 	}
 	@RequestMapping(value = "/itemInsert")
 	public String itemInsert(@Validated ItemForm form, BindingResult result, Model model) {
-		System.out.println(form.getImagePath());
-		System.out.println(form.getImagePath().getName());
-		System.out.println(form.getImagePath().getOriginalFilename());
+		String size = String.valueOf(form.getImagePath().getSize());
+		int sizeInt= Integer.parseInt(size,16);
+		System.out.println(sizeInt);
+		
+		String type=form.getImagePath().getContentType();
+		if(!(type.equals("image/jpeg")  || type.equals("image/gif") || type.equals("image/png"))) {
+			result.rejectValue("imagePath", null,"拡張子が不正です");
+		}
+		
 //		if(form.getImagePath().getName().equals("imagePath")) {
 //			result.rejectValue("imagePath","", "ファイルを選択してください");
 //		}
