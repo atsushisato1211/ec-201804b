@@ -42,7 +42,7 @@ public class ShowShoppingCartController {
 		else
 			userId=userDetails.getUser().getId();
 		
-		Long orderId = orderRepository.findByUserIdAndStatus(userId, 0).getId();
+		Long orderId = (long) session.getAttribute("orderId");
 		order=orderRepository.findByUserIdAndOrderId(userId,orderId);
 //		for (Order order : orderList) {
 //			for (OrderItem item : order.getOrderItemList()) {
