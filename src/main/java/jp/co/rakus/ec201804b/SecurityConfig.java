@@ -94,8 +94,8 @@ public class SecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 
 			http.antMatcher("/admin/**").authorizeRequests() // 認可に関する設定
-					.antMatchers("/admin/index","admin/form", "admin/create").permitAll() // 「/」などのパスは全てのユーザに許可
-					.antMatchers("/admin/form", "admin/create","/admin/menu","/admin/viewItemInsert","/admin/viewList","/admin/orderList", "/admin/orderDetail**").hasRole("ADMIN") //
+					.antMatchers("/admin/index","/admin/form", "/admin/create").permitAll() // 「/」などのパスは全てのユーザに許可
+					.antMatchers(/*"/admin/form", "admin/create",*/"/admin/menu","/admin/viewItemInsert","/admin/viewList","/admin/orderList", "/admin/orderDetail**").hasRole("ADMIN") //
 					// /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 					// .antMatchers("/member/**").hasRole("MEMBER") //
 					// /member/から始まるパスはMEMBER権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
