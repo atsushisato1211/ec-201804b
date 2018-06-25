@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -33,9 +32,9 @@ public class SecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			http.antMatcher("/user/**")
 			.authorizeRequests() // 認可に関する設定
-					.antMatchers("/user/index", "/user/item**","/user/insert", "/user/show", 
+					.antMatchers("/user/index", "/user/item**","/user/insert", "/user/show",
 							"/user/form", "/user/create", "/user/checkpassword", "/user/forget",
-							"/user/filloutpass","/user/checkpassword","/user/postpass","/user/delete").permitAll() // 「/」などのパスは全てのユーザに許可
+							"/user/filloutpass","/user/checkpassword","/user/postpass","/user/delete**").permitAll() // 「/」などのパスは全てのユーザに許可
 					//ユーザーがいけるパスだけを記述する
 					// .antMatchers("/admin/**").hasRole("ADMIN") //
 					// /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
@@ -95,8 +94,8 @@ public class SecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 
 			http.antMatcher("/admin/**").authorizeRequests() // 認可に関する設定
-					.antMatchers("/admin/index").permitAll() // 「/」などのパスは全てのユーザに許可
-					.antMatchers("/admin/form", "/admin/menu","/admin/viewItemInsert","/admin/viewList","/admin/orderList", "/admin/orderDetail**").hasRole("ADMIN") //
+					.antMatchers("/admin/index","admin/form", "admin/create").permitAll() // 「/」などのパスは全てのユーザに許可
+					.antMatchers("/admin/form", "admin/create","/admin/menu","/admin/viewItemInsert","/admin/viewList","/admin/orderList", "/admin/orderDetail**").hasRole("ADMIN") //
 					// /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)
 					// .antMatchers("/member/**").hasRole("MEMBER") //
 					// /member/から始まるパスはMEMBER権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)

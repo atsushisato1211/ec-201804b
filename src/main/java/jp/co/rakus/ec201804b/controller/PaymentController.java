@@ -27,7 +27,7 @@ public class PaymentController {
 	@Autowired
 	HttpSession session;
 	
-	@RequestMapping("payment/make")
+	@RequestMapping("/payment/make")
 	public String orderDetail(@RequestParam Long id, Model model) {
 		Order order = orderRepository.load(id);
 		session.setAttribute("order", order);
