@@ -65,7 +65,7 @@ public class ChangeUserPasswordController {
 		}
 		
 		if (!form.getNewPassword().equals(form.getNewConfirmationPassword())) {
-		//	result.rejectValue("newConfirmationPassword", null, "設定したパスワードを再度入力して下さい");
+			result.rejectValue("newConfirmationPassword", null, "設定したパスワードを再度入力して下さい");
 		}
 		if(result.hasErrors()) {
 			

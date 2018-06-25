@@ -6,13 +6,13 @@ import javax.validation.constraints.Size;
 public class ChangeUserPasswordForm {
 
 	@NotBlank(message="パスワードを入力してください")
-	@Size(min=8 , max=16, message="8文字以上16時未満で入力してください")
+	@Size(min=8 , max=16, message="8桁以上16桁以下で設定してください")
 	private String password;
 	@NotBlank(message="パスワードを入力してください")
-	@Size(min=8 , max=16, message="8文字以上16時未満で入力してください")
+	@Size(min=8 , max=16, message="8桁以上16桁以下で設定してください")
 	private String newPassword;
 	@NotBlank(message="パスワードを入力してください")
-	@Size(min=8 , max=16, message="8文字以上16時未満で入力してください")
+	@Size(min=8 , max=16, message="8桁以上16桁以下で設定してください")
 	private String newConfirmationPassword;
 
 	public String getNewPassword() {
