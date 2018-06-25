@@ -4,12 +4,15 @@
 	  id bigserial not null
 	  , name text not null unique
 	  , description text not null
+	  , producingArea text not null
+	  , season text not null
 	  , price integer not null
 	  , imagePath text not null
 	  , deleted boolean default false not null
 	  , constraint items_PKC primary key (id)
 	) ;
 
+<<<<<<< HEAD
 	INSERT INTO items  values(1,'きゅーり','宮崎県産',100,'001.jpg',true);
 	INSERT INTO items  values(2,'きゃべつ','愛知県産',150,'002.jpg',true);
 	INSERT INTO items  values(3,'枝豆','千葉県産',100,'003.jpg',true);

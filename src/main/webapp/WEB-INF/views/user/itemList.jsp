@@ -9,15 +9,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>商品一覧</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet"> --%>
 <link href="${pageContext.request.contextPath}/css/imgslide.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/itemList.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/item_table.css" rel="stylesheet">
+<%-- <link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/ecHeader.css" /> --%>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/ecHeader.css" />
+	href="<%=request.getContextPath()%>/css/testHeader.css" />
 </head>
 <body>
-	<jsp:include page="userHeader.jsp" />
-	
-	<h2 id="item">おすすめの商品</h2>
+	<jsp:include page="testHeader.jsp" />
+	<h2 id="item">新しい商品</h2>
 	<!-- スライダー部 -->
 <div id="stage">
 	<input id="r1" type="radio" name="slider8">
@@ -30,8 +36,12 @@
 	<input id="r8" type="radio" name="slider8">
   <!-- スライド群 -->
   <div id="photos">
-  	<div id="photo1" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/001.jpg"></a></div>
-    <div id="photo2" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/002.jpg"></a></div>
+  <c:forEach items="${newitem}" var="item" varStatus="status">
+  	<div id="photo<c:out value="${status.count}" />" class="pic">
+  	<a href=<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>>
+  	<img src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>"></a></div>
+    </c:forEach>
+    <%-- <div id="photo2" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/002.jpg"></a></div>
     <div id="photo3" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/003.jpg"></a></div>
     <div id="photo4" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/004.jpg"></a></div>
     <div id="photo5" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/005.jpg"></a></div>
@@ -42,7 +52,7 @@
   	<div id="photo10" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/010.jpg"></a></div>
   	<div id="photo11" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/011.jpg"></a></div>
   	<div id="photo12" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/012.jpg"></a></div>
-  	<div id="photo13" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/013.jpg"></a></div>
+  	<div id="photo13" class="pic"><a href="#"><img src="<%=request.getContextPath()%>/img/013.jpg"></a></div> --%>
   </div>
   <!-- スライダー部の高さ確保 -->
   <div style="padding-top:20%;"></div>
@@ -87,6 +97,8 @@
 	</c:choose>
 	</form>
 </div>
+
+
 	<br><c:choose>
 	<c:when test="${itemList.isEmpty()}"><c:out value="${erroritemName}"/>は商品名に該当しません。</c:when>
 	<c:otherwise><table border="1" align="center">
@@ -109,12 +121,133 @@
 		</c:forEach>
 	</table></c:otherwise>
 	</c:choose>
+	<!-- 商品一覧テスト開始 -->
+	<br><c:choose>
+	<c:when test="${itemList.isEmpty()}"><c:out value="${erroritemName}"/>は商品名に該当しません。</c:when>
+	<c:otherwise><table class="item" cellspacing="30" border="0"　class="itemList" align="center">
+	<!-- 	<tr>
+			<th colspan="2">商品名</th>
+			<th>価格</th>
+		</tr> -->
+		<c:forEach var="item" items="${itemList}" varStatus="status">
+		<%-- 	<c:if test="${status.count%4==0}"><tr></c:if> --%>
+						<td class="item"><a
+					href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>"><img
+						src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>"
+						width="250" height="225" alt="<c:out value="${item.name}" />画像"></a><br>
+				</a><br>
+				<table class="item_name" border="0"><tr><td class="item_name" align="center">
+				<a
+					href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>">
+						<c:out value="${item.name}" /></a></td></tr>
+						<tr><td class="item_name" align="center">
+				&yen;<c:out value="${item.price}" /></td></tr>
+				</table>
+			 	</td>
+				<c:if test="${status.count%3==0}"></tr></c:if>
+						
+		</c:forEach>
+	</table></c:otherwise>
+	</c:choose>
+	<!-- 商品一覧テスト終了 -->
+	
+	<!-- テスト一覧開始 -->
+
+<div class="float_box">
+  <ul>
+  <c:forEach var="item" items="${itemList}">
+    <li> <!-- [▼] アイテム -->
+      <a href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>"><img
+						src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>"
+						class="image" alt="<c:out value="${item.name}" />画像"></a>
+        <p class="name"><a
+					href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>">
+						<c:out value="${item.name}" />
+				</a></p>
+        <p class="price">&yen;<c:out value="${item.price}" /></p>
+    </li> <!-- [▲] アイテム -->
+    </c:forEach>
+  </ul>
+</div>
+	
+<!-- テスト一覧終了 -->	
 	
 	
 	<c:if test="${!itemList.isEmpty()}">
 	
-	</c:if>
-	
+	</c:if><c:out value="${maxPageNum}"></c:out>
+	<c:forEach var="obj" items="${data}" varStatus="status"></c:forEach>
+<div>
+  <ul class="pagination">
+    <li class="page-item <c:if test="${(pageNum)==1}">disabled</c:if>">
+      <a class="page-link" href="<%=request.getContextPath()%>/user/page?pageNum=<c:out value="${pageNum-1}"/>">&laquo;</a>
+    </li>
+<c:forEach varStatus="num" begin="1" end="${maxPageNum}">
+<c:choose> <c:when test="${(num.count)==pageNum}"> 
+    <li class="page-item active">
+      <a class="page-link" href="<%=request.getContextPath()%>/user/page?pageNum=<c:out value="${num.count}"/>"><c:out value="${num.count}"/></a>
+    </c:when><c:otherwise>
+    <li class="page-item">
+      <a class="page-link" href="<%=request.getContextPath()%>/user/page?pageNum=<c:out value="${num.count}"/>"><c:out value="${num.count}"/></a>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+     <li class="page-item <c:if test="${(pageNum)==maxPageNum}">disabled</c:if>">
+      <a class="page-link" href="<%=request.getContextPath()%>/user/page?pageNum=<c:out value="${pageNum+1}"/>">&raquo;</a>
+    </li>
+  </ul>
+</div>
+
+
+<script >$(function(){
+	$('.sortNav li').each(function(){
+		$(this).click(function(){
+			var btnName = $(this).attr("class").substring(3).toLowerCase();
+			var className = '.';
+			className += btnName;
+      if(btnName == 'all') {
+        $('.container > div').fadeIn(200);
+      } else {
+        $('.container div:not(className)').hide();
+        $(className).fadeIn(200);
+      }
+		});
+	});
+});
+</script>
+
+<div class="wrapper">
+  <p class="message">↓のボタンをクリックしてください↓</p>
+	  <ul class="sortNav">
+		    <li class="btnGreen">Green</li>
+		    <li class="btnRed">Red</li>
+		    <li class="btnBlue">Blue</li>
+		    <li class="btnAll">All</li>
+	  </ul>
+  <div class="container">
+    <div class="green">sample</div>
+    <div class="blue">sample</div>
+    <div class="red">sample</div>
+    <div class="green">sample</div>
+    <div class="blue">sample</div>
+    <div class="red">sample</div>
+    <div class="green">sample</div>
+    <div class="blue">sample</div>
+    <div class="red">sample</div>
+    <div class="green">sample</div>
+    <div class="blue">sample</div>
+    <div class="red">sample</div>
+    <div class="green">sample</div>
+    <div class="blue">sample</div>
+    <div class="red">sample</div>
+  </div>
+</div>
+
+
+
+
+
+
 
 </body>
 </html>

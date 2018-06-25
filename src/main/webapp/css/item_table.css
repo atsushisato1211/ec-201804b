@@ -1,0 +1,13 @@
+@charset "UTF-8";
+table.item_name{
+	width: 252px;
+	height: 40px;
+}
+td.item_name{
+	background-color: #eeeeee;
+	
+}
+td.item{
+/* 	border: solid 1px black; */
+	/* background-color: #c0c0c0; */
+}

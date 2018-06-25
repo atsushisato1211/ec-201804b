@@ -1,4 +1,5 @@
 	-- 参照サイト https://www.yasainavi.com/zukan/
+
 	DROP TABLE IF EXISTS items;
 	create table items (
 	  id bigserial not null
