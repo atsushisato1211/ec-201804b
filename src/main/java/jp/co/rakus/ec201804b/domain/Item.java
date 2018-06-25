@@ -4,11 +4,25 @@ public class Item {
 	private Long id;
 	private String name;
 	private String description;
+	private String producingArea;
+	private String season;
 	private Integer price;
 	private String imagePath;
 	private Boolean deleted;
 	
 	
+	public String getProducingArea() {
+		return producingArea;
+	}
+	public void setProducingArea(String producingArea) {
+		this.producingArea = producingArea;
+	}
+	public String getSeason() {
+		return season;
+	}
+	public void setSeason(String season) {
+		this.season = season;
+	}
 	public Long getId() {
 		return id;
 	}

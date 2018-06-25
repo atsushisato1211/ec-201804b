@@ -11,61 +11,80 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!--  -->
 	<header>
-		<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation" style="">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <p>
+    <a href="${pageContext.request.contextPath}/user/item"><img class="head"
+						src="<%=request.getContextPath()%>/img/link.png" width="120" height="40"/></a>
+  </p>
+<!--   <style>
+#dropmenu { position: relative; z-index: 7; }
+#dropmenu li ul li{
+  overflow: hidden;
+  height: 0;
+  transition: .2s;
+}
+#dropmenu li:hover ul li{
+  overflow: visible;
+  height: 38px;
+}
+</style>
 
-  <div class="collapse navbar-collapse" id="navbarColor03">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
+<ul id="dropmenu" class="dropmenu">
+  <li><a href="#">menu</a>
+    <ul>
+      <li><a href="#">submenu</a>
+       <ul>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>-->
-		<%-- 	<div id="userHeader" align="right">
-			<p>こんにちは
-			<sec:authorize access="hasRole('ROLE_MEMBER') and isAuthenticated()">
-							<sec:authentication var="userName" property="principal.user.name" />
-								<c:out value="${userName}" />&nbsp;さん
-								<p><a href="${pageContext.request.contextPath}/user/logout">ログアウト</a></p>
-								<p><a href="${pageContext.request.contextPath}/user/info">登録者情報変更</a></p>
-								<p><a href="${pageContext.request.contextPath}/user/password">パスワード変更</a></p>
-								</sec:authorize>
-			<sec:authorize access="!(hasRole('ROLE_MEMBER') and isAuthenticated())">
-								ゲスト&nbsp;さん</p>
-								<p><a href="${pageContext.request.contextPath}/user/index">ログイン</a></p>
-								
-								</sec:authorize>
-			<p>
-				<a href="${pageContext.request.contextPath}/user/show">カートの中身を見る</a>
-			</p>
-		</div>
-		<div id="linkHeader" align="left">
-			<h1 align="left">
-				<a href="${pageContext.request.contextPath}/user/item"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
-					height="50" alt="ロゴ画像">ＥＣサイトラクス</a>
-			</h1>
-			<div id="title" align="center"></div>
-		</div> --%>
-		<ul class="nav">
+      
+      </li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+    </ul>
+  </li>
+  <li><a href="#">menu</a>
+    <ul>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+    </ul>
+  </li>
+  <li><a href="#">menu</a>
+    <ul>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+    </ul>
+  </li>
+  <li><a href="#">menu</a>
+    <ul>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+    </ul>
+  </li>
+  <li><a href="#">menu</a>
+    <ul>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+      <li><a href="#">submenu</a></li>
+    </ul>
+  </li>
+</ul> -->
+
+	<ul class="nav">
 			<li><a href="${pageContext.request.contextPath}/user/item">Home</a>
 			</li>
 			<li><a href="#">頭文字検索</a>
@@ -230,6 +249,12 @@
 
 			<!--nav-->
 		</ul>
-	</header>
+	<div class="header_search">
+<form action="<%=request.getContextPath()%>/user/findByName">
+		<input type="text" name="useritem" value="${itemName}" placeholder="商品名を検索" id="search"> 
+		<button type="submit" id="submit_button">検索</button>
+			</form>
+</div>
+</header>
 </body>
 </html>

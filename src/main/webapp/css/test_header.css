@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+header {
+	top: 0;
+	height: 40px; /*ヘッダーの高さ*/
+	width: 100%; /*ヘッダーの横幅*/
+	background-color: #c0c0c0; /*ヘッダーの背景色*/
+	color: white; /*ヘッダーの文字の色*/
+	text-align: right;
+}
+
+p a {
+	position: absolute;
+	left: 20px;
+	/* top: 20px; */
+}
+
+div.header_search {
+	margin: -60px auto 0px;
+size: 50;
+	padding: 0;
+}
+img.head{
+	margin: -7px auto 0px;
+}
+input#search{
+	width: 120px;
+	height: 25px;
+}
+button#submit_button { 
+	/*幅と高さを指定*/ 
+	width: 50px;
+	height: 25px;
+	
+	margin-top: -10px;
+	
+}
+
+/* nav ul li {
+    display: inline-block;
+    margin-right: 25px;
+} */

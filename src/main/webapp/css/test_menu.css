@@ -1,30 +1,30 @@
 @charset "UTF-8";
 
-header {
-	height: 0px; /*ヘッダーの高さ*/
-	width: 100%; /*ヘッダーの横幅*/
-	background-color: #47B39D; /*ヘッダーの背景色*/
-	color: white; /*ヘッダーの文字の色*/
-}
+
 .nav {
-  width: 1000px;
-  height: 0px;
- /*  margin: 100px auto; */
- margin: 0 auto;
- 
+	 width: 960px;
+  margin: 5px auto 30px;
   padding: 0;
-  position: fixed;
-   top : 0; 
+/*   width: 600px;
+  height: 0px; */
+ /*  margin: 100px auto; */
+ 
+
    
-  display: flex;
+
 }
 .nav li {
   position: relative;
   list-style: none;
+  
+ /*  float: left; */
+/*   margin: 0;
+  padding: 0; */
+  text-align: center;
 }
 .nav li a {
   display: block;
-  width: 200px;
+  width: 192px;
   height: 40px;
   text-align: center;
   color: #fff;
@@ -45,9 +45,16 @@ header {
   background: #afc6e2;
 }
 .nav li ul {
-  top: 40px;
-  left: -40px;
+	list-style: none;
   position: absolute;
+  z-index: 9999;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+ /*  top: 40px;
+  left: -30px;
+  position: absolute; */
 }
 .nav li ul li {
   overflow: hidden;
@@ -63,13 +70,13 @@ header {
 }
   .nav li ul li ul {
     top: 0;
-    left: 110px;
+    left: 190px;
   }
   .nav li ul li ul:before {/*layer-2▷*/
     position: absolute;
     content: "";
     top: 15px;
-    left: 30px;
+    left: -20px;
     border: 5px solid transparent;
     border-left: 5px solid #fff;
   }
@@ -98,12 +105,3 @@ header {
     color: purple;
     background: #afc6e2;
   }
-.content {
-  width: 750px;
-  height: 200px;
-  background: #eee;
-  margin: 0 auto;
-  padding: 10px;
-  text-align: left;
-  box-sizing: border-box;
-}
