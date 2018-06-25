@@ -67,7 +67,6 @@ public class UserRegistrationForm {
 	/**
 	 * 秘密の質問
 	 */
-	@NotBlank(message="解答を入力してください")
 	private String question;
 
 	public String getZipCode1() {

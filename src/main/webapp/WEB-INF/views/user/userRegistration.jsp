@@ -10,15 +10,15 @@
 <title>利用者登録フォーム</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Registration.css"/>
 <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v3.0.1/dist/bootstrap-float-label.min.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="js/ajaxzip3.js" charset="UTF-8"></script>
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 <script type="text/javascript">
 function formReset(userRegistrationForm){ 
 	document.userRegistrationForm.name.value = '';
 	document.userRegistrationForm.email.value = '';	
+	document.userRegistrationForm.password.value = '';	
+	document.userRegistrationForm.confirmationpassword.value = '';	
 	document.userRegistrationForm.zipCode1.value = '';	
 	document.userRegistrationForm.zipCode2.value = '';	
 	document.userRegistrationForm.address.value = '';	
@@ -29,6 +29,7 @@ function formReset(userRegistrationForm){
 	
 }
 </script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Registration.css"/>
 </head>
 <body>
 <header>
@@ -48,7 +49,7 @@ function formReset(userRegistrationForm){
 <table>
 <tr>
 <td>
-<span class="form-group has-float-label"><form:input path="name" class="form-control" placeholder="例：山田太郎"/>
+<span class="form-group has-float-label"><form:input path="name" class="form-control" placeholder="例：山田太郎" />
 <label for="name">名前</label></span>
 <form:errors path="name" cssStyle="color:red" element="div"/>
 </td>
@@ -62,7 +63,7 @@ function formReset(userRegistrationForm){
 </tr>
 <tr>
 <td>
-<span class="form-group has-float-label"><form:password path="password" placeholder="8文字以上16文字以内" class="form-control"/>
+<span class="form-group has-float-label"><form:password path="password" placeholder="8文字以上16文字以内" class="form-control" />
 <label for="password">パスワード</label></span>
 <form:errors path="password" cssStyle="color:red" element="div"/></td></tr>
 <tr>
@@ -72,16 +73,16 @@ function formReset(userRegistrationForm){
 <form:errors path="confirmationpassword" cssStyle="color:red" element="div"/></td></tr>
 <tr>
 <td>
-<span class="form-group has-float-label inline-block-element"><form:input path="zipCode1" maxlength="3" placeholder="例：123" class="form-control"/>
-<label for="zipCode1">郵便番号上3桁</label></span>-
-<span class="form-group has-float-label inline-block-element"><form:input path="zipCode2" maxlength="4" placeholder="例：4567" class="form-control" onKeyUp="AjaxZip3.zip2addr('zipCode1','zipCode2','address','address')"/>
-<label for="zipCode2">郵便番号下4桁</label></span>
+<span class="form-group has-float-label inline-block-element"><form:input path="zipCode1" maxlength="3" placeholder="例：123" class="form-control form-size"/>
+<label class="text-size" for="zipCode1">郵便番号上3桁</label></span>-
+<span class="form-group has-float-label inline-block-element"><form:input path="zipCode2" maxlength="4" placeholder="例：4567" class="form-control form-size" onKeyUp="AjaxZip3.zip2addr('zipCode1','zipCode2','address','address')"/>
+<label class="text-size" for="zipCode2">郵便番号下4桁</label></span>
 <form:errors path="zipCode1" cssStyle="color:red" element="div"/>
 </td>
 </tr>
 <tr>
 <td>
-<span class="form-group has-float-label"><form:input path="address" placeholder="例：〇〇県〇〇市〇〇区" class="form-control"/>
+<span class="form-group has-float-label "><form:input path="address" placeholder="例：〇〇県〇〇市〇〇区" class="form-control"/>
 <label for="address">住所</label></span>
 <form:errors path="address" cssStyle="color:red" element="div"/>
 </td>
@@ -89,18 +90,18 @@ function formReset(userRegistrationForm){
 <tr>
 <td>
 <span class="form-group has-float-label inline-block-element"><form:input path="telephone1" maxlength="3" placeholder="例：090または03" class="form-control"/>
-<label for="telephone1">電話番号1</label></span>-
+<label class="text-size" for="telephone1">電話番号1</label></span>-
 <span class="form-group has-float-label inline-block-element"><form:input path="telephone2" maxlength="4" placeholder="例:1234" class="form-control"/>
-<label for="telephone2">電話番号2</label></span>-
+<label class="text-size" for="telephone2">電話番号2</label></span>-
 <span class="form-group has-float-label inline-block-element"><form:input path="telephone3" maxlength="4" placeholder="例：5678" class="form-control"/>
-<label for="telephone2">電話番号3</label></span>
+<label class="text-size" for="telephone2">電話番号3</label></span>
 <form:errors path="telephone1" cssStyle="color:red" element="div"/>
 </td>
 </tr>
 <tr>
 <td>
-<span class="form-group has-float-label"><form:input path="question" placeholder="解答を入力して下さい" class="form-control"/>
-<label for="question">親の旧姓は？（フルネームで記入してください）</label></span>
+<span class="form-group has-float-label text-size"><form:input path="question" placeholder="解答を入力して下さい" class="form-control"/>
+<label for="question">親の旧姓は？</label></span>
 <form:errors path="question" cssStyle="color:red" element="div"/>
 </td>
 </tr>
