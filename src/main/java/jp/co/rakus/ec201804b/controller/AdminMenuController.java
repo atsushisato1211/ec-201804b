@@ -137,8 +137,6 @@ public class AdminMenuController {
 	}
 	@RequestMapping(value = "/itemInsert")
 	public String itemInsert(@Validated ItemForm form, BindingResult result, Model model) {
-<<<<<<< HEAD
-=======
 		String size = String.valueOf(form.getImagePath().getSize());
 		int sizeInt= Integer.parseInt(size,16);
 		System.out.println(sizeInt);
@@ -151,7 +149,6 @@ public class AdminMenuController {
 //		if(form.getImagePath().getName().equals("imagePath")) {
 //			result.rejectValue("imagePath","", "ファイルを選択してください");
 //		}
->>>>>>> mm
 		if(form.getImagePath().getOriginalFilename().equals("")) {
 			result.rejectValue("imagePath","", "画像ファイルを選択してください。");
 		}

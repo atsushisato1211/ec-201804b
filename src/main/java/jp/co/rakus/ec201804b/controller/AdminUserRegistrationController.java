@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.rakus.ec201804b.domain.AdminUser;
 import jp.co.rakus.ec201804b.form.AdminUserRegistrationForm;
-import jp.co.rakus.ec201804b.repository.ArticleRepository;
+import jp.co.rakus.ec201804b.repository.AdminUserRepository;
 
 /**
  * @author nobuteru.kato 管理者登録を行うコントローラです.
@@ -24,7 +24,7 @@ import jp.co.rakus.ec201804b.repository.ArticleRepository;
 @RequestMapping(value = "/admin")
 public class AdminUserRegistrationController {
 	@Autowired
-	private ArticleRepository adminUserLoginRepository;
+	private AdminUserRepository adminUserLoginRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 

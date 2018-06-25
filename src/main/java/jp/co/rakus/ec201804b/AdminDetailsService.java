@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import jp.co.rakus.ec201804b.domain.AdminUser;
 import jp.co.rakus.ec201804b.domain.LoginAdminUser;
-import jp.co.rakus.ec201804b.repository.ArticleRepository;
+import jp.co.rakus.ec201804b.repository.AdminUserRepository;
 
 @Service
 public class AdminDetailsService implements UserDetailsService {
@@ -21,7 +21,7 @@ public class AdminDetailsService implements UserDetailsService {
 	
 		/** DBから情報を得るためのリポジトリ */
 		@Autowired
-		private ArticleRepository adminUserRepository;
+		private AdminUserRepository adminUserRepository;
 
 		/*
 		 * (non-Javadoc)
