@@ -25,6 +25,9 @@ public class PaymentController {
 	OrderRepository orderRepository;
 	
 	@Autowired
+	MailSendSystem mail;
+	
+	@Autowired
 	HttpSession session;
 	
 	@RequestMapping("/payment/make")
@@ -35,10 +38,10 @@ public class PaymentController {
 	}
 	
 	
-	
 	@RequestMapping("/payment/confirmed")
-	public String confirmed(@RequestParam Long orderId) {
+	public String confirmed(@RequestParam Long orderId, @AuthenticationPrincipal LoginUser loginUser) {
 		orderRepository.update(1, orderId);
-		return "user/confirmedPayment";
+		mail.send(loginUser);
+		return "redirect:user/confirmedPayment";
 	}
 }
