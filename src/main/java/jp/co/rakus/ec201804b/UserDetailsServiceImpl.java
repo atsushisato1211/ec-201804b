@@ -52,13 +52,28 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 		// orderIdを引っ張ってくる
 		System.out.println(session.getAttribute("userId"));
+		
+		
 		if (session.getAttribute("userId") != null) {
-			Long userId = (Long) session.getAttribute("userId");
-			Order order = orderRepository.findByUserIdAndStatus(userId, 0);
-
-			if (order != null) {
-				Long orderId = order.getId();
-				orderRepository.updateById(user, orderId);
+			Long guestUserId = (Long) session.getAttribute("userId");
+			System.out.println(guestUserId);
+			//購入前のものを取ってくる(ゲスト)
+			Order guestOrder = orderRepository.findByUserIdAndStatus(guestUserId, 0);
+			
+			if (guestOrder != null) {
+				//とってきたやつのorderId
+				Long guestOrderId = guestOrder.getId();
+				Order loginUserOrder = orderRepository.findByUserIdAndStatus(user.getId(), 0);
+				
+				if(loginUserOrder !=null) {
+					Long loginOrderId = loginUserOrder.getId();
+					orderRepository.updateByOrderId(guestOrderId, loginOrderId);
+					orderRepository.deleteByOrderId(guestOrderId);
+				}
+				//前のuserIdでショッピングカートを検索preOrder
+				//それがもしあったらそのidでupdateOrderId
+				//前のいらないのをdelete
+				orderRepository.updateById(user, guestOrderId);//一番最後
 				session.removeAttribute("userId");
 			}
 		}
