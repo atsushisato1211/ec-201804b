@@ -50,6 +50,6 @@ public class PaymentController {
 	public String confirmed(@RequestParam Long orderId, @AuthenticationPrincipal LoginUser loginUser) {
 		orderRepository.update(1, orderId);
 		mail.send(loginUser);
-		return "redirect:user/confirmedPayment";
+		return "user/confirmedPayment";
 	}
 }

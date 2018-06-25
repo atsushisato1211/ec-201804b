@@ -22,7 +22,7 @@ public class MailSendSystem {
 	MailSendSystem(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
-	public SimpleMailMessage send(/* String subject, String content, */ @AuthenticationPrincipal LoginUser loginUser) {
+	public SimpleMailMessage send(/*form String subject, String content, */ @AuthenticationPrincipal LoginUser loginUser) {
 
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 

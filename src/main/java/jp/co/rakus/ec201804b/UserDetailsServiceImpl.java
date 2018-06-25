@@ -46,10 +46,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		System.out.println("user1");
 		User user = userRepository.findByEmail(email);
-
+		//ログイン時にセッションに入れる
+		//userIdからorderを取ってくる
+		
 		if (user == null) {
 			throw new UsernameNotFoundException("そのEmailは登録されていません。");
 		}
+		Order orderUser = orderRepository.findByUserId(user.getId());
+		Long orderId = orderUser.getId();
+		session.setAttribute("orderId", orderId);
 		// orderIdを引っ張ってくる
 		System.out.println(session.getAttribute("userId"));
 		

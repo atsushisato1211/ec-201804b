@@ -16,7 +16,6 @@ spring:
           socketFactory:
             #port: 2525
             port: 587
-            class: javax.net.ssl.SSLSocketFactory
             fallback: false
         debug: true
     test-connection: false
