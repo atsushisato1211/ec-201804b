@@ -19,7 +19,7 @@
     <h2 align="center">ショッピングカート一覧</h2>
     
     <c:choose>
-	<c:when test="${order.orderItemList.isEmpty()}">
+	<c:when test="${order.orderItemList==null}">
     <p align="center">カートに商品がありません</p>
 	</c:when>
 	<c:otherwise>
@@ -46,8 +46,8 @@
             </tr>
         </c:forEach>
         </table><br>
+    <div  align="center"><a href="${pageContext.request.contextPath}/user/payment/make?id=${order.id}">決済へ</a></div>
         </c:otherwise>
     </c:choose>
-    <div  align="center"><a href="${pageContext.request.contextPath}/user/payment/make?id=${order.id}">決済へ</a></div>
 </body>
 </html>

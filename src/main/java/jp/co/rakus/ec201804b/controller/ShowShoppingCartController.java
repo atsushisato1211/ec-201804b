@@ -30,11 +30,18 @@ public class ShowShoppingCartController {
 	public String show(@AuthenticationPrincipal LoginUser userDetails) {
 //		List<Order> orderList =orderRepository.findAll();
 		long userId;
+		Order order = new Order();
+		if(session.getAttribute("orderId")==null) {
+			System.out.println("商品がない場合");
+			session.setAttribute("order", order);
+			System.out.println(order.getOrderItemList());
+			return "user/viewShoppingCart";
+		}
 		if(userDetails==null) 
 			userId=(long) session.getAttribute("userId");
 		else
 			userId=userDetails.getUser().getId();
-		Order order=orderRepository.findByUserId(userId, (long) session.getAttribute("orderId"));
+		order=orderRepository.findByUserId(userId, (long) session.getAttribute("orderId"));
 //		for (Order order : orderList) {
 //			for (OrderItem item : order.getOrderItemList()) {
 //				System.out.println(item.getItem().getImagePath());
