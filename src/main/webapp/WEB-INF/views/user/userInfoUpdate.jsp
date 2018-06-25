@@ -10,9 +10,10 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Registration.css"/>
 <link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v3.0.1/dist/bootstrap-float-label.min.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="js/ajaxzip3.js" charset="UTF-8"></script>
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 <script type="text/javascript">
 function formReset(userInfoUpdateForm){ 
@@ -39,17 +40,46 @@ function formReset(userInfoUpdateForm){
 <h2>登録者情報変更</h2><br>
 <table>
 <tr>
-<td><label for="name">名前：</label></td></tr><tr><td><form:input path="name"/><br>
-<form:errors path="name" cssStyle="color:red" element="div"/></td>
+<td>
+<span class="form-group has-float-label"><form:input path="name" class="form-control" placeholder="例：山田太郎" />
+<label for="name">名前</label></span>
+<form:errors path="name" cssStyle="color:red" element="div"/>
+</td>
 </tr>
 <tr>
-<td><label for="email">メールアドレス：</label></td></tr><tr><td><form:input path="email" placeholder="例：rakus@rakus.co.jp"/><br><form:errors path="email" cssStyle="color:red" element="div"/>
-</td><tr>
-<td><label for="zipCode1">郵便番号：</label></td></tr><tr><td><form:input path="zipCode1" maxlength="3" placeholder="例：123"/> - <form:input path="zipCode2" maxlength="4" placeholder="例：4567" onKeyUp="AjaxZip3.zip2addr('zipCode1','zipCode2','address','address')"/><br><form:errors path="zipCode1" cssStyle="color:red" element="div"/></td></tr>
+<td>
+<span class="form-group has-float-label"><form:input path="email" placeholder="例：rakus@rakus.co.jp" class="form-control"/>
+<label for="email">メールアドレス</label></span>
+<form:errors path="email" cssStyle="color:red" element="div"/>
+</td>
+</tr>
 <tr>
-<td><label for="address">住所：</label></td></tr><tr><td><form:input path="address"/><br><form:errors path="address" cssStyle="color:red" element="div"/></td></tr>
+<td>
+<span class="form-group has-float-label inline-block-element"><form:input path="zipCode1" maxlength="3" placeholder="例：123" class="form-control form-size"/>
+<label class="text-size" for="zipCode1">郵便番号上3桁</label></span>-
+<span class="form-group has-float-label inline-block-element"><form:input path="zipCode2" maxlength="4" placeholder="例：4567" class="form-control form-size" onKeyUp="AjaxZip3.zip2addr('zipCode1','zipCode2','address','address')"/>
+<label class="text-size" for="zipCode2">郵便番号下4桁</label></span>
+<form:errors path="zipCode1" cssStyle="color:red" element="div"/>
+</td>
+</tr>
 <tr>
-<td><label for="telephone1">電話番号：</label></td></tr><tr><td><form:input path="telephone1" maxlength="3" placeholder="2桁以上3桁以内"/> - <form:input path="telephone2" maxlength="4" placeholder="4桁"/> - <form:input path="telephone3" maxlength="4" placeholder="4桁"/><br><form:errors path="telephone1" cssStyle="color:red" element="div"/></td></tr>
+<td>
+<span class="form-group has-float-label "><form:input path="address" placeholder="例：〇〇県〇〇市〇〇区" class="form-control"/>
+<label for="address">住所</label></span>
+<form:errors path="address" cssStyle="color:red" element="div"/>
+</td>
+</tr>
+<tr>
+<td>
+<span class="form-group has-float-label inline-block-element"><form:input path="telephone1" maxlength="3" placeholder="例：090または03" class="form-control"/>
+<label class="text-size" for="telephone1">電話番号1</label></span>-
+<span class="form-group has-float-label inline-block-element"><form:input path="telephone2" maxlength="4" placeholder="例:1234" class="form-control"/>
+<label class="text-size" for="telephone2">電話番号2</label></span>-
+<span class="form-group has-float-label inline-block-element"><form:input path="telephone3" maxlength="4" placeholder="例：5678" class="form-control"/>
+<label class="text-size" for="telephone2">電話番号3</label></span>
+<form:errors path="telephone1" cssStyle="color:red" element="div"/>
+</td>
+</tr>
 </table>
 <button type="submit" class="btn btn-warning">お客様情報を変更する</button>
 <button type="button" class="btn btn-primary" onClick="formReset(userInfoUpdateForm)">クリア</button>

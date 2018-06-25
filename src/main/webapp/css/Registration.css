@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.has-float-label.inline-block-element {
+.has-float-label.inline-block-element{
           display:inline-block;
 }
 table{
@@ -20,3 +20,8 @@ table tr:nth-child(odd){
 td{
   border-bottom:2px solid #80bcff;
 }
+
+.form-size{
+	width:140px;
+}
+

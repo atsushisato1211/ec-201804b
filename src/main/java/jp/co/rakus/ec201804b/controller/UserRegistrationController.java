@@ -98,6 +98,11 @@ public class UserRegistrationController {
 			isTelephoneError = true;
 		} 
 		}
+		if(form.getQuestion().equals("")) {
+			result.rejectValue("question", null, "旧姓を入力して下さい");
+		}else if(form.getQuestion().matches("\\D") == false) {
+			result.rejectValue("question", null, "旧姓を入力して下さい");
+		}
 		if (result.hasErrors()) {
 			System.out.println(result);
 			return form(model);
