@@ -17,14 +17,14 @@
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 <script type="text/javascript">
 function formReset(userInfoUpdateForm){ 
-	document.userRegistrationForm.name.value = '';
-	document.userRegistrationForm.email.value = '';	
-	document.userRegistrationForm.zipCode1.value = '';	
-	document.userRegistrationForm.zipCode2.value = '';	
-	document.userRegistrationForm.address.value = '';	
-	document.userRegistrationForm.telephone1.value = '';	
-	document.userRegistrationForm.telephone2.value = '';	
-	document.userRegistrationForm.telephone3.value = '';	
+	document.userInfoUpdateForm.name.value = '';
+	document.userInfoUpdateForm.email.value = '';	
+	document.userInfoUpdateForm.zipCode1.value = '';	
+	document.userInfoUpdateForm.zipCode2.value = '';	
+	document.userInfoUpdateForm.address.value = '';	
+	document.userInfoUpdateForm.telephone1.value = '';	
+	document.userInfoUpdateForm.telephone2.value = '';	
+	document.userInfoUpdateForm.telephone3.value = '';	
 }
 </script>
 </head>

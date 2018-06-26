@@ -32,7 +32,6 @@ public class OrderItemDetailController {
 	
 	public Map<Integer, String> mapCreate(){
 		Map<Integer, String> map = new LinkedHashMap<>();
-		map.put(0, "購入前");
 		map.put(1, "未入金");
 		map.put(2, "入金済み");
 		map.put(3, "発送済み");
