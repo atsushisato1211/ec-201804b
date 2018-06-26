@@ -45,7 +45,7 @@ public class ShowShoppingCartController {
 		Order viewOrder = orderRepository.findByUserIdAndStatus(userId, 0);
 		if(viewOrder !=null) {
 			Long orderId = viewOrder.getId();
-			order=orderRepository.findByUserIdAndOrderId(userId,orderId);
+			order=orderRepository.load(orderId);
 		}
 		
 //		for (Order order : orderList) {
@@ -56,7 +56,7 @@ public class ShowShoppingCartController {
 		
 		System.out.println(userId+","+(long) session.getAttribute("orderId"));
 		
-		session.setAttribute("order", order);
+		session.setAttribute("order" ,order);
 		return "user/viewShoppingCart";
 	}
 }

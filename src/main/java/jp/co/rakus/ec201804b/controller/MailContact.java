@@ -11,24 +11,27 @@ import org.springframework.stereotype.Component;
 import jp.co.rakus.ec201804b.domain.LoginUser;
 
 @Component
-public class MailSendSystem {
-	private static final Logger log = LoggerFactory.getLogger(MailSendSystem.class);
+public class MailContact {
+	private static final Logger log = LoggerFactory.getLogger(MailContact.class);
 
 	private final JavaMailSender javaMailSender;
+	
+	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	@Autowired
-	MailSendSystem(JavaMailSender javaMailSender) {
+	MailContact(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
-	public SimpleMailMessage send(/*form String subject, String content, */ @AuthenticationPrincipal LoginUser loginUser) {
+	public SimpleMailMessage send(/*String subject, String content, */ @AuthenticationPrincipal LoginUser loginUser) {
 
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-		mailMessage.setTo(loginUser.getUser().getEmail());
-		mailMessage.setReplyTo("ec201804b@gmail.com");
-		mailMessage.setFrom("ec201804b@gmail.com");
-		String subject = "ご利用ありがとうございます。";
-		String content = "お客様の注文内容を添付いたします。";
+		mailMessage.setTo("ec201804b@gmail.com");
+		mailMessage.setReplyTo(loginUser.getUser().getEmail());
+		//mailMessage.setFrom(loginUser.getUser().getEmail());
+		
+		String subject = loginUser.getUser().getName()  +"さんからのお問い合わせ";
+		String content = "Email: " + loginUser.getUser().getEmail() + LINE_SEPARATOR + LINE_SEPARATOR + "お問い合わせです。";
 		mailMessage.setSubject(subject);
 		mailMessage.setText(content);
 
@@ -38,3 +41,4 @@ public class MailSendSystem {
 	}
 
 }
+
