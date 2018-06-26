@@ -12,10 +12,11 @@
 <%-- <link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet"> --%>
 <link href="${pageContext.request.contextPath}/css/imgslide.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/itemList.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/item_table.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/left_calamu.css" rel="stylesheet">
 <%-- <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/ecHeader.css" /> --%>
 <link rel="stylesheet" type="text/css"
@@ -23,6 +24,7 @@
 </head>
 <body>
 	<jsp:include page="testHeader.jsp" />
+	<div align ="center">
 	<h2 id="item">新しい商品</h2>
 	<!-- スライダー部 -->
 <div id="stage">
@@ -73,6 +75,30 @@
   <!-- ボタン部の高さ確保 -->
   <div style="padding-top:2%;"></div>
 </div>
+
+	<!-- サブメニュー（左カラム） -->
+	<div id="submenu">
+		<div id="submenu_header">目的で探す</div>
+		<ul id="submenu_body">
+			<li><a href="xxx.html">今が旬の食材</a></li>
+			<li><a href="xxx.html">セレクタ</a></li>
+			<li><a href="xxx.html">フォント</a></li>
+			<li><a href="xxx.html">テキスト</a></li>
+			<li><a href="xxx.html">文字色・背景</a></li>
+			<li><a href="xxx.html">幅・高さ・余白</a></li>
+			<li><a href="xxx.html">ボーダー</a></li>
+			<li><a href="xxx.html">表示・配置</a></li>
+			<li><a href="xxx.html">リスト</a></li>
+			<li><a href="xxx.html">テーブル</a></li>
+			<li><a href="xxx.html">生成内容の挿入</a></li>
+			<li><a href="xxx.html">インターフェース</a></li>
+			<li><a href="xxx.html">フィルタ・ズーム</a></li>
+			<li><a href="xxx.html">テキスト（IE独自）</a></li>
+			<li><a href="xxx.html">印刷</a></li>
+			<li><a href="xxx.html">音声</a></li>
+		</ul>
+	</div></div>
+
 	
 <div align ="center">
 	<h2>商品一覧</h2>
@@ -99,7 +125,7 @@
 </div>
 
 
-	<br><c:choose>
+	<%-- <br><c:choose>
 	<c:when test="${itemList.isEmpty()}"><c:out value="${erroritemName}"/>は商品名に該当しません。</c:when>
 	<c:otherwise><table border="1" align="center">
 		<tr>
@@ -120,7 +146,7 @@
 			</tr>
 		</c:forEach>
 	</table></c:otherwise>
-	</c:choose>
+	</c:choose> --%>
 	<!-- 商品一覧テスト開始 -->
 	<br><c:choose>
 	<c:when test="${itemList.isEmpty()}"><c:out value="${erroritemName}"/>は商品名に該当しません。</c:when>
