@@ -46,6 +46,7 @@
             </tr>
         </c:forEach>
         </table><br>
+    <div  align="center"><a href="${pageContext.request.contextPath}/user/item">商品一覧へ戻る</a></div>
     <div  align="center"><a href="${pageContext.request.contextPath}/user/payment/make?id=${order.id}">決済へ</a></div>
         </c:otherwise>
     </c:choose>

@@ -9,13 +9,13 @@ public class UserNewPasswordForm {
 	 * 新しいパスワード
 	 */	
 	@NotBlank(message = "パスワードを入力してください")
-	@Size(min=0, max=20, message="20文字以内で入力してください")
+	@Size(min=8, max=16, message="8桁以上16桁以内で設定してください")
 	private String newPassword;
 	/**
 	 * 確認用パスワード
 	 */
 	@NotBlank(message = "確認用パスワードを入力してください")
-	@Size(min=0, max=20, message="20文字以内で入力してください")
+	@Size(min=8, max=16, message="8桁以上16桁以内で設定してください")
 	private String confirmationNewPassword;
 	
 	public String getNewPassword() {
