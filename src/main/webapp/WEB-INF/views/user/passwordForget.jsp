@@ -15,7 +15,7 @@
 	rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="userHeader.jsp" />
+	<jsp:include page="testHeader.jsp" />
 	<form:form modelAttribute="userPasswordForgetForm"
 		action="${pageContext.request.contextPath}/user/checkpassword">
 		<div align="center">

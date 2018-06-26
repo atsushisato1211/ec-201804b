@@ -30,19 +30,13 @@ function formReset(userRegistrationForm){
 }
 </script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Registration.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/testHeader.css" />
+<link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
 </head>
 <body>
-<header>
-		<div id="userHeader" align="right">
-			<p>こんにちはゲストさん</p>
-			<p><a href="${pageContext.request.contextPath}/user/show">カートの中身を見る</a></p>
-		</div>
-				<div id="linkHeader" align="left">
-			<h1 align ="left"><a href="${pageContext.request.contextPath}/user/item"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
-				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1></div>
-		<div id="title" align="center">
-		</div>
-</header>
+<jsp:include page="testHeader.jsp" />
 <div align="center">
 <form:form modelAttribute="userRegistrationForm" name="userRegistrationForm" action="${pageContext.request.contextPath}/user/create" method="post">
 <h2>利用者登録</h2><br>
