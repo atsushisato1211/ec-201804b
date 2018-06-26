@@ -49,7 +49,7 @@
 </tr>
 <tr>
 <td>商品合計</td>
-<td align="right" colspan="4">&yen;<fmt:formatNumber value="${order.totalPrice*1.08}" pattern="###,###"/></td>
+<td align="right" colspan="4">&yen;<fmt:formatNumber value="${order.totalPrice*1.08 + 500}" pattern="###,###"/></td>
 
 </tr>
 </table><br>

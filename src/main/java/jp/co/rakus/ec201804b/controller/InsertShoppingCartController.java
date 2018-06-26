@@ -67,7 +67,6 @@ public class InsertShoppingCartController {
 			}
 			order.setStatus(0);
 			order.setTotalPrice(0);
-			order.setId((Long) session.getAttribute("orderId"));
 			LocalDateTime localDateTime = LocalDateTime.now();
 			ZoneId zone = ZoneId.systemDefault();
 			ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, zone);

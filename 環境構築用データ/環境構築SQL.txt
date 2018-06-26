@@ -1,6 +1,115 @@
-﻿	-- 参照サイト https://www.yasainavi.com/zukan/
+〇リポジトリの作成
+　Aチーム … yyyyMM/ecommerceA
+　Bチーム … yyyyMM/ecommerceB
+　Cチーム … yyyyMM/ecommerceC
+　という名前でプロジェクトを作成します。
+　※事前にyyyyMMというグループを作る必要あり
+　例)2017年4月入社のAチームなら
+　　　201704/ecommerceA
+　チームで1名担当を決めてその人が作成してください。
+　コレボレーターを追加する作業も必要です。
 
-	DROP TABLE IF EXISTS items;
+○Springプロジェクトの作成
+　・ルートパッケージはjp.co.rakus.ecommerce_xとする(xはチーム名)
+
+　・プロジェクトに各パッケージの作成
+　　domain
+   service
+   form
+   controller
+   repository
+　　※Javaのパッケージは空っぽの状態だとpushすることができません。
+　package-info.javaというファイルを作成しその中に以下を書いて
+　保存しておくようにしてください。
+　※package-info.javaはpackageを作成する際に一緒に作ることができます。
+　package ルートパッケージ.個別パッケージ名;
+　(記載例)
+　package jp.co.rakus.ecommers.domain;
+
+　※git initや.gitignoreの作成も忘れずに
+
+○プロジェクトのpush
+　・今作成したプロジェクトをリモートリポジトリにpushする
+　・push後、リモートリポジトリ上でdevelopブランチを作成しておく
+
+　※pushする際にSSHからみのエラーが出た場合は以下を１回だけ実行してください
+　 git config --global http.sslVerify false
+　 ↑SSHの鍵がなくてもpushできるように設定変更
+
+○各自developブランチをcloneして開発環境を整える
+
+〇DB名
+　ecommerce[yyyyMM][チーム名]
+　という名前で各自作成してください
+　
+　(例)2016年7月入社のAチームのDB名
+　  ecommerce201607a
+
+〇テーブルの作成
+　ecommerceDBを全員が各自作成し、以下のSQLを実行してください。
+
+-- 商品
+DROP TABLE IF EXISTS items;
+create table items (
+  id bigserial not null
+  , name text not null unique
+  , description text not null
+  , price integer not null
+  , imagePath text not null
+  , deleted boolean default false not null
+  , constraint items_PKC primary key (id)
+) ;
+
+
+-- 注文詳細
+DROP TABLE IF EXISTS order_items;
+
+create table order_items (
+  id bigserial not null
+  , item_id bigint not null
+  , order_id bigint not null
+  , quantity integer not null
+  , constraint order_items_PKC primary key (id)
+) ;
+
+-- 注文
+DROP TABLE IF EXISTS orders;
+
+create table orders (
+  id bigserial not null
+  , order_number text not null
+  , user_id bigint not null
+  , status integer not null
+  , total_price integer not null
+  , constraint orders_PKC primary key (id)
+) ;
+
+-- 管理者
+DROP TABLE IF EXISTS admin_users;
+
+create table admin_users (
+  id bigserial not null
+  , name text not null
+  , email text not null unique
+  , password text not null
+  , constraint admin_users_PKC primary key (id)
+) ;
+
+-- 利用者
+DROP TABLE IF EXISTS users;
+
+create table users (
+  id bigserial not null
+  , name text not null
+  , email text not null unique
+  , password text not null
+  , address text not null
+  , telephone text not null
+  , constraint users_PKC primary key (id)
+) ;
+
+
+DROP TABLE IF EXISTS items;
 	create table items (
 	  id bigserial not null
 	  , name text not null unique
