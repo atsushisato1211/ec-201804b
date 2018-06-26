@@ -32,8 +32,8 @@
             </tr>
 	<c:forEach var="orderItem" items="${order.orderItemList}">
             <tr>
-				<td><a href="${pageContext.request.contextPath}/user/itemdetail"><img src="${pageContext.request.contextPath}/img/<c:out value="${orderItem.item.imagePath}"/>" width="150"height="125" alt="商品画像"></a></td>
-                <td><a href="${pageContext.request.contextPath}/user/itemdetail"></a><c:out value="${orderItem.item.name}"/></td>
+				<td><img src="${pageContext.request.contextPath}/img/<c:out value="${orderItem.item.imagePath}"/>" width="150"height="125" alt="商品画像"></td>
+                <td><c:out value="${orderItem.item.name}"/></td>
                 <td>&yen;<c:out value="${orderItem.item.price}"/></td>
                 <td><c:out value="${orderItem.quantity}"/>個</td>
                 <td>
