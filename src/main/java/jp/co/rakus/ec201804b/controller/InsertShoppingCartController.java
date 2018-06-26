@@ -79,13 +79,25 @@ public class InsertShoppingCartController {
 		orderItem.setItemId(form.getItemId().longValue());
 		List<Order> orderItemList = orderRepository.findByOrderId((long) session.getAttribute("orderId"));
 		for (Order order : orderItemList) {
-			for (OrderItem itemList : order.getOrderItemList()) {
-				if(itemList.getItemId()==form.getItemId().longValue()) {
-					orderRepository.updateOrderItem(orderItem);
-				}else {
-					orderRepository.insertOrderItem(orderItem);
-				}
+			if(order.getOrderItemList().get(order.getOrderItemList().size()-1).getItemId()==form.getItemId().longValue()) {
+				System.out.println("111");
+				orderRepository.updateOrderItem(orderItem);
+			}else {
+				System.out.println("222");
+				orderRepository.insertOrderItem(orderItem);
 			}
+					
+//			for (OrderItem itemList : order.getOrderItemList()) {
+//				if(itemList.getItemId()==form.getItemId().longValue()) {
+//					System.out.println("111");
+//					orderRepository.updateOrderItem(orderItem);
+//					break;
+//				}else {
+//					System.out.println("2222");
+//					orderRepository.insertOrderItem(orderItem);
+//					break;
+//				}
+//			}
 		}
 //		System.out.println(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
 //		orderItem.setOrderId(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
