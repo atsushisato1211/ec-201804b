@@ -1,5 +1,6 @@
 package jp.co.rakus.ec201804b.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +29,18 @@ public class OrderItemListController {
 	@RequestMapping("/orderList")
 	public String show() {
 		List<Order> orderList =orderRepository.findAll();
-		
+		List<Order> orderList2 = new ArrayList<>();;
 		for (Order order : orderList) {
 			Map<Integer, String> statusMap = orderItemDetail.mapCreate();
 			String value = statusMap.get(order.getStatus());
 			order.setStatusString(value);
+			if(order.getStatus()!=0) {
+				orderList2.add(order);
+			}
 		}
-		session.setAttribute("orderList", orderList);
+		
+		
+		session.setAttribute("orderList", orderList2);
 		return "administer/viewOrderList";
 	}
 }
