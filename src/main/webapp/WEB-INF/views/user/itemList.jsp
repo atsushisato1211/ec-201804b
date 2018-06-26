@@ -17,6 +17,7 @@
 <link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/left_calamu.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/sort.css" rel="stylesheet">
 <%-- <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/ecHeader.css" /> --%>
 <link rel="stylesheet" type="text/css"
@@ -80,7 +81,7 @@
 	<div id="submenu">
 		<div id="submenu_header">目的で探す</div>
 		<ul id="submenu_body">
-			<li><a href="xxx.html">今が旬の食材</a></li>
+			<li><a href="<%=request.getContextPath()%>/user/findBySeason">今が旬の食材</a></li>
 			<li><a href="xxx.html">セレクタ</a></li>
 			<li><a href="xxx.html">フォント</a></li>
 			<li><a href="xxx.html">テキスト</a></li>
@@ -115,6 +116,8 @@
 		  <option value="price">価格順</option>
 		</select>
 <input type="hidden" value="ASC" name="sortOption">
+<input type="hidden" value="ASC" name="season">
+
 		<%-- <form:checkbox path="sortOption" value="DESC"/>降順で検索 --%>
 		<c:choose><c:when test="${sortOption.equals('DESC')}">
 		<input type="checkbox" name="sortOption" value="DESC" checked="checked">降順で検索 </c:when>
@@ -124,29 +127,6 @@
 	</form>
 </div>
 
-
-	<%-- <br><c:choose>
-	<c:when test="${itemList.isEmpty()}"><c:out value="${erroritemName}"/>は商品名に該当しません。</c:when>
-	<c:otherwise><table border="1" align="center">
-		<tr>
-			<th colspan="2">商品名</th>
-			<th>価格</th>
-		</tr>
-		<c:forEach var="item" items="${itemList}">
-			<tr>
-				<td><a
-					href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>"><img
-						src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>"
-						width="150" height="125" alt="<c:out value="${item.name}" />画像"></a></td>
-				<td><a
-					href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>">
-						<c:out value="${item.name}" />
-				</a></td>
-				<td>&yen;<c:out value="${item.price}" /></td>
-			</tr>
-		</c:forEach>
-	</table></c:otherwise>
-	</c:choose> --%>
 	<!-- 商品一覧テスト開始 -->
 	<br><c:choose>
 	<c:when test="${itemList.isEmpty()}"><c:out value="${erroritemName}"/>は商品名に該当しません。</c:when>
@@ -162,7 +142,7 @@
 						src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>"
 						width="250" height="225" alt="<c:out value="${item.name}" />画像"></a><br>
 				</a><br>
-				<table class="item_name" border="0"><tr><td class="item_name" align="center">
+				<table class="item_name" border="0" align="center"><tr><td class="item_name" align="center">
 				<a
 					href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>">
 						<c:out value="${item.name}" /></a></td></tr>
@@ -176,27 +156,6 @@
 	</table></c:otherwise>
 	</c:choose>
 	<!-- 商品一覧テスト終了 -->
-	
-	<!-- テスト一覧開始 -->
-
-<div class="float_box">
-  <ul>
-  <c:forEach var="item" items="${itemList}">
-    <li> <!-- [▼] アイテム -->
-      <a href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>"><img
-						src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>"
-						class="image" alt="<c:out value="${item.name}" />画像"></a>
-        <p class="name"><a
-					href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>">
-						<c:out value="${item.name}" />
-				</a></p>
-        <p class="price">&yen;<c:out value="${item.price}" /></p>
-    </li> <!-- [▲] アイテム -->
-    </c:forEach>
-  </ul>
-</div>
-	
-<!-- テスト一覧終了 -->	
 	
 	
 	<c:if test="${!itemList.isEmpty()}">
@@ -224,50 +183,6 @@
   </ul>
 </div>
 
-
-<script >$(function(){
-	$('.sortNav li').each(function(){
-		$(this).click(function(){
-			var btnName = $(this).attr("class").substring(3).toLowerCase();
-			var className = '.';
-			className += btnName;
-      if(btnName == 'all') {
-        $('.container > div').fadeIn(200);
-      } else {
-        $('.container div:not(className)').hide();
-        $(className).fadeIn(200);
-      }
-		});
-	});
-});
-</script>
-
-<div class="wrapper">
-  <p class="message">↓のボタンをクリックしてください↓</p>
-	  <ul class="sortNav">
-		    <li class="btnGreen">Green</li>
-		    <li class="btnRed">Red</li>
-		    <li class="btnBlue">Blue</li>
-		    <li class="btnAll">All</li>
-	  </ul>
-  <div class="container">
-    <div class="green">sample</div>
-    <div class="blue">sample</div>
-    <div class="red">sample</div>
-    <div class="green">sample</div>
-    <div class="blue">sample</div>
-    <div class="red">sample</div>
-    <div class="green">sample</div>
-    <div class="blue">sample</div>
-    <div class="red">sample</div>
-    <div class="green">sample</div>
-    <div class="blue">sample</div>
-    <div class="red">sample</div>
-    <div class="green">sample</div>
-    <div class="blue">sample</div>
-    <div class="red">sample</div>
-  </div>
-</div>
 
 
 

@@ -143,6 +143,12 @@ public class ItemRepository {
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
 	}
+	public List<Item> findBySeasonAndNotDeleted(String JustSeason) {
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " where deleted=true and season=:season order by id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("season", JustSeason );
+		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
+		return itemList;
+	}
 	public Long findByMaxIdAndInitialsAndNotDeleted(String initials) {
 		String sql = "select count(id) from " + TABLE_NAME + " where deleted=true and name like :name ";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", initials + "%");

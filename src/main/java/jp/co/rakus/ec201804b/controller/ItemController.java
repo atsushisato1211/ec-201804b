@@ -47,7 +47,8 @@ public class ItemController {
 		model.addAttribute("newitem", list);
 		LocalDate Manth = LocalDate.now();
 		Manth.getMonth();
-		System.out.println(Manth.getMonth());
+		System.out.println(Manth.getDayOfMonth());
+		System.out.println(season(String.valueOf(Manth.getMonth())));
 		return "user/itemList";
 	}
 	
@@ -99,14 +100,42 @@ public class ItemController {
 		
 		LocalDate Manth = LocalDate.now();
 		Manth.getMonth();
-		System.out.println(Manth.getDayOfMonth());
+		System.out.println(season(String.valueOf(Manth.getMonth())));
+		List<Item>list = repository.findBySeasonAndNotDeleted(season(String.valueOf(Manth.getMonth())));
+		
 		model.addAttribute("pageNum", 1);
+		model.addAttribute("maxPageNum", pagingNum((long) list.size()));
+		model.addAttribute("itemList", list);
 		/*model.addAttribute("maxPageNum", pagingNum((long) list.size()));
 		model.addAttribute("itemList", list);
 		model.addAttribute("itemName",useritem);*/
 		
 //		return "user/itemList";
 		return index(model);
+	}
+	public String season(String month) {
+		switch (month) {
+		case "MARCH":
+		case "APRIL":
+		case "MAY":
+			return "春";
+		case "JUNE":
+		case "JULY":
+		case "AUGUST":
+			return "夏";
+		case "SEPTEMBER":
+		case "OCTOBER":
+		case "NOVEMBER":
+			return "秋";
+		case "DECEMBER":
+		case "JANUARY":
+		case "FEBRUARU":
+			return "冬";
+
+		default:
+			break;
+		}
+		return null;
 	}
 	/**
 	 * 名前検索+ソートを行うメソッド.
