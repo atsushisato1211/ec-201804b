@@ -2,6 +2,7 @@
 table.item_name{
 	width: 252px;
 	height: 40px;
+	margin: auto;
 }
 td.item_name{
 	background-color: #eeeeee;

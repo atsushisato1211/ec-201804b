@@ -130,7 +130,7 @@
 	<!-- 商品一覧テスト開始 -->
 	<br><c:choose>
 	<c:when test="${itemList.isEmpty()}"><c:out value="${erroritemName}"/>は商品名に該当しません。</c:when>
-	<c:otherwise><table class="item" cellspacing="30" border="0"　class="itemList" align="center">
+	<c:otherwise><table class="item" cellspacing="30" border="0" class="itemList" align="center">
 	<!-- 	<tr>
 			<th colspan="2">商品名</th>
 			<th>価格</th>
@@ -142,7 +142,7 @@
 						src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>"
 						width="250" height="225" alt="<c:out value="${item.name}" />画像"></a><br>
 				</a><br>
-				<table class="item_name" border="0" align="center"><tr><td class="item_name" align="center">
+				<table class="item_name" border="0"><tr><td class="item_name" align="center">
 				<a
 					href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>">
 						<c:out value="${item.name}" /></a></td></tr>
@@ -156,6 +156,8 @@
 	</table></c:otherwise>
 	</c:choose>
 	<!-- 商品一覧テスト終了 -->
+	
+
 	
 	
 	<c:if test="${!itemList.isEmpty()}">
