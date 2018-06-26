@@ -1,6 +1,7 @@
 package jp.co.rakus.ec201804b.controller;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,9 @@ public class ItemController {
 	public String index(Model model) {
 		List<Item>list = repository.findByNewItem();
 		model.addAttribute("newitem", list);
-		
+		LocalDate Manth = LocalDate.now();
+		Manth.getMonth();
+		System.out.println(Manth.getMonth());
 		return "user/itemList";
 	}
 	
@@ -87,6 +90,20 @@ public class ItemController {
 		model.addAttribute("maxPageNum", pagingNum((long) list.size()));
 		model.addAttribute("itemList", list);
 		model.addAttribute("itemName",useritem);
+		
+//		return "user/itemList";
+		return index(model);
+	}
+	@RequestMapping(value = "/findBySeason")
+	public String findByName( Model model) {
+		
+		LocalDate Manth = LocalDate.now();
+		Manth.getMonth();
+		System.out.println(Manth.getDayOfMonth());
+		model.addAttribute("pageNum", 1);
+		/*model.addAttribute("maxPageNum", pagingNum((long) list.size()));
+		model.addAttribute("itemList", list);
+		model.addAttribute("itemName",useritem);*/
 		
 //		return "user/itemList";
 		return index(model);
@@ -197,6 +214,7 @@ public class ItemController {
 		}
 		return maxPageNum;
 	}
+	
 
 }
 

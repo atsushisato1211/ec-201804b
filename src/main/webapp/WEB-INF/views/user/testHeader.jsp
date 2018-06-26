@@ -9,6 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 </head>
 <body>
 	<header>
@@ -238,12 +240,12 @@
 				</ul></li>
 			<sec:authorize access="hasRole('ROLE_MEMBER') and isAuthenticated()">
 				<sec:authentication var="userName" property="principal.user.name" />
-				<li><a href="${pageContext.request.contextPath}/user/logout">ログアウト</a>
+				<li><a href="${pageContext.request.contextPath}/user/logout"><c:out value="${userName}" />&nbsp;さん<br>ログアウト</a>
 				</li>
 			</sec:authorize>
 			<sec:authorize
 				access="!(hasRole('ROLE_MEMBER') and isAuthenticated())">
-				<li><a href="${pageContext.request.contextPath}/user/index">ログイン</a>
+				<li><a class="login" href="${pageContext.request.contextPath}/user/index">こんにちはゲストさん<br>ログイン</a>
 				</li>
 			</sec:authorize>
 

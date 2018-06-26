@@ -36,6 +36,21 @@
   border-right: 1px solid #eee;
   box-sizing: border-box;
 }
+.nav li a.login {
+  display: block;
+  width: 160px;
+  height: 40px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  line-height: 2.8;
+  background: #9fb7d4;
+  transition: 0.5s;
+  text-decoration: none;
+  border-right: 1px solid #eee;
+  box-sizing: border-box;
+  line-height: 150%;
+}
 .nav > li:hover > a {/*layer-1*/
   color: orange;
   background: #afc6e2;
