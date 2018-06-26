@@ -17,6 +17,10 @@ public class ItemForm {
 	@NotNull(message="画像をアップロードしてください")
 	private MultipartFile imagePath;
 	private Boolean deleted;
+	@NotBlank(message="生産地を入力してください")
+	private String producingArea;
+	@NotBlank(message="季節を入力してください")
+	private String season;
 	
 	
 	public Long getId() {
@@ -56,5 +60,17 @@ public class ItemForm {
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 		
+	}
+	public String getProducingArea() {
+		return producingArea;
+	}
+	public void setProducingArea(String producingArea) {
+		this.producingArea = producingArea;
+	}
+	public String getSeason() {
+		return season;
+	}
+	public void setSeason(String season) {
+		this.season = season;
 	}
 }

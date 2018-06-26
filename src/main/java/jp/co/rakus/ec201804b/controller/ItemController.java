@@ -1,6 +1,5 @@
 package jp.co.rakus.ec201804b.controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
