@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
@@ -76,9 +77,32 @@ public class InsertShoppingCartController {
 		OrderItem orderItem = new OrderItem();
 		BeanUtils.copyProperties(form,orderItem);
 		orderItem.setItemId(form.getItemId().longValue());
+		List<Order> orderItemList = orderRepository.findByOrderId((long) session.getAttribute("orderId"));
+		for (Order order : orderItemList) {
+			if(order.getOrderItemList().get(order.getOrderItemList().size()-1).getItemId()==form.getItemId().longValue()) {
+				System.out.println("111");
+				orderRepository.updateOrderItem(orderItem);
+			}else {
+				System.out.println("222");
+				orderRepository.insertOrderItem(orderItem);
+			}
+					
+//			for (OrderItem itemList : order.getOrderItemList()) {
+//				if(itemList.getItemId()==form.getItemId().longValue()) {
+//					System.out.println("111");
+//					orderRepository.updateOrderItem(orderItem);
+//					break;
+//				}else {
+//					System.out.println("2222");
+//					orderRepository.insertOrderItem(orderItem);
+//					break;
+//				}
+//			}
+		}
 //		System.out.println(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
 //		orderItem.setOrderId(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
-		orderRepository.insertOrderItem(orderItem);
+		if(orderItemList.size()==0)
+			orderRepository.insertOrderItem(orderItem);
 		
 		return "redirect:/user/show";
 	}

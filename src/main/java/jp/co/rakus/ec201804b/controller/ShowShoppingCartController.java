@@ -45,7 +45,9 @@ public class ShowShoppingCartController {
 		Order viewOrder = orderRepository.findByUserIdAndStatus(userId, 0);
 		if(viewOrder !=null) {
 			Long orderId = viewOrder.getId();
+
 			order=orderRepository.load(orderId);
+
 		}
 		
 //		for (Order order : orderList) {

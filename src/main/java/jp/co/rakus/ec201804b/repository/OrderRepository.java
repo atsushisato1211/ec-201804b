@@ -139,6 +139,25 @@ public class OrderRepository {
 		}
 	}
 	
+	public List<Order> findByOrderId(long orderId) {
+		try {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", orderId);
+		String sql = "select o.id as order_id, order_number, user_id, status, "
+				+ "total_price, order_date, delivery_name,delivery_email,"
+				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
+				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
+				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
+				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "left outer join order_items oi "
+				+ "on (o.id = oi.order_id) "
+				+ "join items i on (oi.item_id = i.id) where order_id=:orderId";
+		List<Order> orderList = template.query(sql, param, ORDER_RSE);
+		return orderList;
+		}catch (Exception e) {
+			return null;
+		}
+	}
+	
 	public void update(int status,Long id) {
 		
 		SqlParameterSource param=new MapSqlParameterSource().addValue("status", status).addValue("id", id);
@@ -214,6 +233,20 @@ public class OrderRepository {
 		SqlParameterSource param = new MapSqlParameterSource();
 
 		return template.queryForObject(sql, param, Long.class);
+	}
+	
+	public void updateOrderItem(OrderItem orderItem) {
+		System.out.println("updateOrderItemを呼ばれました");
+		if(orderItem.getOrderId()==null)
+			orderItem.setOrderId((Long) session.getAttribute("orderId"));
+		try {
+			
+			String sql = "update order_items set quantity=quantity+:quantity where item_id=:ItemId and order_id=:orderId";
+			SqlParameterSource param = new BeanPropertySqlParameterSource(orderItem);
+			template.update(sql, param);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 

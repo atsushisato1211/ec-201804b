@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Component;
 
+
 import jp.co.rakus.ec201804b.domain.LoginUser;
 
 @Component
@@ -20,7 +21,8 @@ public class MailSendSystem {
 	MailSendSystem(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
-	public SimpleMailMessage send(/*form String subject, String content, */ @AuthenticationPrincipal LoginUser loginUser) {
+
+	public SimpleMailMessage send(/* String subject, String content, */ @AuthenticationPrincipal LoginUser loginUser) {
 
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 

@@ -30,6 +30,7 @@ public class PaymentController {
 	MailSendSystem mail;
 	
 	@Autowired
+
 	MailContact con;
 	
 	@Autowired
@@ -53,7 +54,9 @@ public class PaymentController {
 	public String confirmed(@RequestParam Long orderId, @AuthenticationPrincipal LoginUser loginUser) {
 		orderRepository.update(1, orderId);
 		mail.send(loginUser);
+
 		//con.send(loginUser);
 		return "user/confirmedPayment";
+
 	}
 }
