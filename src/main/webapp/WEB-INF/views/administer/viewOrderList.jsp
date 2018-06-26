@@ -18,8 +18,9 @@
 	<div align="center">
 
 <h1>注文一覧画面</h1>
-<c:when test="${orderList.isEmpty()}">注文がありません。</c:when>
+<c:choose><c:when test="${orderList.isEmpty()}">注文がありません。</c:when>
 	<c:otherwise>
+	
 <table border="1">
       <tr>
         <th nowrap>注文番号</th>
@@ -37,7 +38,7 @@
         <td>&yen;<fmt:formatNumber value="${order.totalPrice*1.08}" pattern="###,###"/></td>
       </tr>
      </c:forEach>
-    </table></c:otherwise>
+    </table></c:otherwise></c:choose>
     <br>
     <a href="${pageContext.request.contextPath}/admin/menu">メニューに戻る</a>
 </div>
