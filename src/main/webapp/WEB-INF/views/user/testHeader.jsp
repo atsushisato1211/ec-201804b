@@ -85,7 +85,6 @@
     </ul>
   </li>
 </ul> -->
-
 	<ul class="nav">
 			<li><a href="${pageContext.request.contextPath}/user/item">Home</a>
 			</li>
@@ -238,6 +237,8 @@
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/user/show">カートの中身を見る</a></li>
 				</ul></li>
+			<li><a href="${pageContext.request.contextPath}/user/recontact">お問い合わせ</a>
+			</li>
 			<sec:authorize access="hasRole('ROLE_MEMBER') and isAuthenticated()">
 				<sec:authentication var="userName" property="principal.user.name" />
 				<li><a href="${pageContext.request.contextPath}/user/logout"><c:out value="${userName}" />&nbsp;さん<br>ログアウト</a>

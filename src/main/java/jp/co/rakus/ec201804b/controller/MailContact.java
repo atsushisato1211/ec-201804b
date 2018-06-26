@@ -22,7 +22,7 @@ public class MailContact {
 	MailContact(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
-	public SimpleMailMessage send(/*String subject, String content, */ @AuthenticationPrincipal LoginUser loginUser) {
+	public SimpleMailMessage send(String title, String comment, @AuthenticationPrincipal LoginUser loginUser) {
 
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 
@@ -30,8 +30,8 @@ public class MailContact {
 		mailMessage.setReplyTo(loginUser.getUser().getEmail());
 		//mailMessage.setFrom(loginUser.getUser().getEmail());
 		
-		String subject = loginUser.getUser().getName()  +"さんからのお問い合わせ";
-		String content = "Email: " + loginUser.getUser().getEmail() + LINE_SEPARATOR + LINE_SEPARATOR + "お問い合わせです。";
+		String subject = loginUser.getUser().getName()  +"さんからのお問い合わせ" + " 【" + title + "】";
+		String content = "Email: " + loginUser.getUser().getEmail() + LINE_SEPARATOR + LINE_SEPARATOR + comment;
 		mailMessage.setSubject(subject);
 		mailMessage.setText(content);
 
