@@ -39,8 +39,9 @@ public class InsertShoppingCartController {
 	public String insertItem(OrderItemForm form,@AuthenticationPrincipal LoginUser userDetails) {
 		
 		
-		System.out.println(session.getAttribute("userId"));
-		if(session.getAttribute("userId")==null) {
+		Long userId = (Long) session.getAttribute("userId");
+		Order orderUser = orderRepository.findByUserIdAndStatus(userId, 0);
+		if(orderUser==null) {
 			Order order= new Order();
 			if(userDetails==null) {
 				long random = (long)-(rand.nextInt(Integer.MAX_VALUE));
@@ -63,6 +64,7 @@ public class InsertShoppingCartController {
 			}
 			order.setStatus(0);
 			order.setTotalPrice(0);
+			order.setId((Long) session.getAttribute("orderId"));
 			LocalDateTime localDateTime = LocalDateTime.now();
 			ZoneId zone = ZoneId.systemDefault();
 			ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, zone);
@@ -77,7 +79,13 @@ public class InsertShoppingCartController {
 		OrderItem orderItem = new OrderItem();
 		BeanUtils.copyProperties(form,orderItem);
 		orderItem.setItemId(form.getItemId().longValue());
-		List<Order> orderItemList = orderRepository.findByOrderId((long) session.getAttribute("orderId"));
+		List<Order> orderItemList = null;
+		if(orderUser == null) {
+			orderItemList = orderRepository.findByOrderId((long) session.getAttribute("orderId"));
+		} else {
+			orderItem.setOrderId(orderUser.getId());
+			orderItemList = orderRepository.findByOrderId(orderUser.getId());
+		}
 		for (Order order : orderItemList) {
 			if(order.getOrderItemList().get(order.getOrderItemList().size()-1).getItemId()==form.getItemId().longValue()) {
 				System.out.println("111");

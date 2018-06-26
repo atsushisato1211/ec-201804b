@@ -38,7 +38,8 @@ public class PaymentController {
 	
 	@RequestMapping("/payment/make")
 	public String orderDetail(@RequestParam Long id, Model model) {
-		Order order = orderRepository.load(id);
+		Long orderId = (Long) session.getAttribute("orderId");
+		Order order = orderRepository.load(orderId);
 		List<OrderItem> orderItemList = order.getOrderItemList();
 		Integer totalPrice = 0;
 		for (OrderItem orderItem : orderItemList) {
