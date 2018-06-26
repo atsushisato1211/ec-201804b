@@ -29,7 +29,7 @@ public class OrderItemListController {
 	@RequestMapping("/orderList")
 	public String show() {
 		List<Order> orderList =orderRepository.findAll();
-		List<Order> orderList2 = new ArrayList<>();;
+		List<Order> orderList2 = new ArrayList<>();
 		for (Order order : orderList) {
 			Map<Integer, String> statusMap = orderItemDetail.mapCreate();
 			String value = statusMap.get(order.getStatus());
