@@ -32,7 +32,8 @@ public class SecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			http.antMatcher("/user/**")
 			.authorizeRequests() // 認可に関する設定
-					.antMatchers("/user/index", "/user/item**","/user/insert", "/user/show",
+					.antMatchers("/user/index", "/user/item**","/user/findByNameAndSort**","/user/findByName**",
+							"/user/findBySort**","/user/findBySeason**","/user/insert", "/user/show",
 							"/user/form", "/user/create", "/user/checkpassword", "/user/forget","user/recontact",
 							"/user/finish","/user/contact","/user/filloutpass","/user/checkpassword","/user/postpass","/user/delete**").permitAll() // 「/」などのパスは全てのユーザに許可
 					//ユーザーがいけるパスだけを記述する

@@ -15,7 +15,7 @@
 <link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="userHeader.jsp" />
+	<jsp:include page="testHeader.jsp" />
 	<br>
 	<form:form modelAttribute="userNewPasswordForm" action="${pageContext.request.contextPath}/user/postpass">
 		<div align="center">
