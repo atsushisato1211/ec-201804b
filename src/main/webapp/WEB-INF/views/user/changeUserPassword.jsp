@@ -10,10 +10,10 @@
 <title>パスワード変更画面</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/ecHeader.css" />
-<link href="${pageContext.request.contextPath}/css/test.css"
-	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/testHeader.css" />
+<link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/Registration.css" />
 <link rel="stylesheet"
@@ -23,7 +23,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<jsp:include page="userHeader.jsp" />
+	<jsp:include page="testHeader.jsp" />
 	<br>
 	<div align="center">
 		<br>
