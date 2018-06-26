@@ -241,7 +241,11 @@
 			</li>
 			<sec:authorize access="hasRole('ROLE_MEMBER') and isAuthenticated()">
 				<sec:authentication var="userName" property="principal.user.name" />
-				<li><a href="${pageContext.request.contextPath}/user/logout"><c:out value="${userName}" />&nbsp;さん<br>ログアウト</a>
+				<li><a class="login" href="${pageContext.request.contextPath}/user/logout"><c:out value="${userName}" />&nbsp;さん<br>ログアウト</a>
+				<ul>
+							<li><a href="${pageContext.request.contextPath}/user/info">登録者情報変更</a></li>
+							<li><a href="${pageContext.request.contextPath}/user/password">パスワード変更</a></li>
+						</ul>
 				</li>
 			</sec:authorize>
 			<sec:authorize
