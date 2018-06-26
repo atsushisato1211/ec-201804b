@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 
 import jp.co.rakus.ec201804b.domain.LoginUser;
 import jp.co.rakus.ec201804b.domain.Order;
+import jp.co.rakus.ec201804b.domain.OrderItem;
 import jp.co.rakus.ec201804b.domain.User;
+import jp.co.rakus.ec201804b.repository.OrderItemRepository;
 import jp.co.rakus.ec201804b.repository.OrderRepository;
 import jp.co.rakus.ec201804b.repository.UserRepository;
 
@@ -29,12 +31,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 
 	@Autowired
 	private HttpSession session;
 
-	@Autowired
-	private HttpServletRequest request;
 
 	/*
 	 * (non-Javadoc)
@@ -59,6 +62,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			session.setAttribute("orderId", orderId);
 		}
 		
+//		OrderItem orderItem = orderItemRepository.load(orderId);
+//		if (orderItemRepository.findByItemId(orderItem.getItemId().longValue()).size() >= 1) {
+//			orderRepository.updateOrderItem(orderItem);
+//		} else {
+//			orderRepository.insertOrderItem(orderItem);
+//		}
+		
 		// orderIdを引っ張ってくる
 		System.out.println(session.getAttribute("userId"));
 		
@@ -82,7 +92,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				//前のuserIdでショッピングカートを検索preOrder
 				//それがもしあったらそのidでupdateOrderId
 				//前のいらないのをdelete
-				orderRepository.updateById(user, guestOrderId);//一番最後
+				orderRepository.updateById(user, guestOrderId);
+				
+				//一番最後
 				session.removeAttribute("userId");
 			}
 		}
