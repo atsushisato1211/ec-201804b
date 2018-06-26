@@ -37,9 +37,12 @@ public class InsertShoppingCartController {
 
 	@RequestMapping("/insert")
 	public String insertItem(OrderItemForm form,@AuthenticationPrincipal LoginUser userDetails) {
-		
-		
-		Long userId = (Long) session.getAttribute("userId");
+		Long userId = null;
+		if(userDetails != null) {
+			userId = userDetails.getUser().getId();
+		}else {
+			userId = (Long) session.getAttribute("userId");
+		}
 		Order orderUser = orderRepository.findByUserIdAndStatus(userId, 0);
 		if(orderUser==null) {
 			Order order= new Order();
@@ -81,6 +84,7 @@ public class InsertShoppingCartController {
 		orderItem.setItemId(form.getItemId().longValue());
 		List<Order> orderItemList = null;
 		if(orderUser == null) {
+			orderItem.setOrderId((long) session.getAttribute("orderId"));
 			orderItemList = orderRepository.findByOrderId((long) session.getAttribute("orderId"));
 		} else {
 			orderItem.setOrderId(orderUser.getId());
