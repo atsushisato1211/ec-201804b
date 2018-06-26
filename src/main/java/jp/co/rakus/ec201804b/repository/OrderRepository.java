@@ -258,8 +258,8 @@ public class OrderRepository {
 			else
 				orderItem.setId((long) 1);
 		}
-		if(orderItem.getOrderId()==null)
-			orderItem.setOrderId((Long) session.getAttribute("orderId"));
+//		if(orderItem.getOrderId()==null)
+//			orderItem.setOrderId((Long) session.getAttribute("orderId"));
 		try {
 			
 			String sql = "insert into order_items values(:id,:itemId,:orderId,:quantity)";
@@ -302,7 +302,11 @@ public class OrderRepository {
 				+ "on (o.id = oi.order_id) "
 				+ "join items i on (oi.item_id = i.id) where user_id = :userId";
 		List<Order> orderList = template.query(sql, param, ORDER_RSE);
+		if(orderList.size() == 0) {
+			return null;
+		}
 		return orderList.get(0);
+		
 	}
 
 
