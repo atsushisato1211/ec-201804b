@@ -22,6 +22,7 @@ import jp.co.rakus.ec201804b.domain.LoginUser;
 import jp.co.rakus.ec201804b.domain.Order;
 import jp.co.rakus.ec201804b.domain.OrderItem;
 import jp.co.rakus.ec201804b.form.OrderItemForm;
+import jp.co.rakus.ec201804b.repository.OrderItemRepository;
 import jp.co.rakus.ec201804b.repository.OrderRepository;
 
 @Controller
@@ -31,6 +32,8 @@ public class InsertShoppingCartController {
 	Random rand = new Random();
 	@Autowired
 	private OrderRepository orderRepository;
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 	@Autowired
 	private HttpSession session;
@@ -81,35 +84,32 @@ public class InsertShoppingCartController {
 		OrderItem orderItem = new OrderItem();
 		BeanUtils.copyProperties(form,orderItem);
 		orderItem.setItemId(form.getItemId().longValue());
-		List<Order> orderItemList = null;
-		if(orderUser == null) {
+		List<Order> orderItemList=null;
+		if(orderUser==null) {
 			orderItem.setOrderId((long) session.getAttribute("orderId"));
 			orderItemList = orderRepository.findByOrderId((long) session.getAttribute("orderId"));
-		} else {
+		}else{
 			orderItem.setOrderId(orderUser.getId());
 			orderItemList = orderRepository.findByOrderId(orderUser.getId());
 		}
-		for (Order order : orderItemList) {
-			if(order.getOrderItemList().get(order.getOrderItemList().size()-1).getItemId()==form.getItemId().longValue()) {
+//		for (Order order : orderItemList) {
+//			if(order.getOrderItemList().get(order.getOrderItemList().size()-1).getItemId()==form.getItemId().longValue()) {
+//				System.out.println("111");
+//				orderRepository.updateOrderItem(orderItem);
+//			}else {
+//				System.out.println("222");
+//				orderRepository.insertOrderItem(orderItem);
+//			}	
+//		System.out.println(orderItemRepository.findByItemId(form.getItemId().longValue()));
+		if(orderItemRepository.findByItemId(form.getItemId().longValue()).size()>=1) {
 				System.out.println("111");
 				orderRepository.updateOrderItem(orderItem);
 			}else {
-				System.out.println("222");
+				System.out.println("2222");
 				orderRepository.insertOrderItem(orderItem);
-			}
-					
-//			for (OrderItem itemList : order.getOrderItemList()) {
-//				if(itemList.getItemId()==form.getItemId().longValue()) {
-//					System.out.println("111");
-//					orderRepository.updateOrderItem(orderItem);
-//					break;
-//				}else {
-//					System.out.println("2222");
-//					orderRepository.insertOrderItem(orderItem);
-//					break;
-//				}
-//			}
-		}
+				}
+			
+//		}
 //		System.out.println(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
 //		orderItem.setOrderId(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
 		if(orderItemList.size()==0)
