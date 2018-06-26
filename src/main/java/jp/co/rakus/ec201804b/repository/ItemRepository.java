@@ -71,7 +71,7 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト
 	 */
 	public List<Item> findAll() {
-		String sql = "select id,name,description,price,imagePath,deleted from " + TABLE_NAME + " order by id ";
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " order by id ";
 		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
 	}
@@ -203,7 +203,7 @@ public class ItemRepository {
 		if (item.getId() == null) {
 			throw new NullPointerException();
 		}
-		String sql = "update " + TABLE_NAME + " set name=:name,description=:description,"
+		String sql = "update " + TABLE_NAME + " set name=:name,description=:description,producingArea=:producingArea,season=:season,"
 				+ "price=:price,imagePath=:imagePath,deleted=:deleted where id=:id";
 		template.update(sql, param);
 
@@ -218,7 +218,7 @@ public class ItemRepository {
 			item.setId(MaxId());
 		}
 		SqlParameterSource param = new BeanPropertySqlParameterSource(item);
-		String sql = "insert into " + TABLE_NAME + " values(:id,:name,:description,"
+		String sql = "insert into " + TABLE_NAME + " values(:id,:name,:description,:producingArea,:season,"
 				+ ":price,:imagePath,true )";
 		template.update(sql, param);
 
