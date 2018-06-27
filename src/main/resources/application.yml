@@ -22,7 +22,7 @@ spring:
     test-connection: false
   datasource:
     driver-class-name:  org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/student
+    url: jdbc:postgresql://localhost:5432/ec-201804b
     username: postgres
     password: postgres
   mvc:
@@ -31,4 +31,4 @@ spring:
       suffix: .jsp
 server:
   servlet:
-      context-path: /web
+      context-path: /ec-201804b

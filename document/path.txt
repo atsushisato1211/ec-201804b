@@ -1,0 +1,8 @@
+ユーザー用トップページURL
+http://localhost:8080/ec-201804b/user/item
+
+管理者用ログインページURL
+http://localhost:8080/ec-201804b/admin/index
+
+email:test@gmail.com
+pass:12345678
