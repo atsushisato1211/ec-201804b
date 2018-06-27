@@ -113,9 +113,9 @@
 </form:form></td>
       </tr>
     </table><br>
- <c:out value ="${update}"/><br>
-<br>
-    <a href="${pageContext.request.contextPath}/admin/orderList/">注文一覧に戻る</a>
+ <c:out value ="${update}"/>
+    <a href="${pageContext.request.contextPath}/admin/orderList/"><font size="5">注文一覧に戻る</font></a>
+    <br>
 </div>
 </body>
 </html>
