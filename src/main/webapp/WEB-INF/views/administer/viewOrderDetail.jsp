@@ -11,93 +11,95 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminHeader.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewOrderDetail.css" type="text/css">
 </head>
 <body>
 <jsp:include page="adminHeader.jsp" />
-<div align="center">
+<div align="center" class="view">
 
 <h1>注文詳細画面</h1>
-<table border="1">
+<table class="table table-striped" border="1">
 				  <tr>
-				    <th nowrap>注文NO</th>
-				    <td><c:out value="${order.orderNumber}"/></td>
+				    <th nowrap><font size="3">注文NO</font></th>
+				    <td><font size="3"><c:out value="${order.orderNumber}"/></font></td>
 				  </tr>
 				  <tr>
-				    <th nowrap>名前</th>
-				    <td><c:out value="${order.deliveryName}"/></td>
+				    <th nowrap><font size="3">名前</font></th>
+				    <td><font size="3"><c:out value="${order.deliveryName}"/></font></td>
 				  </tr>
 				  <tr>
-				    <th nowrap>アドレス</th>
-				    <td><c:out value="${order.deliveryEmail}"/></td>
+				    <th nowrap><font size="3">アドレス</font></th>
+				    <td><font size="3"><c:out value="${order.deliveryEmail}"/></font></td>
 				  </tr>
 				  <tr>
-				    <th nowrap>住所</th>
-				    <td><c:out value="${order.deliveryAddress}"/></td>
+				    <th nowrap><font size="3">住所</font></th>
+				    <td><font size="3"><c:out value="${order.deliveryAddress}"/></font></td>
 				  </tr>
 				  <tr>
-				    <th nowrap>TEL</th>
-				    <td><c:out value="${order.deliveryTel}"/></td>
+				    <th nowrap><font size="3">TEL</font></th>
+				    <td><font size="3"><c:out value="${order.deliveryTel}"/></font></td>
 				  </tr>
-				  </table><br>
+				  </table>
+				  <br>
 				  
-	<table border="1">
+	<table border="1" class="table table-striped">
       <c:forEach var="orderItem" items="${order.orderItemList}">
-      <tr>
-        <th nowrap>商品</th>
-        <th nowrap>価格</th>
-        <th nowrap>×</th>
-        <th nowrap>個数</th>
-       <th nowrap>金額</th>
+    <tr>
+        <th nowrap><font size="3">商品</font></th>
+        <th nowrap><font size="3">価格</font></th>
+        <th nowrap><font size="3">×</font></th>
+        <th nowrap><font size="3">個数</font></th>
+       <th nowrap><font size="3">金額</font></th>
       </tr>
       <tr>
-        <td><c:out value="${orderItem.item.name}"/></td>
-        <td>&yen;<fmt:formatNumber value="${orderItem.item.price}" pattern="###,###"/></td>
-        <td>×</td>
-        <td><c:out value="${orderItem.quantity}"/></td>
-        <td>&yen;<fmt:formatNumber value="${orderItem.item.price*orderItem.quantity}" pattern="###,###"/></td>
+        <td><font size="3"><c:out value="${orderItem.item.name}"/></font></td>
+        <td><font size="3">&yen;<fmt:formatNumber value="${orderItem.item.price}" pattern="###,###"/></font></td>
+        <td><font size="4">×</font></td>
+        <td><font size="3"><c:out value="${orderItem.quantity}"/></font></td>
+        <td><font size="3">&yen;<fmt:formatNumber value="${orderItem.item.price*orderItem.quantity}" pattern="###,###"/></font></td>
       </tr>
       </c:forEach>
     </table><br>
     
     
-    <table border="1">
+    <table border="1" class="table table-striped">
 				  <tr>
-				    <th nowrap>小計</th>
-				    <td>&yen;<fmt:formatNumber value="${order.totalPrice}" pattern="###,###"/></td>
+				    <th nowrap><font size="3">小計</font></th>
+				    <td><font size="3">&yen;<fmt:formatNumber value="${order.totalPrice}" pattern="###,###"/></font></td>
 				  </tr>
 				  <tr>
-				    <th nowrap>税</th>
-				    <td>&yen;<fmt:formatNumber value="${order.totalPrice*0.08}" pattern="###,###"/></td>
+				    <th nowrap><font size="3">税</font></th>
+				    <td><font size="3">&yen;<fmt:formatNumber value="${order.totalPrice*0.08}" pattern="###,###"/></font></td>
 				  </tr>
 				  <tr>
-				    <th nowrap>支払い方法</th>
+				    <th nowrap><font size="3">支払い方法</font></th>
 				    <td>
-				      銀行振込
+				      <font size="3">銀行振込</font>
 				    </td>
 				  </tr>
 				  <tr>
 				    <th nowrap>
-				      送料一律
+				      <font size="3">送料一律</font>
 				    </th>
 				    <td>
-				      500円
+				   <font size="3">  500円</font>
 				    </td>
 				  </tr>
 				  <tr>
 				    <th nowrap>
-				      総計
+				 <font size="3">     総計</font>
 				    </th>
-				    <td>&yen;<fmt:formatNumber value="${order.totalPrice*1.08}" pattern="###,###"/></td>
+				    <td><font size="3">&yen;<fmt:formatNumber value="${order.totalPrice*1.08}" pattern="###,###"/></font></td>
 				  </tr>
 				  </table><br>
 
-	<table border="1">
+	<table border="1" class="table table-striped">
       <tr>
-        <th nowrap>現在のステータス</th>
-        <th nowrap>ステータス変更</th>
+        <th nowrap><font size="3">現在のステータス</font></th>
+        <th nowrap><font size="3">ステータス変更</font></th>
       </tr>
       <tr>
-        <td><c:out value="${value}"/></td>
+        <td><font size="3"><c:out value="${value}"/></font></td>
         <td><form:form modelAttribute="oderDetailForm" action="${pageContext.request.contextPath}/admin/updateStatus?id=${order.id}">
 <select name="status">
 <option value="1">未入金</option>

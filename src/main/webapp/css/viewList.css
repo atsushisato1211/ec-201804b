@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+.margin{
+	margin-left: 25%;
+	margin-right: 25%;
+	background: skyblue;
+	font-size:4pt;
+}
