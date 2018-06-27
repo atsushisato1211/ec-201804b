@@ -87,7 +87,8 @@ public class PaymentController {
 		orderRepository.update(1, orderId);
 		System.out.println(orderId);
 		orderRepository.updateNumber(orderId);
-		mail.send(loginUser);
+		Order order = orderRepository.load(orderId);
+		mail.send(loginUser, order);
 
 		// con.send(loginUser);
 		return "user/confirmedPayment";
