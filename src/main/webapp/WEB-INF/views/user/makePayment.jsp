@@ -62,6 +62,8 @@
 住所：<c:out value="${order.deliveryAddress}"/><br>
 郵便番号：<c:out value="${order.deliveryZipCode}"/><br>
 電話番号：<c:out value="${order.deliveryTel}"/><br><br>
+orderId:<c:out value="${order.id}"/><br><br>
+
 <form:form action="${pageContext.request.contextPath}/user/payment/confirmed?orderId=${order.id}">
 <button type="submit" class="btn btn-info">確定</button>
 </form:form></div>
