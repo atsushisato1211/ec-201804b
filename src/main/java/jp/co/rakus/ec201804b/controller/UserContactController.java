@@ -35,13 +35,7 @@ public class UserContactController {
 	
 	@RequestMapping("/contact")
 	public String request(@Validated UserContactForm form , BindingResult result,@AuthenticationPrincipal LoginUser loginUser) {
-		
-//		if(form.getName().equals("")) {
-//			result.rejectValue("name",null,"タイトルを記入してください");
-//		}
-//		if(form.getContent().equals("")) {
-//			result.rejectValue("content",null, "本文を記入してください");
-//		}
+
 		if(result.hasErrors()) {
 			return contact();
 		}

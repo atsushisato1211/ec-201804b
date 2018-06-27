@@ -43,7 +43,8 @@
 				<tr>
 					<td><label for="imagePath">商品画像:</label></td>
 					<td><input name="imagePath" type="file" accept="image/*" />
-					<form:errors path="imagePath" cssStyle="color:red" element="div" /></td>
+					<form:errors path="imagePath" cssStyle="color:red" element="div" />
+					</td>
 				</tr>
 				<tr>
 					<td><label for="season">季節:</label></td>

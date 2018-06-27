@@ -24,8 +24,7 @@
 			</tr>
 			<tr>
 				<td>商品説明</td>
-				<td><form:textarea path="description"
-						value="${itemContent.description}" /></td>
+				<td><textarea name="description" rows="15" cols="150">${itemContent.description}</textarea></td>
 			</tr>
 			<tr>
 				<td>商品価格</td>
@@ -33,24 +32,24 @@
 			</tr>
 			<tr>
 				<td>商品画像</td>
-				<td><input name="imagePath" type="file" accept="image/*"
-					required /></td>
+				<td><input name="imagePath" type="file" accept="image/*"/></td>
 			</tr>
-			<tr>
+			<tr> 
 				<td><label for="season">季節:</label></td>
-				<td><form:input path="season" /> <form:errors path="season"
+				<td><form:input path="season" value="${itemContent.season}"/> <form:errors path="season"
 						cssStyle="color:red" element="div" /></td>
 			</tr>
 			<tr>
 				<td><label for="producingArea">生産地:</label></td>
-				<td><form:input path="producingArea" /> <form:errors
-						path="producingArea" cssStyle="color:red" element="div" /></td>
+				<td><form:input path="producingArea" value="${itemContent.producingArea}"/>
+				<form:errors path="producingArea" cssStyle="color:red" element="div" /></td>
 			</tr>
 			<tr>
 				<td>削除済み</td>
 				<td><c:if test="${itemContent.deleted==true}">
 						<form:checkbox path="deleted" checked="checked" />
-					</c:if> <c:if test="${itemContent.deleted==false}">
+					</c:if> 
+					<c:if test="${itemContent.deleted==false}">
 						<form:checkbox path="deleted" />
 					</c:if></td>
 			</tr>
