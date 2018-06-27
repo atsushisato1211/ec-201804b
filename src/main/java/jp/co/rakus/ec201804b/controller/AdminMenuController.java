@@ -105,10 +105,11 @@ public class AdminMenuController {
 		System.out.println(item.getDeleted());
 		/** 画像の処理を行う */
 		MultipartFile imageFile = form.getImagePath();
-		if(imageFile.isEmpty()){
-			model.addAttribute("imageError","画像は必須です");
-			return  itemeContent(form.getId(),model);
-		}
+		
+//		if(imageFile.isEmpty()){
+//			model.addAttribute("imagePath",imageFile);
+//			return  listview(model);
+//		}
 		// ファイルの名前を取得
 		String filename = imageFile.getOriginalFilename();
 		// 画像を保存する
