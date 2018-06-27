@@ -11,17 +11,18 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminHeader.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewOrderList.css" type="text/css">
 </head>
 <body>
 <jsp:include page="adminHeader.jsp" />
 	
-	<div align="center">
+<h1 align="center">注文一覧画面</h1>
+	<div class="order" align="center">
 
-<h1>注文一覧画面</h1>
 <c:choose><c:when test="${orderList.isEmpty()}">注文がありません。</c:when>
 	<c:otherwise>
 	
-<table border="1">
+<table class="table table-striped"  border="1">
       <tr>
         <th nowrap>注文番号</th>
         <th nowrap>日付</th>
@@ -39,9 +40,9 @@
       </tr>
      </c:forEach>
     </table></c:otherwise></c:choose>
-    <br>
-    <a href="${pageContext.request.contextPath}/admin/menu">メニューに戻る</a>
 </div>
-	
+<div align="center"> 
+    <a href="${pageContext.request.contextPath}/admin/menu">メニューに戻る</a>
+	</div>
 </body>
 </html>
