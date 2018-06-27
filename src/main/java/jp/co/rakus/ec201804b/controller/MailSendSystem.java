@@ -3,7 +3,6 @@ package jp.co.rakus.ec201804b.controller;
 import java.text.NumberFormat;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,13 +47,17 @@ public class MailSendSystem {
 		String subject = "楽楽成果　ご注文の確認";
 		String content = loginUser.getUser().getName() + "様" + LINE_SEPARATOR + LINE_SEPARATOR
 				+ "ご注文ありがとうございます。" + LINE_SEPARATOR 
-				+ "注文番号: " + order.getOrderNumber() + LINE_SEPARATOR
-				+ "購入した商品は以下です。" + LINE_SEPARATOR + list 
+				+ "注文番号: " + order.getOrderNumber() + LINE_SEPARATOR + LINE_SEPARATOR
+				+ "購入した商品は以下です。" + LINE_SEPARATOR 
+				+ "---------------------------------------------------------------------------------------" + LINE_SEPARATOR 
+				+ list 
+				+ "---------------------------------------------------------------------------------------" + LINE_SEPARATOR
 				+ "小計: " + nfCur.format(order.getTotalPrice()*1.08) + LINE_SEPARATOR
 				+ "送料: " + nfCur.format(500) + LINE_SEPARATOR
 				+ "総計: " + nfCur.format(order.getTotalPrice()*1.08 + 500) + LINE_SEPARATOR
 				+ LINE_SEPARATOR
-				+ "お届け先:" + order.getDeliveryAddress() + LINE_SEPARATOR
+				+ "お届け先: " + order.getDeliveryAddress() + LINE_SEPARATOR
+				+ "---------------------------------------------------------------------------------------" + LINE_SEPARATOR + LINE_SEPARATOR
 				+ "上記内容に不備があった場合は、恐れ入りますがec201804b@gmail.comまでご連絡をお願いします。" + LINE_SEPARATOR
 				+ "ご利用ありがとうございます。またのご利用をお待ちしております。"
 				;
