@@ -43,11 +43,11 @@
 	</form:form>
 				<!-- <input type="submit" value="削除" align="center"> -->
 				<form:form action="${pageContext.request.contextPath}/admin/changeByDeleted" align="center" method="post">
-				<c:if test="${item.deleted==true}">
+				<c:if test="${item.deleted==false}">
 				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>
 				<input type="hidden" name="deleted" value='<c:out value="${item.deleted}"/>'>
 				<input type="submit" value="削除" align="center"></c:if>
-				<c:if test="${item.deleted==false}">
+				<c:if test="${item.deleted==true}">
 				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>
 				<input type="hidden" name="deleted" value='<c:out value="${item.deleted}"/>'>
 				<input type="submit" value="再表示" align="center"></c:if>

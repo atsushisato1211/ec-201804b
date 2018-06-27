@@ -9,12 +9,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>商品詳細</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/ecHeader.css" />
-<link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet">
+<%-- <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/ecHeader.css" /> --%>
+<%-- <link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet"> --%>
+<link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/imgslide.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/wall.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="userHeader.jsp" />
+<%-- <jsp:include page="userHeader.jsp" /> --%>
+<jsp:include page="testHeader.jsp" />
 	<br>
 
 

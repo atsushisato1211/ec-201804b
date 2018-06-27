@@ -9,13 +9,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<%-- <link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet"> --%>
 
 </head>
 <body>
-	<header>
+	<header class="userheader">
   <p>
-    <a href="${pageContext.request.contextPath}/user/item"><img class="head"
+    <a class="header_img" href="${pageContext.request.contextPath}/user/item"><img class="head"
 						src="<%=request.getContextPath()%>/img/link.png" width="120" height="40"/></a>
   </p>
 <!--   <style>
@@ -251,15 +252,21 @@
 			<sec:authorize
 				access="!(hasRole('ROLE_MEMBER') and isAuthenticated())">
 				<li><a class="login" href="${pageContext.request.contextPath}/user/index">こんにちはゲストさん<br>ログイン</a>
+				<ul>
+							<li><a class="login" href="${pageContext.request.contextPath}/user/form">新規登録はこちら</a></li>
+							<li><a class="login" href="${pageContext.request.contextPath}/user/forget">パスワードを忘れた方はこちら</a></li>
+						</ul>
 				</li>
 			</sec:authorize>
 
 			<!--nav-->
 		</ul>
+		
+		
 	<div class="header_search">
 <form action="<%=request.getContextPath()%>/user/findByName">
-		<input type="text" name="useritem" value="${itemName}" placeholder="商品名を検索" id="search"> 
-		<button type="submit" id="submit_button">検索</button>
+		<input class="search_test" type="text" name="useritem" value="${itemName}" placeholder="商品名を検索"> 
+		<button class="submit_button_test" type="submit" >検索</button>
 			</form>
 </div>
 </header>

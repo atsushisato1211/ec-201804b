@@ -128,6 +128,7 @@
 </div>
 
 	<!-- 商品一覧テスト開始 -->
+<div align ="center">
 	<br><c:choose>
 	<c:when test="${itemList.isEmpty()}"><c:out value="${erroritemName}"/>は商品名に該当しません。</c:when>
 	<c:otherwise><table class="item" cellspacing="30" border="0" class="itemList" align="center">
@@ -155,16 +156,16 @@
 		</c:forEach>
 	</table></c:otherwise>
 	</c:choose>
+	</div>
 	<!-- 商品一覧テスト終了 -->
 	
 
 	
-	
+		
+<div class="page_user">
 	<c:if test="${!itemList.isEmpty()}">
-	
 	</c:if><c:out value="${maxPageNum}"></c:out>
 	<c:forEach var="obj" items="${data}" varStatus="status"></c:forEach>
-<div>
   <ul class="pagination">
     <li class="page-item <c:if test="${(pageNum)==1}">disabled</c:if>">
       <a class="page-link" href="<%=request.getContextPath()%>/user/page?pageNum=<c:out value="${pageNum-1}"/>">&laquo;</a>

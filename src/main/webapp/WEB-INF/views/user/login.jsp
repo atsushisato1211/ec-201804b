@@ -17,7 +17,7 @@
 </head>
 <body>
 	<jsp:include page="testHeader.jsp" />
-	
+	<%--   <video src="<%=request.getContextPath()%>/img/original.mp4" autoplay loop></video> --%>
 	<div align="center">
 	<h3>ログイン</h3>
 	<form:errors path="userLoginForm.*" cssStyle="color:red" element="div"/>

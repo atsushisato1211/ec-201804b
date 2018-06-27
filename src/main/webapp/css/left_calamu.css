@@ -7,7 +7,8 @@ div#submenu {
 	width:260px;			/*幅の指定*/
 	margin:10px 10px 10px 25px;	/*位置調整（IE6のバグに注意）*/
 	display:inline;			/*IE6のマージン算出のバグ対策*/
-	float:left;			/*サブメニューのカラムを左寄せにする*/
+	position: fixed;
+	/* float:left;	 */		/*サブメニューのカラムを左寄せにする*/
 }
 
 /*サブメニューのヘッダ部分（余白調整・背景画像・背景色・文字サイズなど）*/
