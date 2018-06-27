@@ -48,6 +48,11 @@ public class PaymentController {
 			userId = (Long) session.getAttribute("userId");
 		}
 		Order orderUser = orderRepository.findByUserIdAndStatus(userId, 0);
+		
+		if(orderUser == null ) {
+			return "user/makePayment"; 
+		}
+		
 		Long orderId = orderUser.getId();
 		Order order = orderRepository.load(orderId);
 		List<OrderItem> orderItemList = order.getOrderItemList();

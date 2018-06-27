@@ -19,7 +19,11 @@
 <jsp:include page="testHeader.jsp" />
 
 <h2 align="center">ご注文内容</h2>
-
+<c:choose>
+	<c:when test="${order==null}">
+    <p align="center">注文がありません</p>
+	</c:when>
+	<c:otherwise>
 <hr>
 <table border="1" width="350"  align="center">
 <tr>
@@ -62,11 +66,11 @@
 住所：<c:out value="${order.deliveryAddress}"/><br>
 郵便番号：<c:out value="${order.deliveryZipCode}"/><br>
 電話番号：<c:out value="${order.deliveryTel}"/><br><br>
-orderId:<c:out value="${order.id}"/><br><br>
 
 <form:form action="${pageContext.request.contextPath}/user/payment/confirmed?orderId=${order.id}">
 <button type="submit" class="btn btn-info">確定</button>
 </form:form></div>
-
+        </c:otherwise>
+    </c:choose>
 </body>
 </html>
