@@ -3,6 +3,7 @@ package jp.co.rakus.ec201804b.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -211,12 +212,9 @@ public class OrderRepository {
 			else
 				order.setId((long) 1);
 		}
-		if (order.getOrderNumber() == null) {
-			if(MaxOrderId() != null)
-				order.setOrderNumber(String.valueOf(MaxOrderId()));
-			else
-				order.setOrderNumber("1");
-		}
+		int year = LocalDate.now().getYear();
+		String number = year + "000000";
+		order.setOrderNumber(number);
 		session.setAttribute("orderId", order.getId());
 		System.out.println(order.getId());
 		try {
@@ -234,6 +232,8 @@ public class OrderRepository {
 
 		return template.queryForObject(sql, param, Long.class);
 	}
+	
+	
 	
 	public void updateOrderItem(OrderItem orderItem) {
 		System.out.println("updateOrderItemを呼ばれました");
@@ -328,6 +328,43 @@ System.out.println("deleteを呼ばれました");
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	public void updatetoralPrice(Integer totalPrice, Long orderId) {
+		SqlParameterSource param=new MapSqlParameterSource().addValue("totalPrice", totalPrice).addValue("orderId", orderId);
+		String sql="update orders set total_price=:totalPrice where id=:orderId";
+		template.update(sql, param);
+		
+	}
+	
+	
+	public Integer MaxNumber() {
+		SqlParameterSource param = new MapSqlParameterSource();
+
+		
+		String sql = "select order_number from orders";
+		List<String> numberList= template.queryForList(sql,param, String.class);
+		int maxNumber = 0;
+		for (String number : numberList) {
+			int numberInt = Integer.parseInt(number);
+			if(maxNumber < numberInt) {
+				maxNumber = numberInt;
+			}
+		}
+		return maxNumber;
+	}
+
+	
+	
+	public void updateNumber(Long orderId) {
+		int number = MaxNumber();
+		//テーブルにある一番大きいnumberをとってくる
+		int orderNumber = number + 1;
+		SqlParameterSource param=new MapSqlParameterSource().addValue("orderNumber",String.valueOf(orderNumber)).addValue("id", orderId);
+		String sql="update orders set order_number=:orderNumber where id=:id";
+		template.update(sql, param);
+		
 	}
 	
 
