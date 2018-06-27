@@ -19,27 +19,46 @@
 	href="<%=request.getContextPath()%>/css/ecHeader.css" /> --%>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/testHeader.css" />
+
 </head>
 <body>
 	<jsp:include page="testHeader.jsp" />
 	<p><br></p>
 	<br>
-	<form:form modelAttribute="userContactForm" action="${pageContext.request.contextPath}/user/contact">
+	<form:form modelAttribute="userContactForm" action="${pageContext.request.contextPath}/user/contact" name="send">
 	<div align ="center">
 	<table>
 	<tr><form:errors path="name" cssStyle="color:red" element="div" />
 	<td>タイトル:</td>
-	<td><form:input path="name"/></td>
+	<td><form:input path="name" onchange="wupBtn()"/></td>
 	</tr>
 	<tr>
 	<td>問い合わせ内容:</td>
 	<form:errors path="content" cssStyle="color:red" element="div" />
-	<td><textarea name="content" cols="100" rows="10"></textarea></td>
+	<td><textarea name="content" cols="100" rows="10" onchange="wupBtn()"></textarea></td>
 	</tr>
-	<tr><td colspan="2" align="center"><button type="submit" class="btn btn-info">送信</button></td></tr>
+	<tr><td colspan="2" align="center"><button type="submit" class="btn btn-info" onclick="javascript:double(this)">送信</button></td></tr>
 	</table>
 	</div>
 	</form:form>
+	
+<script>
+function wupBtn(){
+  var namae = document.send.elements[0].value;
+  var kanso = document.send.elements[1].value;
+  
+  if ( ( namae == "" ) || ( kanso == "" ) )
+  {
+    document.send.elements[2].disabled = true;
+  }else{
+    document.send.elements[2].disabled = false;
+  } 
+}
+function double(btn){
+btn.disabled=true;
+document.send.submit();
+}
+</script>
 	
 </body>
 </html>
