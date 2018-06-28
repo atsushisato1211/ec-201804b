@@ -29,6 +29,15 @@ public class AdminUserLoginController {
 		return new AdminUserLoginForm();
 	}
 
+	/**
+	 * メールアドレスとパスワードをデータベースと照らし合わせて合っているか見ているメソッド.
+	 * 
+	 * @param form AdminUseroginForm
+	 * @param result BindingResult
+	 * @param model Model
+	 * @param adminError StringのadminError
+	 * @return　管理者のログインページのURL
+	 */
 	@RequestMapping("/index")
 	public String index(AdminUserLoginForm form, BindingResult result, Model model,
 			@RequestParam(required = false) String adminError) {

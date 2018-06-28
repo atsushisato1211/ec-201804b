@@ -18,6 +18,13 @@ import jp.co.rakus.ec201804b.domain.AdminUser;
 @SessionAttributes("adminUser")
 public class AdminUserLogoutController {
 	
+	/**
+	 * 管理者ログインページに遷移する.
+	 * 
+	 * @param adminUser AdminUser
+	 * @param sessionStatus SessionStatus
+	 * @return 管理者ログインページのURL
+	 */
 	@RequestMapping(value="logout")
 	public String sessionLogout(AdminUser adminUser,SessionStatus sessionStatus) {
 		sessionStatus.setComplete();

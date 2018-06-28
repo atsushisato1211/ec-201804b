@@ -28,6 +28,12 @@ public class UserInfoUpdateController {
 		return new UserInfoUpdateForm();
 	}
 	
+	/**
+	 * ユーザー情報変更のページに遷移する.
+	 * 
+	 * @param model　Model
+	 * @return　JSPのリンク先
+	 */
 	@RequestMapping(value = "/info")
 	public String form(Model model) {
 		return "user/userInfoUpdate";
@@ -36,7 +42,6 @@ public class UserInfoUpdateController {
 	/**
 	 * 利用者情報変更処理を行うメソッドです.
 	 * @param form フォーム
-	 * 
 	 * @param result エラー内容
 	 * @param redirectAttributes
 	 * @param model

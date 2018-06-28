@@ -5,10 +5,19 @@ import javax.validation.constraints.Size;
 
 public class UserLoginForm {
 	
+	/**
+	 * 名前
+	 */
 	private String name;
+	/**
+	 * メールアドレス
+	 */
 	@NotBlank(message = "メールアドレスを入力してください")
 	@Size(min=0,max=100, message="100文字以内で入力してください")
 	private String email;
+	/**
+	 * パスワード
+	 */
 	@NotBlank(message = "パスワードを入力してください")
 	@Size(min=0, max=20, message="20文字以内で入力してください")
 	private String password;
