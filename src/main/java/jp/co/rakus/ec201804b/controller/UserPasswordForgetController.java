@@ -47,11 +47,21 @@ public class UserPasswordForgetController {
 		return new UserNewPasswordForm();
 	}
 	
+	/**
+	 * パスワード忘れた人のための、パスワード変更フォームに飛ぶ
+	 * 
+	 * @return　JSPのリンク先を返している
+	 */
 	@RequestMapping(value="/forget")
 	public String forgetPassword() {
 		return "/user/passwordForget";
 	}
 	
+	/**
+	 * パスワード忘れた人のための、パスワード変更フォームに飛ぶ 
+	 * 
+	 * @return　JSPのリンク先を返している
+	 */
 	@RequestMapping("/filloutpass")
 	public String fillOutPass() {
 		return "/user/forgetPassword";

@@ -67,10 +67,16 @@
 郵便番号：<c:out value="${order.deliveryZipCode}"/><br>
 電話番号：<c:out value="${order.deliveryTel}"/><br><br>
 
-<form:form action="${pageContext.request.contextPath}/user/payment/confirmed?orderId=${order.id}">
-<button type="submit" class="btn btn-info">確定</button>
+<form:form action="${pageContext.request.contextPath}/user/payment/confirmed?orderId=${order.id}" name="send">
+<button type="submit" class="btn btn-info" onclick="javascript:double(this)">確定</button>
 </form:form></div>
         </c:otherwise>
     </c:choose>
+<script>
+function double(btn){
+btn.disabled=true;
+document.send.submit();
+}
+</script>
 </body>
 </html>

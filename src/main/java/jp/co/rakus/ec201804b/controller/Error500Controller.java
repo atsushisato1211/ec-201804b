@@ -9,6 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 500エラーを出すクラス.
+ * 
+ * @author Nanami.Sasaki
+ *
+ */
 @Controller
 public class Error500Controller implements HandlerExceptionResolver{
 	
