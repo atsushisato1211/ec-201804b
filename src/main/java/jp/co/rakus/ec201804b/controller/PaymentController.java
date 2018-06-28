@@ -97,10 +97,12 @@ public class PaymentController {
 		for (OrderItem orderItem : orderItemList) {
 			Integer stock = orderItem.getItem().getStock();
 			Integer quantity = orderItem.getQuantity();
+			Integer proceed = orderItem.getItem().getProceed();
 			Integer remstock = stock-quantity;
+			Integer proceedup = proceed + orderItem.getItem().getPrice() * orderItem.getQuantity();
 			System.out.println(stock);
 			Long itemId = orderItem.getItemId();
-			itemRepository.updateStock(remstock, itemId);
+			itemRepository.updateStock(remstock, proceedup, itemId);
 			if(remstock == 0) {
 				itemRepository.updateDeleted(itemId,true);
 			}

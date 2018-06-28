@@ -10,8 +10,16 @@ public class Item {
 	private String imagePath;
 	private Boolean deleted;
 	private Integer stock;
+	private Integer proceed;
 	
 	
+	
+	public Integer getProceed() {
+		return proceed;
+	}
+	public void setProceed(Integer proceed) {
+		this.proceed = proceed;
+	}
 	public Integer getStock() {
 		return stock;
 	}

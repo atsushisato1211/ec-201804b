@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html">
 <html>
 <head>
@@ -34,6 +35,7 @@
 			<th colspan="2">商品名</th>
 			<th>価格</th>
 			<th>在庫数</th>
+			<th>売上</th>
 			<th>削除</th>
 		</tr>
 		<c:forEach var="item" items="${itemList}" >
@@ -42,8 +44,9 @@
 						src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>"
 						width="150" height="125" alt="<c:out value="${item.name}" />画像"></a></td>
 				<td><c:out value="${item.name}"/></td>
-				<td>&yen;<c:out value="${item.price}" /></td>
+				<td>&yen;<fmt:formatNumber value="${item.price}" pattern="###,###"/></td>
 				<td><c:out value="${item.stock}" /></td>
+				<td>&yen;<fmt:formatNumber value="${item.proceed}" pattern="###,###"/></td>
 				<td>
 				<form:form action="${pageContext.request.contextPath}/admin/itemContent" align="center" method="post">
 				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>

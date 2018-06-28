@@ -134,6 +134,7 @@ public class AdminMenuController {
 		}
 		// 画像のパスをセットする
 		item.setImagePath(filename);
+		item.setProceed(repository.load(item.getId()).getProceed());
 		repository.itemupdate(item);
 		return listview(model);
 		// return itemeContent(form.getId(),model);
@@ -194,6 +195,7 @@ public class AdminMenuController {
 		}
 		// 画像のパスをセットする
 		item.setImagePath(filename);
+		item.setProceed(0);
 		repository.itemInsert(item);
 		return listview(model);
 		// return itemeContent(form.getId(),model);

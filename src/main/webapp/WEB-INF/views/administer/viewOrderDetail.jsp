@@ -89,7 +89,7 @@
 				    <th nowrap>
 				 <font size="3">     総計</font>
 				    </th>
-				    <td><font size="3">&yen;<fmt:formatNumber value="${order.totalPrice*1.08}" pattern="###,###"/></font></td>
+				    <td><font size="3">&yen;<fmt:formatNumber value="${order.totalPrice*1.08 + 500}" pattern="###,###"/></font></td>
 				  </tr>
 				  </table><br>
 
