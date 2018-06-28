@@ -32,7 +32,9 @@
 	<table class="table table-striped" border="1" style="font-size:15pt" >
 		<tr>
 			<th colspan="2">商品名</th>
-			<th>価格</th><th>削除</th>
+			<th>価格</th>
+			<th>在庫数</th>
+			<th>削除</th>
 		</tr>
 		<c:forEach var="item" items="${itemList}" >
 			<tr>
@@ -41,6 +43,7 @@
 						width="150" height="125" alt="<c:out value="${item.name}" />画像"></a></td>
 				<td><c:out value="${item.name}"/></td>
 				<td>&yen;<c:out value="${item.price}" /></td>
+				<td><c:out value="${item.stock}" /></td>
 				<td>
 				<form:form action="${pageContext.request.contextPath}/admin/itemContent" align="center" method="post">
 				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>

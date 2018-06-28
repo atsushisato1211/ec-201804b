@@ -50,6 +50,11 @@
 				<form:errors path="producingArea" cssStyle="color:red" element="div" /></td>
 			</tr>
 			<tr>
+					<td><label for="stock">在庫数:</label></td>
+					<td><form:input path="stock" value="${itemContent.stock}"/>
+						<form:errors path="stock" cssStyle="color:red" element="div" /></td>
+				</tr>
+			<tr>
 				<td>削除済み</td>
 				<td><c:if test="${itemContent.deleted==true}">
 						<form:checkbox path="deleted" checked="checked" />

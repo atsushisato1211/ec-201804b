@@ -9,8 +9,15 @@ public class Item {
 	private Integer price;
 	private String imagePath;
 	private Boolean deleted;
+	private Integer stock;
 	
 	
+	public Integer getStock() {
+		return stock;
+	}
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
 	public String getProducingArea() {
 		return producingArea;
 	}

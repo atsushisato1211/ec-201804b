@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.co.rakus.ec201804b.domain.Item;
 import jp.co.rakus.ec201804b.domain.LoginUser;
 import jp.co.rakus.ec201804b.domain.Order;
 import jp.co.rakus.ec201804b.domain.OrderItem;
+import jp.co.rakus.ec201804b.repository.ItemRepository;
 import jp.co.rakus.ec201804b.repository.OrderItemRepository;
 import jp.co.rakus.ec201804b.repository.OrderRepository;
 
@@ -26,6 +28,9 @@ public class PaymentController {
 	@Autowired
 	OrderRepository orderRepository;
 
+	@Autowired
+	ItemRepository itemRepository;
+	
 	@Autowired
 	OrderItemRepository orderItemRepository;
 
@@ -87,8 +92,21 @@ public class PaymentController {
 
 	@RequestMapping("/payment/confirmed")
 	public String confirmed(@RequestParam Long orderId, @AuthenticationPrincipal LoginUser loginUser) {
+		Order orderup = orderRepository.load(orderId);
+		List<OrderItem> orderItemList = orderup.getOrderItemList();
+		for (OrderItem orderItem : orderItemList) {
+			Integer stock = orderItem.getItem().getStock();
+			Integer quantity = orderItem.getQuantity();
+			Integer remstock = stock-quantity;
+			System.out.println(stock);
+			Long itemId = orderItem.getItemId();
+			itemRepository.updateStock(remstock, itemId);
+			if(remstock == 0) {
+				itemRepository.updateDeleted(itemId,true);
+			}
+		}
 		orderRepository.update(1, orderId);
-		System.out.println(orderId);
+		//System.out.println(orderId);
 		orderRepository.updateNumber(orderId);
 		Order order = orderRepository.load(orderId);
 		mail.send(loginUser, order);
