@@ -103,7 +103,7 @@ public class PaymentController {
 			System.out.println(stock);
 			Long itemId = orderItem.getItemId();
 			itemRepository.updateStock(remstock, proceedup, itemId);
-			if(remstock == 0) {
+			if(remstock <= 0) {
 				itemRepository.updateDeleted(itemId,true);
 			}
 		}
