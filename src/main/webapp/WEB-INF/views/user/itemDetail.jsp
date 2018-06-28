@@ -8,18 +8,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>商品詳細</title>
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> --%>
 <%-- <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/ecHeader.css" /> --%>
 <%-- <link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet"> --%>
-<link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/imgslide.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/wall.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet"> --%>
+<%-- <link href="${pageContext.request.contextPath}/css/imgslide.css" rel="stylesheet"> --%>
+<%-- <link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet"> --%>
+<%-- <link href="${pageContext.request.contextPath}/css/wall.css" rel="stylesheet"> --%>
 </head>
-<body>
+<body >
 <%-- <jsp:include page="userHeader.jsp" /> --%>
-<jsp:include page="testHeader.jsp" />
+<%-- <jsp:include page="testHeader.jsp" /> --%>
+<jsp:include page="testHeader2.jsp" />
 	<br>
 
 
@@ -84,19 +85,7 @@
 			<input type="hidden" name="itemId" value="<c:out value="${item.id}"/>">
 			</form:form>
 			</div>
-<!-- 		<div ="sendCart" align="center"><p><input type="submit" value="カートに入れる"></p></div> -->	
 
-		<div ="sendCart" align="center"><p><a href="<%=request.getContextPath()%>/user/item">商品一覧画面へ戻る</a></p></div>
-		<div id="aspslide">
-    
-<div id="asnakami1" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/001.jpg"></a></div>
-<div id="asnakami2" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/002.jpg"></a></div>
-<div id="asnakami3" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/003.jpg"></a></div>
-<div id="asnakami4" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/004.jpg"></a></div>
-<div id="asnakami5" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/005.jpg"></a></div>
-<div id="asnakami6" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/006.jpg"></a></div>
-
-</div><!--aspslide-->
 
 </body>
 </html>

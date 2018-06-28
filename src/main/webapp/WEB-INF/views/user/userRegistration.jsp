@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>利用者登録フォーム</title>
-<link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet"> --%>
 <%-- <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> --%>
 <%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" /> --%>
 <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v3.0.1/dist/bootstrap-float-label.min.css"/>
@@ -31,15 +31,15 @@ function formReset(userRegistrationForm){
 }
 </script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Registration.css"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/testHeader.css" />
-<link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/testHeader.css" /> --%>
+
+<link href="${pageContext.request.contextPath}/css/body.css" rel="stylesheet">
 </head>
-<body>
-<jsp:include page="testHeader.jsp" />
+<body background="${pageContext.request.contextPath}/img/wall.gif">
+<jsp:include page="testHeader2.jsp" />
 <div align="center">
 <form:form modelAttribute="userRegistrationForm" name="userRegistrationForm" action="${pageContext.request.contextPath}/user/create" method="post">
-<h2>利用者登録</h2><br>
+<h2 class="item">利用者登録</h2><br>
 <table>
 <tr>
 <td>
@@ -49,19 +49,19 @@ function formReset(userRegistrationForm){
 </td>
 </tr>
 <tr>
-<td>
+<td bgcolor="white">
 <span class="form-group has-float-label"><form:input path="email" placeholder="例：rakus@rakus.co.jp" class="form-control"/>
 <label for="email">メールアドレス</label></span>
 <form:errors path="email" cssStyle="color:red" element="div"/>
 </td>
 </tr>
 <tr>
-<td>
+<td bgcolor="white">
 <span class="form-group has-float-label"><form:password path="password" placeholder="8文字以上16文字以内" class="form-control" />
 <label for="password">パスワード</label></span>
 <form:errors path="password" cssStyle="color:red" element="div"/></td></tr>
 <tr>
-<td>
+<td bgcolor="white">
 <span class="form-group has-float-label"><form:password path="confirmationpassword" placeholder="8文字以上16文字以内" class="form-control"/>
 <label for="confirmationpassword">確認用パスワード</label></span>
 <form:errors path="confirmationpassword" cssStyle="color:red" element="div"/></td></tr>
@@ -75,7 +75,7 @@ function formReset(userRegistrationForm){
 </td>
 </tr>
 <tr>
-<td>
+<td bgcolor="white">
 <span class="form-group has-float-label "><form:input path="address" placeholder="例：〇〇県〇〇市〇〇区" class="form-control"/>
 <label for="address">住所</label></span>
 <form:errors path="address" cssStyle="color:red" element="div"/>
@@ -93,7 +93,7 @@ function formReset(userRegistrationForm){
 </td>
 </tr>
 <tr>
-<td>
+<td bgcolor="white">
 <span class="form-group has-float-label text-size"><form:input path="question" placeholder="解答を入力して下さい" class="form-control"/>
 <label for="question">親の旧姓は？</label></span>
 <form:errors path="question" cssStyle="color:red" element="div"/>

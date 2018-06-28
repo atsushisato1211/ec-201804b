@@ -29,7 +29,7 @@ input.search_test{
 	height: 25px;
 	}
 button.submit_button_test { 
-	幅と高さを指定 
+	/* 幅と高さを指定  */
 	width: 50px;
 	height: 25px;
 	

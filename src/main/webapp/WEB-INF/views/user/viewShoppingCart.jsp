@@ -9,19 +9,24 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ショッピングカート一覧</title>
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/testHeader.css" />
 <link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
-</head>
-<body>
-<jsp:include page="testHeader.jsp" />
+<link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet"> --%>
+<link href="${pageContext.request.contextPath}/css/body.css" rel="stylesheet"> 
 
-    <h2 align="center">ショッピングカート一覧</h2>
+</head>
+<body background="${pageContext.request.contextPath}/img/wall.gif">
+<%-- <jsp:include page="testHeader.jsp" /> --%>
+	<jsp:include page="testHeader2.jsp" />
+    <h2 class="item"></h2>
+    <h2 class="item" align="center">ショッピングカート一覧</h2>
+
     
     <c:choose>
 	<c:when test="${order.orderItemList==null}">
+	<h2 class="item" align="center"></h2>
     <p align="center">カートに商品がありません</p>
 	</c:when>
 	<c:otherwise>

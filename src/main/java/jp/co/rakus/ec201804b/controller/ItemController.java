@@ -1,5 +1,7 @@
 package jp.co.rakus.ec201804b.controller;
 
+import static org.mockito.Mockito.validateMockitoUsage;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -35,6 +37,7 @@ public class ItemController {
 		List<Item> list = repository.findAllByNotDeleted();
 		model.addAttribute("itemList", list);
 		model.addAttribute("pageNum", 1);
+		model.addAttribute("pagett", 1);
 		model.addAttribute("maxPageNum", pagingNum(repository.MaxId()));
 		System.out.println(list.size());
 
@@ -56,19 +59,40 @@ public class ItemController {
 	@RequestMapping(value = "/page")
 	public String page(@RequestParam Integer pageNum, Model model) {
 		List<Item> list = repository.findAllBypageNumNotDeleted(pageNum);
-		if (repository.MaxId() % 10 == 0) {
-			Long maxPageNum = repository.MaxId() / 10;
+		if (repository.MaxId() % 15 == 0) {
+			Long maxPageNum = repository.MaxId() / 15;
 			model.addAttribute("maxPageNum", maxPageNum);
 		} else {
-			Long maxPageNum = repository.MaxId() / 10 + 1;
+			Long maxPageNum = repository.MaxId() / 15 + 1;
 			model.addAttribute("maxPageNum", maxPageNum);
 		}
 		model.addAttribute("itemList", list);
 		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("pagett", 1);
 
 		// return "user/itemList";
 		return index(model);
 	}
+	
+	@RequestMapping(value = "/pageAll")
+	public String pageAll(@RequestParam Integer pageNum,@RequestParam String itemSort,@RequestParam String sortOption, Model model) {
+		List<Item> list = repository.findAllBypageNumNotDeletedSort(pageNum, itemSort, sortOption);
+		if (repository.MaxId() % 15 == 0) {
+			Long maxPageNum = repository.MaxId() / 15;
+			model.addAttribute("maxPageNum", maxPageNum);
+		} else {
+			Long maxPageNum = repository.MaxId() / 15 + 1;
+			model.addAttribute("maxPageNum", maxPageNum);
+		}
+		model.addAttribute("itemList", list);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("itemSort", itemSort);
+		model.addAttribute("sortOptin", sortOption);
+		
+		// return "user/itemList";
+		return index(model);
+	}
+	
 
 	/**
 	 * 商品名検索を行うメソッド.
@@ -179,6 +203,7 @@ public class ItemController {
 		model.addAttribute("itemName", useritem);
 		model.addAttribute("sortOption", sortOption);
 		model.addAttribute("pageNum", 1);
+		System.out.println(list.size());
 		model.addAttribute("maxPageNum", pagingNum((long) list.size()));
 
 		// return "user/itemList";
@@ -198,9 +223,15 @@ public class ItemController {
 		List<Item> list = repository.findAllBySortAndNotDeleted(itemSort, sortOption);
 		model.addAttribute("itemList", list);
 		model.addAttribute("sortOption", sortOption);
+		model.addAttribute("itemSort", itemSort);
 		model.addAttribute("pageNum", 1);
-		model.addAttribute("maxPageNum", pagingNum((long) list.size()));
-
+		System.out.println(list.size());
+		/*model.addAttribute("maxPageNum", pagingNum((long) list.size()));*/
+		//model.addAttribute("maxPageNum", (Long)repository.findByMaxIdAndInitialsAndNotDeleted(itemSort, sortOption));
+		model.addAttribute("pageNum", 1);
+		model.addAttribute("maxPageNum", pagingNum(repository.MaxId()));
+		
+		
 		// return "user/itemList";
 		return index(model);
 
@@ -239,22 +270,22 @@ public class ItemController {
 	}
 
 	public Long pagingNum(Long long1) {
-		if (long1 < 10) {
+		if (long1 < 15) {
 			return (long) 1;
 		}
-		if (long1 % 10 == 0) {
-			return (long) (long1 / 10);
+		if (long1 % 15 == 0) {
+			return (long) (long1 / 15);
 		} else {
-			return (long) (long1 / 10 + 1);
+			return (long) (long1 / 15 + 1);
 		}
 	}
 
 	public Long paging() {
 		Long maxPageNum;
-		if (repository.MaxId() % 10 == 0) {
-			maxPageNum = repository.MaxId() / 10;
+		if (repository.MaxId() % 15 == 0) {
+			maxPageNum = repository.MaxId() / 15;
 		} else {
-			maxPageNum = repository.MaxId() / 10 + 1;
+			maxPageNum = repository.MaxId() / 15 + 1;
 		}
 		return maxPageNum;
 	}

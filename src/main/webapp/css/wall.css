@@ -1,5 +1,8 @@
 @charset "UTF-8";
 body{
-	background-color:red;
-	background-image: url("../img/wall.gif");
+	background-image: url("../img/test.gif"); 
+	background-size: contain;
+	background-attachment: fixed;
+	background-position: center center;
+	
 }
