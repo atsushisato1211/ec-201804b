@@ -39,6 +39,7 @@ public class ItemRepository {
 		item.setDeleted(rs.getBoolean("deleted"));
 		item.setSeason(rs.getString("season"));
 		item.setProducingArea(rs.getString("producingArea"));
+		item.setStock(rs.getInt("stock"));
 		return item;
 	};
 
@@ -50,7 +51,7 @@ public class ItemRepository {
 	 * @return 商品の詳細情報 全件検索は後で修正
 	 */
 	public Item loadBydeleted(Long id) {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME
 				+ " where deleted=false and id=:id ";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Item itemdetail = template.queryForObject(sql, param, ITEM_ROWMAPPEP);
@@ -58,7 +59,7 @@ public class ItemRepository {
 	}
 
 	public Item load(Long id) {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME
 				+ " where id=:id order by id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Item itemdetail = template.queryForObject(sql, param, ITEM_ROWMAPPEP);
@@ -71,7 +72,7 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト
 	 */
 	public List<Item> findAll() {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " order by id ";
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME + " order by id ";
 		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
 	}
@@ -82,7 +83,7 @@ public class ItemRepository {
 	 * @return 商品全件 削除フラグがfalseのみ
 	 */
 	public List<Item> findAllBySortAndNotDeleted(String itemSort,String sortOption) {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " order by "+itemSort+" "+sortOption+" limit 10;";
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME + " order by "+itemSort+" "+sortOption+" limit 10;";
 		SqlParameterSource param = new MapSqlParameterSource();
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
@@ -94,12 +95,12 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト 削除フラグがfalseのみ
 	 */
 	public List<Item> findAllByNotDeleted() {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " where deleted=false order by id limit 10";
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME + " where deleted=false order by id limit 10";
 		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
 	}
 	public List<Item> findAllBypageNumNotDeleted(Integer pageNum) {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " where deleted=false order by id limit "+(10)+" OFFSET "+(pageNum*10-10);
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME + " where deleted=false order by id limit "+(10)+" OFFSET "+(pageNum*10-10);
 		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
 	}
@@ -112,7 +113,7 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト
 	 */
 	public List<Item> findByName(String name) {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " where name like :name order by id";
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME + " where name like :name order by id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
@@ -126,25 +127,25 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト
 	 */
 	public List<Item> findByNameAndNotDeleted(String name) {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " where deleted=false and name like :name order by id";
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME + " where deleted=false and name like :name order by id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
 	}
 	public List<Item> findByNewItem() {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " where deleted=false order by id DESC limit 13";
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME + " where deleted=false order by id DESC limit 13";
 		SqlParameterSource param = new MapSqlParameterSource();
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
 	}
 	public List<Item> findByInitialsAndNotDeleted(String initials) {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " where deleted=false and name like :name order by id";
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME + " where deleted=false and name like :name order by id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", initials + "%");
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
 	}
 	public List<Item> findBySeasonAndNotDeleted(String JustSeason) {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " where deleted=false and season=:season order by id";
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME + " where deleted=false and season=:season order by id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("season", JustSeason );
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
@@ -155,6 +156,7 @@ public class ItemRepository {
 		System.out.println( template.queryForObject(sql, param, Long.class));
 		return template.queryForObject(sql, param, Long.class);
 	}
+	
 	/**
 	 * 名前検索+ソートを行うメソッド.
 	 * @param name 商品名
@@ -163,7 +165,7 @@ public class ItemRepository {
 	 * @return 商品名の詳細情報
 	 */
 	public List<Item> findByNameAndSortNotDeleted(String name,String itemsort,String sortOption) {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted from " + TABLE_NAME + " where deleted=false and name like :name order by "+itemsort+" "+sortOption;
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock from " + TABLE_NAME + " where deleted=false and name like :name order by "+itemsort+" "+sortOption;
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
@@ -202,7 +204,7 @@ public class ItemRepository {
 			throw new NullPointerException();
 		}
 		String sql = "update " + TABLE_NAME + " set name=:name,description=:description,producingArea=:producingArea,season=:season,"
-				+ "price=:price,imagePath=:imagePath,deleted=:deleted where id=:id";
+				+ "price=:price,imagePath=:imagePath,deleted=:deleted, stock=:stock where id=:id";
 		template.update(sql, param);
 
 	}
@@ -217,7 +219,7 @@ public class ItemRepository {
 		}
 		SqlParameterSource param = new BeanPropertySqlParameterSource(item);
 		String sql = "insert into " + TABLE_NAME + " values(:id,:name,:description,:producingArea,:season,"
-				+ ":price,:imagePath,true )";
+				+ ":price,:imagePath,true, :stock)";
 		template.update(sql, param);
 
 	}
@@ -232,5 +234,19 @@ public class ItemRepository {
 
 		return template.queryForObject(sql, param, Long.class);
 	}
+
+	public void updateStock(int stock, Long orderId) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("stock", stock).addValue("id", orderId);
+		String sql = "update items set stock=:stock where id=:id";
+		template.update(sql, param);
+	}
+
+	public void updateDeleted(Long itemId, boolean deleted) {
+		String sql = "update items set deleted=:deleted where id=:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("deleted", deleted).addValue("id", itemId);
+		template.update(sql, param);
+		
+	}
+	
 
 }

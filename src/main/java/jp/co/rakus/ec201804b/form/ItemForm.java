@@ -22,7 +22,20 @@ public class ItemForm {
 	@NotBlank(message="季節を入力してください")
 	private String season;
 	
+	@NotNull(message="在庫数を入力してください")
+	@Range(min=1, max=1000000 ,message="正しい数字を入力して下さい")
+	private Integer stock;
 	
+
+	
+	
+	
+	public Integer getStock() {
+		return stock;
+	}
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
 	public Long getId() {
 		return id;
 	}

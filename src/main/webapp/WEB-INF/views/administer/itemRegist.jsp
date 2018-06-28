@@ -57,6 +57,11 @@
 						<form:errors path="producingArea" cssStyle="color:red"
 							element="div" /></td>
 				</tr>
+				<tr>
+					<td><label for="stock">在庫数:</label></td>
+					<td><form:input path="stock" />
+						<form:errors path="stock" cssStyle="color:red" element="div" /></td>
+				</tr>
 			</table>
 			<button type="submit" class="btn btn-info">登録</button>
 		</form:form>

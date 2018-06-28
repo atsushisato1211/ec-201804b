@@ -77,6 +77,7 @@ public class OrderRepository {
 				item.setDescription(rs.getString("description"));
 				item.setImagePath(rs.getString("imagePath"));
 				item.setDeleted(rs.getBoolean("deleted"));
+				item.setStock(rs.getInt("stock"));
 				orderItem.setItem(item);
 				
 				order.getOrderItemList().add(orderItem);
@@ -93,7 +94,7 @@ public class OrderRepository {
 				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
 				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
 				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
-				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "i.price as item_price, description, imagePath, deleted,stock from orders o "
 				+ "left outer join order_items oi "
 				+ "on (o.id = oi.order_id) "
 				+ "join items i on (oi.item_id = i.id)";
@@ -110,7 +111,7 @@ public class OrderRepository {
 				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
 				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
 				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
-				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "i.price as item_price, description, imagePath, deleted,stock from orders o "
 				+ "left outer join order_items oi "
 				+ "on (o.id = oi.order_id) "
 				+ "join items i on (oi.item_id = i.id) where order_id = :id";
@@ -129,7 +130,7 @@ public class OrderRepository {
 				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
 				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
 				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
-				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "i.price as item_price, description, imagePath, deleted,stock from orders o "
 				+ "left outer join order_items oi "
 				+ "on (o.id = oi.order_id) "
 				+ "join items i on (oi.item_id = i.id) where user_id = :userId and order_id=:orderId";
@@ -148,7 +149,7 @@ public class OrderRepository {
 				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
 				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
 				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
-				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "i.price as item_price, description, imagePath, deleted,stock from orders o "
 				+ "left outer join order_items oi "
 				+ "on (o.id = oi.order_id) "
 				+ "join items i on (oi.item_id = i.id) where order_id=:orderId";
@@ -194,7 +195,7 @@ public class OrderRepository {
 				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
 				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
 				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
-				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "i.price as item_price, description, imagePath, deleted,stock from orders o "
 				+ "left outer join order_items oi "
 				+ "on (o.id = oi.order_id) "
 				+ "join items i on (oi.item_id = i.id) where user_id = :userId and status=:status";
@@ -297,7 +298,7 @@ public class OrderRepository {
 				+ " delivery_zip_code, delivery_address, delivery_tel, oi.id as id,"
 				+ "oi.item_id as item_id, oi.order_id as orderitem_order_id, "
 				+ "oi.quantity as orderitem_quantity, i.name as item_name, "
-				+ "i.price as item_price, description, imagePath, deleted from orders o "
+				+ "i.price as item_price, description, imagePath, deleted,stock from orders o "
 				+ "left outer join order_items oi "
 				+ "on (o.id = oi.order_id) "
 				+ "join items i on (oi.item_id = i.id) where user_id = :userId";
