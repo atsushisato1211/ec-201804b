@@ -7,26 +7,28 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>お問い合わせフォーム</title>
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-<%-- <link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet"> --%>
+<%-- <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/imgslide.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet"> --%>
 <link href="${pageContext.request.contextPath}/css/itemList.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/item_table.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/body.css" rel="stylesheet">
 <%-- <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/ecHeader.css" /> --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/testHeader.css" />
+<%-- <link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/testHeader.css" /> --%>
 
 </head>
 <body>
-	<jsp:include page="testHeader.jsp" />
+	<jsp:include page="testHeader2.jsp" />
+	<div align ="center">
+<h2 class="item" >お問い合わせ</h2>
 	<p><br></p>
 	<br>
 	<form:form modelAttribute="userContactForm" action="${pageContext.request.contextPath}/user/contact" name="send">
-	<div align ="center">
 	<table>
 	<tr><form:errors path="name" cssStyle="color:red" element="div" />
 	<td>タイトル:</td>
@@ -39,8 +41,8 @@
 	</tr>
 	<tr><td colspan="2" align="center"><button type="submit" class="btn btn-info" onclick="javascript:double(this)">送信</button></td></tr>
 	</table>
-	</div>
 	</form:form>
+	</div>
 	
 <script>
 function wupBtn(){

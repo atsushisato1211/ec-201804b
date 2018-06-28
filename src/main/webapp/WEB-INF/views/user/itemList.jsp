@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html">
 <html>
 <head>
@@ -8,25 +9,28 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>商品一覧</title>
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> --%>
 <%-- <link href="${pageContext.request.contextPath}/css/test.css" rel="stylesheet"> --%>
 <link href="${pageContext.request.contextPath}/css/imgslide.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet"> --%>
 <link href="${pageContext.request.contextPath}/css/itemList.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/item_table.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet"> --%>
 <link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/left_calamu.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/sort.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/body.css" rel="stylesheet">
 <%-- <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/ecHeader.css" /> --%>
 <%-- <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/testHeader.css" /> --%>
 </head>
 <body>
-	<jsp:include page="testHeader.jsp" />
+<header>
+	<jsp:include page="testHeader2.jsp" />
+	<%-- <jsp:include page="test_header2.jsp" /> --%>
+	</header>
 	<div align ="center">
-	<h2 id="item">新しい商品</h2>
+	<h2 class="item">新しい商品</h2>
 	<!-- スライダー部 -->
 <div id="stage">
 	<input id="r1" type="radio" name="slider8">
@@ -78,7 +82,7 @@
 </div>
 
 	<!-- サブメニュー（左カラム） -->
-	<div id="submenu">
+	<%-- <div id="submenu">
 		<div id="submenu_header">目的で探す</div>
 		<ul id="submenu_body">
 			<li><a href="<%=request.getContextPath()%>/user/findBySeason">今が旬の食材</a></li>
@@ -98,7 +102,7 @@
 			<li><a href="xxx.html">印刷</a></li>
 			<li><a href="xxx.html">音声</a></li>
 		</ul>
-	</div></div>
+	</div></div> --%>
 
 	
 <div align ="center">
@@ -148,7 +152,9 @@
 					href="<%=request.getContextPath()%>/user/itemdetail?id=<c:out value="${item.id}"/>">
 						<c:out value="${item.name}" /></a></td></tr>
 						<tr><td class="item_name" align="center">
-				&yen;<c:out value="${item.price}" /></td></tr>
+				&yen;
+				<fmt:formatNumber value="${item.price}" pattern="###,###"/>
+				</td></tr>
 				</table>
 			 	</td>
 				<c:if test="${status.count%3==0}"></tr></c:if>
@@ -158,14 +164,10 @@
 	</c:choose>
 	</div>
 	<!-- 商品一覧テスト終了 -->
-	
-
-	
-		
+<c:if test="${pagett==1}">
 <div class="page_user">
 	<c:if test="${!itemList.isEmpty()}">
-	</c:if><c:out value="${maxPageNum}"></c:out>
-	<c:forEach var="obj" items="${data}" varStatus="status"></c:forEach>
+	</c:if>
   <ul class="pagination">
     <li class="page-item <c:if test="${(pageNum)==1}">disabled</c:if>">
       <a class="page-link" href="<%=request.getContextPath()%>/user/page?pageNum=<c:out value="${pageNum-1}"/>">&laquo;</a>
@@ -185,13 +187,33 @@
     </li>
   </ul>
 </div>
+</c:if>		
 
-
-
-
-
-
-
+<c:if test="${pagett!=1}">
+<div class="page_user">
+	<c:if test="${!itemList.isEmpty()}">
+	</c:if>
+	<c:forEach var="obj" items="${data}" varStatus="status"></c:forEach>
+  <ul class="pagination">
+    <li class="page-item <c:if test="${(pageNum)==1}">disabled</c:if>">
+      <a class="page-link" href="<%=request.getContextPath()%>/user/pageAll?pageNum=<c:out value="${pageNum-1}"/>&itemSort=<c:out value="${itemSort}"/>&sortOption=<c:out value="${sortOption}"/>">&laquo;</a>
+    </li>
+<c:forEach varStatus="num" begin="1" end="${maxPageNum}">
+<c:choose> <c:when test="${(num.count)==pageNum}"> 
+    <li class="page-item active">
+      <a class="page-link" href="<%=request.getContextPath()%>/user/pageAll?pageNum=<c:out value="${num.count}"/>&itemSort=<c:out value="${itemSort}"/>&sortOption=<c:out value="${sortOption}"/>"><c:out value="${num.count}"/></a>
+    </c:when><c:otherwise>
+    <li class="page-item">
+      <a class="page-link" href="<%=request.getContextPath()%>/user/pageAll?pageNum=<c:out value="${num.count}"/>&itemSort=<c:out value="${itemSort}"/>&sortOption=<c:out value="${sortOption}"/>"><c:out value="${num.count}"/></a>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+     <li class="page-item <c:if test="${(pageNum)==maxPageNum}">disabled</c:if>">
+      <a class="page-link" href="<%=request.getContextPath()%>/user/pageAll?pageNum=<c:out value="${pageNum+1}"/>&itemSort=<c:out value="${itemSort}"/>&sortOption=<c:out value="${sortOption}"/>">&raquo;</a>
+    </li>
+  </ul>
+</div>
+</c:if>
 
 </body>
 </html>

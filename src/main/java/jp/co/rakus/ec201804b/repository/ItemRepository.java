@@ -84,11 +84,20 @@ public class ItemRepository {
 	 * @return 商品全件 削除フラグがfalseのみ
 	 */
 	public List<Item> findAllBySortAndNotDeleted(String itemSort,String sortOption) {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock,proceed from " + TABLE_NAME + " order by "+itemSort+" "+sortOption+" limit 10;";
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock,proceed from " + TABLE_NAME + " order by "+itemSort+" "+sortOption+" limit 15;";
+
 		SqlParameterSource param = new MapSqlParameterSource();
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPEP);
 		return itemList;
 	}
+	public Long findByMaxIdAndInitialsAndNotDeleted(String itemSort,String sortOption) {
+		//aaaaString sql = "select count(id) from " + TABLE_NAME + " where deleted=false and name like :name ";
+		String sql = "select count(id) as page from " + TABLE_NAME + "GROUP BY name order by "+itemSort+" "+sortOption+" limit 15;";
+		SqlParameterSource param = new MapSqlParameterSource();
+		System.out.println( template.queryForObject(sql, param, Long.class));
+		return template.queryForObject(sql, param, Long.class);
+	}
+
 
 	/**
 	 * userの全件検索を行うメソッド.
@@ -96,12 +105,17 @@ public class ItemRepository {
 	 * @return itemList アイテムリスト 削除フラグがfalseのみ
 	 */
 	public List<Item> findAllByNotDeleted() {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock,proceed from " + TABLE_NAME + " where deleted=false order by proceed desc limit 10";
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock,proceed from " + TABLE_NAME + " where deleted=false order by proceed desc,price desc limit 15";
 		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
 	}
 	public List<Item> findAllBypageNumNotDeleted(Integer pageNum) {
-		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock,proceed from " + TABLE_NAME + " where deleted=false order by id limit "+(10)+" OFFSET "+(pageNum*10-10);
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted, stock,proceed from " + TABLE_NAME + " where deleted=false order by id limit "+(15)+" OFFSET "+(pageNum*15-15);
+		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
+		return itemList;
+	}
+	public List<Item> findAllBypageNumNotDeletedSort(Integer pageNum,String itemSort,String sortOption) {
+		String sql = "select id,name,description,producingArea,season,price,imagePath,deleted,stock,proceed  from " + TABLE_NAME + " where deleted=false order by "+itemSort+" "+sortOption+" limit "+(15)+" OFFSET "+(pageNum*15-15);
 		List<Item> itemList = template.query(sql, ITEM_ROWMAPPEP);
 		return itemList;
 	}
