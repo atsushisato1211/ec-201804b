@@ -1,7 +1,5 @@
 package jp.co.rakus.ec201804b.controller;
 
-import static org.mockito.Mockito.validateMockitoUsage;
-
 import java.time.LocalDate;
 import java.util.List;
 
