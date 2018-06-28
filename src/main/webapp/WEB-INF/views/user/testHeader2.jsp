@@ -206,7 +206,7 @@
       
   <!-- 右寄せになる部分 ================ -->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://localhost:8080/ec-201804b/admin/index">管理者ログイン</a>
+        <li><a href="${pageContext.request.contextPath}/admin/index">管理者ログイン</a>
         <!-- リンクのみ -->
           <sec:authorize access="hasRole('ROLE_MEMBER') and isAuthenticated()">
 				<sec:authentication var="userName" property="principal.user.name" />
