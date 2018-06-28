@@ -23,11 +23,13 @@
     <h2 class="item"></h2>
     <h2 class="item" align="center">ショッピングカート一覧</h2>
 
-    
+    <div style="background-color:#FAFAFA; width: 50%; height: 50%; margin-left: auto; margin-right: auto; ;">
     <c:choose>
 	<c:when test="${order.orderItemList==null}">
 	<h2 class="item" align="center"></h2>
     <p align="center">カートに商品がありません</p>
+	<h2 class="item" align="center"></h2>
+	<h2></h2>
 	</c:when>
 	<c:otherwise>
         <table border ="1"  align="center">
@@ -52,10 +54,12 @@
                 </td>
             </tr>
         </c:forEach>
-        </table><br>
+        </table>
+        <br>
     <div  align="center"><a href="${pageContext.request.contextPath}/user/item">商品一覧へ戻る</a></div>
     <div  align="center"><a href="${pageContext.request.contextPath}/user/payment/make">決済へ</a></div>
         </c:otherwise>
     </c:choose>
+        </div>
 </body>
 </html>

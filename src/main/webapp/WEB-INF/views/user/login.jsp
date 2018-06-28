@@ -24,6 +24,8 @@
 	<h2 class="item"></h2>
 	<div align="center">
 	<h3>ログイン</h3>
+	</div>
+	    <div align="center" style="background-color:#FAFAFA; width: 50%; height: 50%; margin-left: auto; margin-right: auto; ;">
 	<form:errors path="userLoginForm.*" cssStyle="color:red" element="div"/>
 	<form:form modelAttribute="userLoginForm"
 		action="${pageContext.request.contextPath}/user/login" class="form-horizontal">
