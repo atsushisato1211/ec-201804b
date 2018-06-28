@@ -46,25 +46,7 @@
 		</tr>
 	</table>
 		<br>
-	<table border="1" align="center">
-		<tr>
-			<td colspan="2" rowspan="3"><img src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>" width="150"
-				height="150" alt="商品画像">
-			</td>
-			<th>商品名：</th>
-			<td align="center"><c:out value="${item.name}" /></td>
-		</tr>
-		<tr>
-			<th>価格：</th>
-			<td align="center">&yen;<c:out value="${item.price}" /></td>
-		</tr>
-	<tr>
-			<th>商品説明：</th>
-			<td><pre><c:out value="${item.description}" /></pre></td>
-		</tr>
-		
-	</table>
-		<br>
+
 	<div id="selectQuantity" align="center">
 	<form:form modelAttribute="orderItemForm" action="${pageContext.request.contextPath}/user/insert">
 			<font color="red"><c:out value ="${error}"/></font><br>
@@ -89,16 +71,7 @@
 <!-- 		<div ="sendCart" align="center"><p><input type="submit" value="カートに入れる"></p></div> -->	
 
 		<div ="sendCart" align="center"><p><a href="<%=request.getContextPath()%>/user/item">商品一覧画面へ戻る</a></p></div>
-		<div id="aspslide">
-    
-<div id="asnakami1" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/001.jpg"></a></div>
-<div id="asnakami2" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/002.jpg"></a></div>
-<div id="asnakami3" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/003.jpg"></a></div>
-<div id="asnakami4" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/004.jpg"></a></div>
-<div id="asnakami5" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/005.jpg"></a></div>
-<div id="asnakami6" class="asnakami"><a href="" target="_blank"><img src="<%=request.getContextPath()%>/img/006.jpg"></a></div>
-
-</div><!--aspslide-->
+		
 
 </body>
 </html>
