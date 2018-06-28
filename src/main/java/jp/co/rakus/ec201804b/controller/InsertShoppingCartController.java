@@ -15,7 +15,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.rakus.ec201804b.domain.LoginUser;
 import jp.co.rakus.ec201804b.domain.Order;
@@ -36,9 +40,16 @@ public class InsertShoppingCartController {
 
 	@Autowired
 	private HttpSession session;
+	
+
 
 	@RequestMapping("/insert")
-	public String insertItem(OrderItemForm form, @AuthenticationPrincipal LoginUser userDetails) {
+	public String insertItem(@Validated OrderItemForm form,BindingResult result ,RedirectAttributes redirect , @AuthenticationPrincipal LoginUser userDetails) {
+		String quantity = String.valueOf(form.getQuantity());
+		if(!quantity.matches("[0-9]+")) {
+			redirect.addFlashAttribute("error","正の整数を入力してください");
+			return "redirect:/user/itemdetail?id="+form.getItemId();
+		}
 		Long userId = null;
 		if (userDetails != null) {
 			userId = userDetails.getUser().getId();
@@ -109,7 +120,6 @@ public class InsertShoppingCartController {
 		// }
 		// System.out.println(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
 		// orderItem.setOrderId(orderRepository.findByUserId((long)session.getAttribute("userId"),(long)session.getAttribute("orderId")).getId());
-		
 		orderRepository.insertOrderItem(orderItem);
 
 		return "redirect:/user/show";
