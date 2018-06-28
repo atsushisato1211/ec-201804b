@@ -25,6 +25,7 @@ import jp.co.rakus.ec201804b.domain.LoginUser;
 import jp.co.rakus.ec201804b.domain.Order;
 import jp.co.rakus.ec201804b.domain.OrderItem;
 import jp.co.rakus.ec201804b.form.OrderItemForm;
+import jp.co.rakus.ec201804b.repository.ItemRepository;
 import jp.co.rakus.ec201804b.repository.OrderItemRepository;
 import jp.co.rakus.ec201804b.repository.OrderRepository;
 
@@ -37,6 +38,9 @@ public class InsertShoppingCartController {
 	private OrderRepository orderRepository;
 	@Autowired
 	private OrderItemRepository orderItemRepository;
+	
+	@Autowired
+	private ItemRepository itemRepository;
 
 	@Autowired
 	private HttpSession session;
@@ -48,6 +52,11 @@ public class InsertShoppingCartController {
 		String quantity = String.valueOf(form.getQuantity());
 		if(!quantity.matches("[0-9]+")) {
 			redirect.addFlashAttribute("error","正の整数を入力してください");
+			return "redirect:/user/itemdetail?id="+form.getItemId();
+		}
+		Integer stock = itemRepository.load(form.getItemId().longValue()).getStock();
+		if(form.getQuantity() > stock) {
+			redirect.addFlashAttribute("error","在庫数は" +stock +  "個です。");
 			return "redirect:/user/itemdetail?id="+form.getItemId();
 		}
 		Long userId = null;
