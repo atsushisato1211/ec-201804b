@@ -21,13 +21,12 @@
 								</sec:authorize>
 								<sec:authorize access="!(hasRole('ROLE_ADMIN') and isAuthenticated())">
 								<p>こんにちは管理者さん</p>
-								<p><a href="${pageContext.request.contextPath}/admin/index">ログイン</a></p>
 								</sec:authorize>
 		</div>
-				<div id="linkHeader" align="left">
-			<h1 align ="left"><a href="${pageContext.request.contextPath}/admin/menu"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
-				height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1>
-		<div id="title" align="center"></div>
+				<div align="center">
+			<h1 align ="left"><a href="${pageContext.request.contextPath}/admin/menu"><img src="${pageContext.request.contextPath}/img/link.png" width="280"
+			 alt="ロゴ画像"></a></h1>
+<!-- 		<div id="title" align="center"></div> -->
 		</div>
 </header>
 </html>

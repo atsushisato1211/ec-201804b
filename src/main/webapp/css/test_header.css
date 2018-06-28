@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-header {
+header.userheader {
 	top: 0;
 	height: 40px; /*ヘッダーの高さ*/
 	width: 100%; /*ヘッダーの横幅*/
@@ -9,7 +9,8 @@ header {
 	text-align: right;
 }
 
-p a {
+p a.header_img {
+	margin: 0px auto 0px;
 	position: absolute;
 	left: 20px;
 	/* top: 20px; */
@@ -23,17 +24,28 @@ size: 50;
 img.head{
 	margin: -7px auto 0px;
 }
-input#search{
-	width: 120px;
+input.search_test{
+	/* width: 120px; */
 	height: 25px;
-}
-button#submit_button { 
-	/*幅と高さを指定*/ 
+	}
+button.submit_button_test { 
+	幅と高さを指定 
 	width: 50px;
 	height: 25px;
 	
 	margin-top: -10px;
 	
+}
+
+video {
+position: fixed;
+right: 0;
+bottom: 0;
+min-width: 100%;
+min-height: 100%;
+width: auto;
+height: auto;
+z-index: 1;
 }
 
 /* nav ul li {

@@ -9,7 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>商品一覧</title>
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/adminHeader.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminHeader.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/viewList.css" type="text/css">
 </head>
 <body>
 <jsp:include page="adminHeader.jsp" />
@@ -17,19 +18,23 @@
 
 
 	<h2 align="center">商品一覧</h2>
+	
 	<form:form action="${pageContext.request.contextPath}/admin/findByName" align="center">
 		名前<input type="text" name="adminitem" align="center"> <input
 			type="submit" value="検索" align="center">
 	</form:form>
-
-	<br>
-
-	<table border="1" align="center">
+	    <c:choose>
+	<c:when test="${itemList.isEmpty()}">
+    <p align="center"><font size="5">検索結果がありません</font></p>
+	</c:when>
+	<c:otherwise>
+	<div class=margin align="center">
+	<table class="table table-striped" border="1" style="font-size:15pt" >
 		<tr>
 			<th colspan="2">商品名</th>
-			<th>価格</th>
+			<th>価格</th><th>削除</th>
 		</tr>
-		<c:forEach var="item" items="${itemList}">
+		<c:forEach var="item" items="${itemList}" >
 			<tr>
 				<td><img
 						src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>"
@@ -43,11 +48,11 @@
 	</form:form>
 				<!-- <input type="submit" value="削除" align="center"> -->
 				<form:form action="${pageContext.request.contextPath}/admin/changeByDeleted" align="center" method="post">
-				<c:if test="${item.deleted==true}">
+				<c:if test="${item.deleted==false}">
 				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>
 				<input type="hidden" name="deleted" value='<c:out value="${item.deleted}"/>'>
 				<input type="submit" value="削除" align="center"></c:if>
-				<c:if test="${item.deleted==false}">
+				<c:if test="${item.deleted==true}">
 				<input type="hidden" name="id" value='<c:out value="${item.id}"/>'>
 				<input type="hidden" name="deleted" value='<c:out value="${item.deleted}"/>'>
 				<input type="submit" value="再表示" align="center"></c:if>
@@ -57,6 +62,9 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
+	</c:otherwise>
+	</c:choose>
 	
 </body>
 </html>

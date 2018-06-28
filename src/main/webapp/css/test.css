@@ -13,7 +13,7 @@ header {
  margin: 0 auto;
  
   padding: 0;
-  position: fixed;
+  /* position: fixed; */
    top : 0; 
    
   display: flex;
