@@ -99,10 +99,10 @@ public class AdminMenuController {
 	@RequestMapping(value = "/itemeEdit")
 	public String itemeEdit(@Validated ItemForm form, BindingResult result, Model model) {
 
-		// if (result.hasErrors()) {
-		// System.out.println("00000000000000000000");
-		// return itemeContent(form.getId(),model);
-		// }
+		 if (result.hasErrors()) {
+		 System.out.println("00000000000000000000");
+		 return itemeContent(form.getId(),model);
+		 }
 		Item item = new Item();
 		System.out.println(form.getDeleted());
 		BeanUtils.copyProperties(form, item);
@@ -127,6 +127,10 @@ public class AdminMenuController {
 				e.printStackTrace();
 				return itemeContent(form.getId(), model);
 			}
+			 if (result.hasErrors()) {
+				 System.out.println("00000000000000000000");
+				 return itemeContent(form.getId(),model);
+				 }
 		}
 		// 画像のパスをセットする
 		item.setImagePath(filename);
