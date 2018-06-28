@@ -67,7 +67,8 @@
 		<br>
 	<div id="selectQuantity" align="center">
 	<form:form modelAttribute="orderItemForm" action="${pageContext.request.contextPath}/user/insert">
-					個数：<select name="quantity">
+			<font color="red"><c:out value ="${error}"/></font><br>
+					個数：<!--  <select name="quantity">
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -77,7 +78,8 @@
 				<option value="7">7</option>
 				<option value="8">8</option>
 				<option value="9">9</option>
-			</select>
+			</select>-->
+			<form:input path="quantity"/>
 
 			<div ="sendCart" align="center"><p><button type="submit" class="btn btn-info">カートに入れる</button></p></div>
 			

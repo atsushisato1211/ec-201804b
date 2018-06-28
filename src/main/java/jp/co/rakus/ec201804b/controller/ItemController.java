@@ -6,10 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.rakus.ec201804b.domain.Item;
+import jp.co.rakus.ec201804b.form.OrderItemForm;
 import jp.co.rakus.ec201804b.repository.ItemRepository;
 
 /**
@@ -23,6 +25,11 @@ import jp.co.rakus.ec201804b.repository.ItemRepository;
 public class ItemController {
 	@Autowired
 	private ItemRepository repository;
+	
+	@ModelAttribute
+	public OrderItemForm setUpForm() {
+		return new OrderItemForm();
+	}
 
 	/**
 	 * 商品一覧画面を表示させるメソッド.
