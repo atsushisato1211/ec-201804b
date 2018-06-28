@@ -8,13 +8,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" />
+<%-- <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> --%>
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" /> --%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Registration.css"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/testHeader.css" />
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/testHeader.css" />
 <link href="${pageContext.request.contextPath}/css/test_menu.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/test_header.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/page.css" rel="stylesheet"> --%>
 <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v3.0.1/dist/bootstrap-float-label.min.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
@@ -31,8 +31,8 @@ function formReset(userInfoUpdateForm){
 }
 </script>
 </head>
-<body>
-<jsp:include page="testHeader.jsp" />
+<body  background="${pageContext.request.contextPath}/img/wall.gif">
+<jsp:include page="testHeader2.jsp" />
 		<div id="userHeader" align="right">
 		</div>
 		<div id="title" align="center">

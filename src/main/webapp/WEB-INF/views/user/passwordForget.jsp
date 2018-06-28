@@ -7,8 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>パスワードを忘れたお客様</title>
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
-	rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+	rel="stylesheet"> --%>
 <link href="${pageContext.request.contextPath}/css/body.css"
 	rel="stylesheet">
 <%-- <link rel="stylesheet" type="text/css"
@@ -23,6 +23,7 @@
 		<div align="center">
 			<br> <br>
 			<h2 class="item">パスワードを忘れたお客様</h2>
+			    <div align="center" style="background-color:#FAFAFA; width: 50%; height: 50%; margin-left: auto; margin-right: auto; ;">
 			<table>
 			
 				<tr>
@@ -41,7 +42,7 @@
 							class="btn btn-warning">送る</button></td>
 				</tr>
 			</table>
-
+</div>
 		</div>
 	</form:form>
 

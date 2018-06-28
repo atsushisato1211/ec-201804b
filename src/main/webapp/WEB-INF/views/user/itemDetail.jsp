@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,27 +27,33 @@
 
 <h2 class="item"></h2>
 	<h2 class="detail" align="center">商品詳細</h2>
-	<table border="1" align="center">
+	<div style="background-color:#FAFAFA; width: 90%; height: 50%; margin-left: auto; margin-right: auto; ;" align="center">
+	<table border="0" align="center" bordercolor="#333333" style="background-color:#FAFAFA; width: 90%; height: 50%; margin-left: auto; margin-right: auto; ;">
 		<tr>
-			<td colspan="2" rowspan="2"><img src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>" width="150"
-				height="150" alt="商品画像">
+			<td colspan="2" rowspan="3"><img src="<%=request.getContextPath()%>/img/<c:out value="${item.imagePath}"/>" width="300"
+				height="250" alt="商品画像">
 			</td>
-			<th>商品名：</th>
-			<td align="center"><c:out value="${item.name}" /></td>
+			<th align="center"><pre>商品名：</pre></th>
+			<td align="center"><pre><c:out value="${item.name}" /></pre></td>
 		</tr>
 		<tr>
-			<th>価格：</th>
-			<td align="center">&yen;<c:out value="${item.price}" /></td>
+			<th align="center"><pre>価格：</pre></th>
+			<td align="center"><pre>&yen;<fmt:formatNumber value="${item.price}" pattern="###,###"/></pre></td>
+		</tr>
+		<tr>
+			<th align="center"><pre>商品説明：</pre></th>
+			<td ><pre><c:out value="${item.description}" /></pre></td>
 		</tr>
 	<%-- 	<tr>
 			<th>商品説明：</th>
 			<td><pre><c:out value="${item.description}" /></pre></td>
 		</tr> --%>
-		<tr>
+	<%-- 	<tr>
 			<th colspan="2">商品説明：</th>
 			<td colspan="2"><pre><c:out value="${item.description}" /></pre></td>
-		</tr>
+		</tr> --%>
 	</table>
+	</div>
 		<br>
 
 	<div id="selectQuantity" align="center">

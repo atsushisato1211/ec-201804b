@@ -50,7 +50,7 @@ public class InsertShoppingCartController {
 	@RequestMapping("/insert")
 	public String insertItem(@Validated OrderItemForm form,BindingResult result ,RedirectAttributes redirect , @AuthenticationPrincipal LoginUser userDetails) {
 		String quantity = String.valueOf(form.getQuantity());
-		if(!quantity.matches("[0-9]+")) {
+		if(form.getQuantity()==0 || !quantity.matches("[0-9]+")) {
 			redirect.addFlashAttribute("error","正の整数を入力してください");
 			return "redirect:/user/itemdetail?id="+form.getItemId();
 		}
