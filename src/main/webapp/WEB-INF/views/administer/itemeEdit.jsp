@@ -22,15 +22,18 @@
 		<table>
 			<tr>
 				<td>商品名:</td>
-				<td><form:input path="name" value="${itemContent.name}" /></td>
+				<td><form:input path="name" value="${itemContent.name}" />
+				<form:errors path="name" cssStyle="color:red" element="div" /></td>
 			</tr>
 			<tr>
 				<td>商品説明:</td>
-				<td><textarea name="description" rows="15" cols="150">${itemContent.description}</textarea></td>
+				<td><textarea name="description" rows="15" cols="150">${itemContent.description}</textarea>
+				<form:errors path="description" cssStyle="color:red" element="div" /></td>
 			</tr>
 			<tr>
 				<td>商品価格:</td>
-				<td><form:input path="price" value="${itemContent.price}" /></td>
+				<td><form:input path="price" value="${itemContent.price}" />
+				<form:errors path="price" cssStyle="color:red" element="div" /></td>
 			</tr>
 			<tr>
 				<td>商品画像:</td>

@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ItemForm {
 	private Long id;
+	@NotBlank(message="商品名を入力して下さい")
 	private String name;
 	@NotBlank(message="説明を入力してください")
 	private String description;
